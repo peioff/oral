@@ -1,0 +1,376 @@
+
+
+/* Variables */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Banner*/
+.banner {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .headband-banner {
+    display: flex;
+    justify-content: space-between;
+    padding: 5rem 4rem;
+  }
+  
+  .banner {
+    height: 70%;
+    background: url(../images/fox-7107267_1280.jpg);
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: start;
+    padding-top: 5%;
+    padding-right: 10%;
+    row-gap: 3rem;
+  }
+  .banner-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+  }
+  .banner-container>p[class="content"]{
+    width: 50%;
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  .banner-container--bottom{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    column-gap: 3rem;
+    padding-bottom: 10%;
+    padding-right: 5%;
+  }
+  .banner-container--bottom>p{
+    font-size: 2rem;
+    padding: 2rem;
+  }
+
+  
+  /* Livings */
+  .livings {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .living-picture {
+    width: 100%;
+  }
+  
+  .living-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 10%;
+    align-items: center;
+  }
+  
+  .living-text {
+    display: none;
+  }
+  
+  .living-title {
+    color: var(--color-content);
+    font-family: var(--font-content--card);
+    font-size: 2rem;
+  }
+  
+  @media screen and (min-width:900px) {
+  
+    .livings {
+      row-gap: 2rem;
+      padding: 2rem;
+    }
+  
+    .living-picture{
+      max-width: 50%;
+    }
+    .living {
+      border: solid 1px;
+      border-color: var(--light);
+      display: flex;
+    }
+  
+    .living--reverse {
+      flex-direction: row-reverse;
+    }
+  
+    .living-text {
+      display: block;
+      font-family: var(--font-content--card);
+      color: var(--color-content);
+      font-size: 1.6rem;
+      text-align: justify;
+    }
+  
+    .living-content {
+      flex-direction: column;
+    }
+  
+    .living-title {
+      font-size: 3.2rem;
+    }
+  
+  }
+  
+  /* Animals */
+  .animals {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .animal {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: center;
+    width: 45%;
+    padding: 1%;
+  }
+  
+  @media screen and (min-width:900px) {
+    .animal {
+      width: 30%;
+    }
+  }
+  
+  @media screen and (min-width:1200px) {
+    .animal {
+      width: 20%;
+      margin: 1%;
+    }
+  }
+  
+  .animal-title {
+    color: var(--color-content);
+    font-family: var(--color-title--card);
+    font-size: 1.6rem;
+  }
+  
+  .animal-picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+  }
+  
+  .animal-content {
+    color: var(--color-content);
+    width: 100%;
+    font-family: var(--font-content--card);
+    font-size: 1.2rem;
+    text-align: start;
+  }
+  
+  /* Services */
+  .services {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .service {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+    align-items: center;
+    padding: 3rem 10%;
+  }
+  
+  @media screen and (min-width:900px) {
+  
+    .service {
+      width: 40%;
+      height: 100%;
+      padding: 1%;
+    }
+  
+    .service-content {
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 2rem;
+    }
+  }
+  
+  @media screen and (min-width:1200px) {
+    .service {
+      width: 30%;
+      height: 100%;
+      padding: 1%;
+    }
+  }
+  
+  
+  .service-title {
+    color: var(--color-content);
+    font-family: var(--font-title--card);
+    font-size: 2.4rem;
+    width: 100%;
+    text-align: start;
+  }
+  
+  .service-picture {
+    width: 100%;
+  }
+  
+  .service-content {
+    color: var(--color-content);
+    font-family: var(--font-content--card);
+    font-size: 1.6rem;
+    width: 100%;
+    height: 100%;
+    text-align: justify;
+  }
+  
+  /* Reviews */
+  .reviews {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .review {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding-top: 2rem;
+  }
+  
+  @media screen and (min-width : 900px) {
+    .review {
+      width: 40%;
+      margin: 0 3rem;
+    }
+  }
+  
+  @media screen and (min-width : 1200px) {
+    .review {
+      width: 25%;
+      margin: 0 3rem;
+    }
+  }
+  
+  .review-header {
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+  }
+  
+  .review-svg {
+    width: 5rem;
+    height: 5rem;
+    color: var(--light);
+  }
+  
+  .review-title {
+    font-family: var(--font-title--card);
+    color: var(--color-content);
+    font-size: 1.2rem;
+  }
+  
+  .review-content {
+    font-family: var(--font-content--card);
+    font-size: 1rem;
+    color: var(--grey-700);
+    background-color: var(--grey-400);
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 2rem;
+    line-height: 1.2rem;
+    text-align: justify;
+  }
+  
+  /* WriteReview */
+  .writeReview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    width: 100%;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    row-gap: 3rem;
+  
+  }
+  
+  .form-title {
+    font-family: var(--font-title);
+    color: var(--color-title--main);
+    font-size: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--grey-700);
+    width: 100%;
+  }
+  
+  @media screen and (max-width:375px) {
+    .form-title {
+      font-size: 2.5rem;
+    }
+  
+  }
+  
+  .form-header {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+  }
+  
+  .form-svg {
+    color: var(--light);
+  }
+  
+  .form-placeHolder1 {
+    border-radius: 1rem;
+    width: 60%;
+  }
+  
+  .form-placeHolder2 {
+    width: 100%;
+    border-radius: 1rem;
+  }
+  
+  .form-buttonContainer {
+    display: flex;
+    justify-content: end;
+  }
+  
+  

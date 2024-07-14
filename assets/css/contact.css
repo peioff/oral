@@ -1,0 +1,128 @@
+#title{
+    justify-content: start;
+}
+/* Informations */
+.infos{
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+    "mail phone"
+    "adress adress";
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: var(--grey-600) solid 1px;
+}
+.info--mail{
+    grid-area: mail;
+}
+.info--phone{
+    grid-area: phone;
+}
+.info--adress{
+    grid-area: adress;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1rem;
+}
+@media screen and (min-width:900px) {
+    .infos{
+        grid-template-columns: 25%;
+
+    }
+}
+.info-header{
+    display: flex;
+    align-items: end;
+    column-gap: 1rem;
+}
+.info-svg{
+    width: 2rem;
+    height: 2rem;
+    color: var(--lighter);
+}
+.info-label{
+    font-family: var(--font-content);
+    color: var(--lighter);
+    font-size: 2rem;
+}
+.info-content{
+    font-family: var(--font-content);
+    color: var(--color-content);
+    font-size: 1.6rem;
+}
+/* Contact */
+.contact{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    padding: 1rem;
+}
+@media screen and (min-width:700px) {
+    .contact{
+        max-width:50%
+    }
+}
+.contact-title{
+    grid-area: title;
+    color: var(--color-title--main);
+    font-family: var(--font-content);
+    font-size: 2rem;
+}
+.form-container{
+    display: grid;
+    grid-template-areas:
+    "nickname nickname"
+    "messageTitle messageTitle"
+    "email email"
+    "message message"
+    "button button";
+    gap: 1rem;
+}
+.form-field--nickname{
+    grid-area: nickname;
+}
+.form-field--messageTitle{
+    grid-area: messageTitle;
+}
+.form-field--email{
+    grid-area: email;
+}
+.form-field--message{
+    grid-area: message;
+}
+.form-labelContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+.form-label{
+    color: var(--color-content);
+    font-family: var(--font-content);
+    font-size: 1.6rem;
+}
+.form-input{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--grey-700);
+    color: var(--color-content);
+}
+.form-input::placeholder{
+    color: var(--grey-500);
+    font-size: 1.2rem;
+}
+.form-buttonContainer{
+    grid-area: button;
+    display: flex;
+    justify-content: center;
+}
+.button--form{
+    width: 50%;
+    padding: 1rem ;
+    color: var(--color-content);
+    background-color: var(--green-600);
+    border-radius: 20px;
+    margin-top: 1rem;
+}

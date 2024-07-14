@@ -1,0 +1,8 @@
+#This file is used to configure some Apache options
+
+#Url Rewrite Engine Activaion
+RewriteEngine On
+#Exception : If the request calls a file (e.g. : style.css), then, no rewritting
+RewriteCond %{REQUEST_FILENAME} !-f
+#Every other request is redirected to index.php
+RewriteRule ^(.+)$ index.php?r=$1 [QSA,L]
