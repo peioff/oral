@@ -7,11 +7,31 @@ declare(strict_types=1);
  */
 class LivingModel
 {
-
     private int $id;
     private string $name;
     private string $description;
-    private string $comment;
+    private array $animals;
+    private $image;
+
+    public function getAnimals(): array
+    {
+        return $this->animals;
+    }
+
+    public function setAnimals(array $animals): void
+    {
+        $this->animals = $animals;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
 
     public function getId(): int
     {
@@ -43,15 +63,6 @@ class LivingModel
         $this->description = $description;
     }
 
-    public function getComment(): string
-    {
-        return $this->comment;
-    }
-
-    public function setComment(string $comment): void
-    {
-        $this->comment = $comment;
-    }
 
 
 }

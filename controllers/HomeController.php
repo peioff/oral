@@ -14,9 +14,13 @@ class HomeController
 
         $databaseManager = new DatabaseManager();
         $livings = $databaseManager->getLivings();
+        $animals = $databaseManager->getAllAnimals();
+        $services = $databaseManager->getServices();
+        $comments = $databaseManager->getComments();
+        $allHomePageData = array($livings, $animals, $services,$comments);
 
         $homeView = new View('home');
-        $homeView->render(array('livings' => $livings));
+        $homeView->render(array('allHomePageData' => $allHomePageData));
     }
 }
 

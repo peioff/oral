@@ -16,7 +16,7 @@
     </p>
 </header>
 <main class="main">
-    <form class="form flux" action="">
+    <form class="form flux" action="" method="post">
         <ul class="form-container">
             <li class="field">
                 <label class="label" for="id">
