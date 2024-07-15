@@ -15,12 +15,17 @@ class Routeur
     # definition of an array of array where each element is an array where [0] is the name of the controller associated to the request
     # and [1] is the method called in the controller
     private $routes = [
-        "/"        => ["controller" => 'HomeController', "method" => 'display'],
-        "home"     => ["controller" => 'HomeController', "method" => 'display'],
-        "livings"  => ["controller" => 'LivingsController', "method" => 'display'],
-        "services" => ["controller" => 'ServicesController', "method" => 'display'],
-        "contact"  => ["controller" => 'ContactController', "method" => 'display'],
-        "connect"  => ["controller" => 'ConnectController', "method" => 'display']
+        "/"                   => ["controller" => 'HomeController', "method" => 'display'],
+        "home"                => ["controller" => 'HomeController', "method" => 'display'],
+        "livings"             => ["controller" => 'LivingsController', "method" => 'display'],
+        "services"            => ["controller" => 'ServicesController', "method" => 'display'],
+        "contact"             => ["controller" => 'ContactController', "method" => 'display'],
+        "connect"             => ["controller" => 'DashboardController', "method" => 'display'],
+        "connection"          => ["controller" => 'DashboardController', "method" => 'connection'],
+        "dashboardAnimals"    => ["controller" => 'DashboardController', "method" => 'manageAnimals'],
+        "addAnimal.php"       => ["controller" => 'DashboardController', "method" => 'addAnimalPage'],
+        "addAnimalToDatabase" =>["controller" => 'DashboardController', "method" => 'addAnimalToDatabase'],
+        "submitComment"       => ["controller" => 'HomeController', "method" => 'submitComment'],
         ];
 
 

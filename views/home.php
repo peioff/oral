@@ -11,7 +11,7 @@
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
 </head>
-<body class="body">
+<body class="body flux">
 <main class="main">
     <!-- Banner -->
     <section class="banner">
@@ -154,7 +154,7 @@
     <!-- WriteReview -->
     <article class="writeReview">
         <h2 class="form-title">Ecrire un commentaire</h2>
-        <form class="form" action="/">
+        <form class="form">
             <ul class="form-container">
                 <li>
                     <label class="form-header" for="nickname">
@@ -172,7 +172,7 @@
                               maxlength="200"></textarea>
                 </li>
                 <li class="form-buttonContainer">
-                    <button class="button" type="submit" href="/">Submit</button>
+                    <button class="button" type="submit" formaction="<?php echo HOST; ?>submitComment" formmethod="post">Submit</button>
                     </div>
                 </li>
             </ul>

@@ -6,5 +6,5 @@
 //Echo an array line by line
 echo '<pre>'; print_r($_SERVER); echo '</pre>';
 
-//SQL Query
-
+//Encode image_data
+/*src="data:image/jpeg;base64,<?php echo base64_encode( $living->getImage() ); ?>"*/

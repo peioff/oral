@@ -335,7 +335,6 @@
       border-bottom: var(--light) solid 1px;
   
     }
-  
     .footer-nav--row {
       flex-direction: row-reverse;
       column-gap: 10%;
