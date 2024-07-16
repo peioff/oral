@@ -10,7 +10,7 @@ class DatabaseManager
         $this->bdd = new PDO('mysql:host=localhost;dbname=ecf', 'admin', 'N0pl4c3t0h1d3?');
     }
 
-    /////////////////////////////////////////////////////////////////////////// Users ////////////////////////////////
+    // Users
     private function getusers(): array
     {
         $bdd = $this->bdd;
@@ -39,7 +39,7 @@ class DatabaseManager
         return null;
     }
 
-    /////////////////////////////////////////////////////////////////////////// Livings ////////////////////////////////
+    // Livings
     public function getLivings(): array
     {
         $bdd = $this->bdd;
@@ -53,14 +53,17 @@ class DatabaseManager
             $living->setId($row['living_id']);
             $living->setName($row['name']);
             $living->setDescription($row['description']);
+
             $living->setAnimals($this->getAnimalsByLiving($row['name']));
-            $living->setImage($this->getImg($row['image_name']));
+
+            $living->setImageId($row['image_id']);
+            $living->setImage($this->getImg($row['image_id']));
             $livings[] = $living; // array of objects (LivingModel)
         }
         return $livings;
     }
 
-    /////////////////////////////////////////////////////////////////////////// Animals ////////////////////////////////
+    // Animals
     public function getAllAnimals(): array
     {
         $bdd = $this->bdd;
@@ -74,18 +77,20 @@ class DatabaseManager
             $animal->setName($row['name']);
             $animal->setSpecies($row['species']);
             $animal->setLiving($row['living']);
-            $animal->setImage($this->getImg($row['image_name']));
+            $animal->setImageId($row['image_id']);
+            $animal->setImage($this->getImg($row['image_id']));
+
             $animals[] = $animal; // Array of all animals in database
         }
         return $animals;
     }
 
-    public function getAnimalByName(string $name)
+    public function getAnimalById(int $animal_id): AnimalModel
     {
         $bdd = $this->bdd;
-        $query = "SELECT * from animals WHERE name = :name";
+        $query = "SELECT * from animals WHERE animal_id = :animal_id";
         $req = $bdd->prepare($query);
-        $req->bindValue(':name',$name);
+        $req->bindValue(':animal_id',$animal_id);
         $req->execute();
 
         while ($row = $req->fetch(PDO::FETCH_ASSOC)){
@@ -94,17 +99,18 @@ class DatabaseManager
             $animal->setName($row['name']);
             $animal->setSpecies($row['species']);
             $animal->setLiving($row['living']);
-            $animal->setImageName($this->getImg($row['image_name']));
+            $animal->setImageId($row['image_id']);
+            $animal->setImage($this->getImg($row['image_id']));
         }
         return $animal;
     }
 
-    public function getAnimalsByLiving($living_name): array
+    public function getAnimalsByLiving($living): array
     {
         $bdd = $this->bdd;
-        $query = "SELECT * FROM animals WHERE living = :living_name";
+        $query = "SELECT * FROM animals WHERE living = :living";
         $req = $bdd->prepare($query);
-        $req->bindValue(':living_name', $living_name);
+        $req->bindValue(':living', $living);
         $req->execute();
 
         while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -113,32 +119,44 @@ class DatabaseManager
             $animal->setName($row['name']);
             $animal->setSpecies($row['species']);
             $animal->setLiving($row['living']);
-            $animal->setImage($this->getImg($row['image_name']));
+            $animal->setImageId($row['image_id']);
+            $animal->setImage($this->getImg($row['image_id']));
             $animals[] = $animal; // Array of animals in a certain living
         }
-        return $animals;
+        return  $animals;
     }
 
-    public function addAnimal($name, $species, $living, $image_name)
+    public function addAnimal($name, $species, $living, $lastInsertedId)
     {
         $bdd = $this->bdd;
-        $query = "INSERT INTO animals(name, species, living, image_name) VALUES ('$name', '$species', '$living', '$image_name')";
+        $query = "INSERT INTO animals(name, species, living, image_id) VALUES ('$name', '$species', '$living', '$lastInsertedId')";
         $req = $bdd->prepare($query);
         $req->execute();
     }
-
-    public function deleteAnimal(string $name){
+    public function updateAnimal(AnimalModel $animal)
+    {
         $bdd = $this->bdd;
-        $query = "DELETE FROM animals WHERE name = :name";
+        $query = "UPDATE animals SET name = :name, species = :species, living = :living, image_id = :image_id WHERE animal_id = :animal_id";
         $req = $bdd->prepare($query);
-        $req->bindValue(':name', $name);
-        $image_name = $this->getAnimalByName($name)->getImage();
-        $this->deleteImg($image_name);
+        $req->bindValue(':name', $animal->getName());
+        $req->bindValue(':species', $animal->getSpecies());
+        $req->bindValue(':living', $animal->getLiving());
+        $req->bindValue(':image_id', $animal->getImageId());
+        $req->bindValue(':animal_id', $animal->getId());
         $req->execute();
-
     }
 
-    /////////////////////////////////////////////////////////////////////////// Services ////////////////////////////////
+    public function deleteAnimal(int $animal_id){
+        $bdd = $this->bdd;
+        $query = "DELETE FROM animals WHERE animal_id = :animal_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':animal_id', $animal_id);
+        $image_id = $this->getAnimalById($animal_id)->getImageId();
+        $this->deleteImg($image_id);
+        $req->execute();
+    }
+
+    // Services
     public function getServices(): array
     {
         $bdd = $this->bdd;
@@ -152,7 +170,8 @@ class DatabaseManager
             $service->setName($row['name']);
             $service->setSchedule($row['schedule']);
             $service->setContactInfo($row['contact_info']);
-            $service->setImage($this->getImg($row['image_name']));
+            $service->setImageId($row['image_id']);
+            $service->setImage($this->getImg($row['image_id']));
             $service->setDescription($row['description']);
 
             $services[] = $service; // array of objects (ServiceModel)
@@ -160,7 +179,7 @@ class DatabaseManager
         return $services;
     }
 
-    /////////////////////////////////////////////////////////////////////////// Comments ////////////////////////////////
+    // Comments
     public function getComments(): array
     {
         $bdd = $this->bdd;
@@ -187,22 +206,25 @@ class DatabaseManager
     }
 
 
-    /////////////////////////////////////////////////////////////////////////// Img ////////////////////////////////
-    public function getImg($img_name)
+    //Img
+
+    public function getImg($image_id):ImageModel
     {
         $bdd = $this->bdd;
-        $query = "SELECT * FROM images WHERE image_name = :img_name";
+        $query = "SELECT * FROM images WHERE image_id = :image_id";
         $req = $bdd->prepare($query);
-        $req->bindValue(':img_name', $img_name);
+        $req->bindValue(':image_id', $image_id);
         $req->execute();
 
         while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-            $image_data = $row['image_data'];
+            $image = new ImageModel();
+            $image->setId($row['image_id']);
+            $image->setData($row['image_data']);
         }
-        return $image_data;
+        return $image;
     }
 
-    public function addImage($image_name, $image_data)
+    public function addImage($image_name, $image_data):int
     {
         $bdd = $this->bdd;
         $query = "INSERT INTO `images`(`image_name`, image_data) VALUES (:image_name,:image_data)";
@@ -210,13 +232,21 @@ class DatabaseManager
         $req->bindValue(':image_name', $image_name);
         $req->bindValue(':image_data', $image_data);
         $req->execute();
+
+        $query = "SELECT LAST_INSERT_ID() FROM images";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
+            $result = $row['LAST_INSERT_ID()'];
+        }
+        return $result;
     }
 
-    public function deleteImg(string $image_name){
+    public function deleteImg(int $image_id){
         $bdd = $this->bdd;
-        $query = "DELETE FROM images WHERE image_name = :image_name";
+        $query = "DELETE FROM images WHERE image_id = :image_id";
         $req = $bdd->prepare($query);
-        $req->bindValue(':image_name', $image_name);
+        $req->bindValue(':image_id', $image_id);
         $req->execute();
     }
 }

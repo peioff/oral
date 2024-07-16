@@ -11,7 +11,20 @@ class LivingModel
     private string $name;
     private string $description;
     private array $animals;
-    private $image;
+    private int $image_id;
+    private ImageModel $image;
+
+    public function getImage(): ImageModel
+    {
+        return $this->image;
+    }
+
+    public function setImage(ImageModel $image): void
+    {
+        $this->image = $image;
+    }
+
+
 
     public function getAnimals(): array
     {
@@ -23,14 +36,14 @@ class LivingModel
         $this->animals = $animals;
     }
 
-    public function getImage()
+    public function getImageId(): int
     {
-        return $this->image;
+        return $this->image_id;
     }
 
-    public function setImage($image): void
+    public function setImageId($image_id): void
     {
-        $this->image = $image;
+        $this->image_id = $image_id;
     }
 
     public function getId(): int

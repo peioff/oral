@@ -17,22 +17,22 @@
             <ul>
                 <li >
                     <label class="form-field" for="name"> Nom animal:
-                        <input type="text" name="name" placeholder="Titus">
+                        <input type="text" name="name" placeholder="Titus" required>
                     </label>
                 </li>
                 <li >
                     <label class="form-field" for="species"> Espèce:
-                        <input type="text" name="species" placeholder="Antilopinae">
+                        <input type="text" name="species" placeholder="Antilopinae" required>
                     </label>
                 </li>
                 <li >
                     <label class="form-field" for="living"> Habitat:
-                        <input type="text" name="living" placeholder="Savane">
+                        <input type="text" name="living" placeholder="Savane" required>
                     </label>
                 </li>
                 <li>
-                    <label  class="form-field" for="file"> Photo animal
-                        <input type="file" name="file">
+                    <label  class="form-field" for="file"> Ajouter une photo :
+                        <input type="file" name="file" required>
                     </label>
                 </li>
                 <li>

@@ -17,7 +17,7 @@ if(isset($services)){}
                 echo $service->getName();
                 ?>
             </h2>
-            <img class="service-picture" src="data:image/jpeg;base64,<?php echo base64_encode( $service->getImage() ); ?>" alt="">
+            <img class="service-picture" src="data:image/jpeg;base64,<?php echo base64_encode( $service->getImage()->getData() ); ?>" alt="">
             <p class="service-description">
                 <?php
                 echo $service->getDescription();

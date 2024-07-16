@@ -145,6 +145,13 @@ html {
     padding: 0.5rem 1rem;
 }
 
+.button-edit{
+    color: var(--warning);
+}
+.button-delete{
+    color: var(--danger);
+}
+
 .menu-button {
     color: var(--color-content);
     background-color: var(--grey-600);
@@ -319,8 +326,17 @@ html {
     display: flex;
     justify-content: end;
     column-gap: 1rem;
+    padding-right: 1rem;
 }
 
+.animal-actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    height: 100% ;
+}
 .button--success {
     background-color: var(--primary-400);
 }

@@ -1,10 +1,12 @@
 <?php
-    if (isset($allHomePageData)){
-        $livings = $allHomePageData[0];
-        $animals = $allHomePageData[1];
-        $services = $allHomePageData[2];
-        $comments = $allHomePageData[3];
-        }
+if (isset($allHomePageData)) {
+    $livings = $allHomePageData[0];
+    $animals = $allHomePageData[1];
+    $services = $allHomePageData[2];
+    $comments = $allHomePageData[3];
+}
+
+
 ?>
 
 <head>
@@ -39,12 +41,13 @@
         <!-- living -->
         <?php foreach ($livings as $living): ?>
             <article class="living">
-                <img class="living-picture" src="data:image/jpeg;base64,<?php echo base64_encode( $living->getImage() ); ?>" </img>
+                <img class="living-picture"
+                     src="data:image/jpeg;base64,<?php echo base64_encode($living->getImage()->getData()); ?>" </img>
                 <footer class="living-content">
                     <h3 class="living-title"><?php
                         echo $living->getName();
                         ?></h3>
-                    <p class="living-text"><?php echo $living->getDescription()?></p>
+                    <p class="living-text"><?php echo $living->getDescription() ?></p>
                     <a class="button" href="">Découvrir</a>
                 </footer>
             </article>
@@ -54,7 +57,8 @@
 
         <!-- living -->
         <!--        <article class="living living--reverse">-->
-        <!--            <img class="living-picture" src="--><?php //echo ASSETSIMG; ?><!--trees-3294681_1280.jpg" alt=""></img>-->
+        <!--            <img class="living-picture" src="-->
+        <?php //echo ASSETSIMG; ?><!--trees-3294681_1280.jpg" alt=""></img>-->
         <!--            <footer class="living-content">-->
         <!--                <h3 class="living-title">Habitat</h3>-->
         <!--                <p class="living-text">Ceci est le texte de description de l'habitat</p>-->
@@ -80,7 +84,8 @@
                     echo $animal->getName();
                     ?></h3>
                 </h3>
-                <img class="animal-picture" src="data:image/jpeg;base64,<?php echo base64_encode( $animal->getImage() ); ?>"  alt="">
+                <img class="animal-picture"
+                     src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
                 <p class="animal-content">
                     <?php
                     echo $animal->getLiving();
@@ -107,7 +112,8 @@
                     echo $service->getName();
                     ?></h3>
                 </h3>
-                <img class="service-picture" src="data:image/jpeg;base64,<?php echo base64_encode( $service->getImage() ); ?>" alt="">
+                <img class="service-picture"
+                     src="data:image/jpeg;base64,<?php echo base64_encode($service->getImage()->getData()); ?>" alt="">
                 <p class="service-content">
                     <?php
                     echo $service->getDescription();
@@ -127,29 +133,30 @@
         </header>
         <!-- review -->
         <?php foreach ($comments as $comment):
-            if ($comment->getVisibility()){
-            ?>
-            <article class="review">
-                <header class="review-header">
-                    <svg class="review-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                         viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                        <path fill-rule="evenodd"
-                              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                    </svg>
-                    <p class="review-title">
+            if ($comment->getVisibility()) {
+                ?>
+                <article class="review">
+                    <header class="review-header">
+                        <svg class="review-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                             fill="currentColor"
+                             viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                        </svg>
+                        <p class="review-title">
+                            <?php
+                            echo $comment->getNickname();
+                            ?>
+                        </p>
+                    </header>
+                    <p class="review-content">
                         <?php
-                        echo $comment->getNickname();
+                        echo $comment->getContent();
                         ?>
                     </p>
-                </header>
-                <p class="review-content">
-                    <?php
-                    echo $comment->getContent();
-                    ?>
-                </p>
-            </article>
-        <?php }  endforeach; ?>
+                </article>
+            <?php } endforeach; ?>
     </section>
     <!-- WriteReview -->
     <article class="writeReview">
@@ -172,7 +179,9 @@
                               maxlength="200"></textarea>
                 </li>
                 <li class="form-buttonContainer">
-                    <button class="button" type="submit" formaction="<?php echo HOST; ?>submitComment" formmethod="post">Submit</button>
+                    <button class="button" type="submit" formaction="<?php echo HOST; ?>submitComment"
+                            formmethod="post">Submit
+                    </button>
                     </div>
                 </li>
             </ul>

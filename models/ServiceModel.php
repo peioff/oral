@@ -11,7 +11,18 @@ class ServiceModel {
     private string $schedule;
     private string $contact_info;
     private string $description;
-    private $image;
+    private int $image_id;
+    private ImageModel $image;
+
+    public function getImage(): ImageModel
+    {
+        return $this->image;
+    }
+
+    public function setImage(ImageModel $image): void
+    {
+        $this->image = $image;
+    }
 
     public function getId(): int
     {
@@ -66,17 +77,17 @@ class ServiceModel {
     /**
      * @return mixed
      */
-    public function getImage()
+    public function getImageId() : int
     {
-        return $this->image;
+        return $this->image_id;
     }
 
     /**
      * @param mixed $image
      */
-    public function setImage($image): void
+    public function setImageId($image_id): void
     {
-        $this->image = $image;
+        $this->image_id = $image_id;
     }
 
 

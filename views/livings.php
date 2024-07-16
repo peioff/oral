@@ -17,14 +17,14 @@ if (isset($livings))
                 </header>
                 <article class="living">
                     <img class="living-picture"
-                         src="data:image/jpeg;base64,<?php echo base64_encode($living->getImage()); ?>" alt="">
+                         src="data:image/jpeg;base64,<?php echo base64_encode($living->getImage()->getData()); ?>" alt="">
                 </article>
                 <section class="animals">
                     <?php foreach ($living->getAnimals() as $animal): ?>
                         <article class="animal">
                             <h3 class="animal-title"><?php echo $animal->getName() ?></h3>
                             <img class="animal-picture"
-                                 src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()); ?>" alt="">
+                                 src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
                         </article>
                     <?php endforeach; ?>
                 </section>
