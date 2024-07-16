@@ -16,12 +16,12 @@
     </p>
 </header>
 <main class="main">
-    <form class="form flux" action="">
+    <form class="form flux">
         <ul class="form-container">
             <li class="field">
                 <label class="label" for="id">
                     <p class="label-text">Identifiant</p>
-                    <input class="input" type="text" name="id">
+                    <input class="input" type="text" name="user">
                 </label>
             </li>
             <li class="field">
@@ -42,7 +42,7 @@
                 </label>
             </li>
             <li class="form-buttonContainer">
-                <button class="button button--form" type="submit" href="/">Se connecter</button>
+                <button class="button button--form" type="submit" formaction="<?php echo HOST; ?>connection" formmethod="post">Se connecter</button>
             </li>
         </ul>
     </form>

@@ -1,9 +1,19 @@
+<?php
+if (isset($allHomePageData)) {
+    $livings = $allHomePageData[0];
+    $animals = $allHomePageData[1];
+    $services = $allHomePageData[2];
+    $comments = $allHomePageData[3];
+}
+
+
+?>
+
 <head>
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
 </head>
-
-
+<body class="body flux">
 <main class="main">
     <!-- Banner -->
     <section class="banner">
@@ -29,34 +39,33 @@
             </p>
         </header>
         <!-- living -->
-        <article class="living">
-            <img class="living-picture" src="<?php echo ASSETSIMG; ?>bird-8018305_1280.jpg" alt=""></img>
-            <footer class="living-content">
-                <h3 class="living-title"><?php
-                    echo $livings[0]->getName();
-                    ?></h3>
-                <p class="living-text"><?php echo $livings[0]->getDescription()?></p>
-                <a class="button" href="">Découvrir</a>
-            </footer>
-        </article>
+        <?php foreach ($livings as $living): ?>
+            <article class="living">
+                <img class="living-picture"
+                     src="data:image/jpeg;base64,<?php echo base64_encode($living->getImage()->getData()); ?>" </img>
+                <footer class="living-content">
+                    <h3 class="living-title"><?php
+                        echo $living->getName();
+                        ?></h3>
+                    <p class="living-text"><?php echo $living->getDescription() ?></p>
+                    <a class="button" href="">Découvrir</a>
+                </footer>
+            </article>
+        <?php endforeach; ?>
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
         <!-- living -->
-        <article class="living living--reverse">
-            <img class="living-picture" src="<?php echo ASSETSIMG; ?>trees-3294681_1280.jpg" alt=""></img>
-            <footer class="living-content">
-                <h3 class="living-title">Habitat</h3>
-                <p class="living-text">Ceci est le texte de description de l'habitat</p>
-                <a class="button" href="">Découvrir</a>
-            </footer>
-        </article>
+        <!--        <article class="living living--reverse">-->
+        <!--            <img class="living-picture" src="-->
+        <?php //echo ASSETSIMG; ?><!--trees-3294681_1280.jpg" alt=""></img>-->
+        <!--            <footer class="living-content">-->
+        <!--                <h3 class="living-title">Habitat</h3>-->
+        <!--                <p class="living-text">Ceci est le texte de description de l'habitat</p>-->
+        <!--                <a class="button" href="">Découvrir</a>-->
+        <!--            </footer>-->
+        <!--        </article>-->
         <!-- living -->
-        <article class="living">
-            <img class="living-picture" src="<?php echo ASSETSIMG; ?>nature-3358478_1280.jpg" alt=""></img>
-            <footer class="living-content">
-                <h3 class="living-title">Habitat</h3>
-                <p class="living-text">Ceci est le texte de description de l'habitat</p>
-                <a class="button" href="">Découvrir</a>
-            </footer>
-        </article>
     </section>
     <!-- Animals -->
     <section class="animals">
@@ -68,95 +77,23 @@
             </p>
         </header>
         <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>squirrel-7985502_640.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>fox-5064828_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>raccoon-3538081_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>bobcat-165190_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>turtles-3289690_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>otter-2678776_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>swan-7355432_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>frog-1530803_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>crocodile-6931035_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>giraffe-1544348_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>zebra-6275284_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>nandu-1438617_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>squirrel-7985502_640.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>meerkat-7241664_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
-        <!-- animal -->
-        <article class="animal">
-            <h3 class="animal-title">Animal</h3>
-            <img class="animal-picture" src="<?php echo ASSETSIMG; ?>impala-2800376_1280.jpg" alt="">
-            <p class="animal-content">Habitat</p>
-        </article>
+        <?php foreach ($animals as $animal): ?>
+            <article class="animal">
+                <h3 class="animal-title">
+                    <?php
+                    echo $animal->getName();
+                    ?></h3>
+                </h3>
+                <img class="animal-picture"
+                     src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
+                <p class="animal-content">
+                    <?php
+                    echo $animal->getLiving();
+                    ?>
+                </p>
+            </article>
+        <?php endforeach; ?>
+
     </section>
 
     <!-- Services -->
@@ -168,28 +105,21 @@
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
         </header>
-
-        <!-- service -->
-        <article class="service">
-            <h3 class="service-title">Service</h3>
-            <img class="service-picture" src="<?php echo ASSETSIMG; ?>beer-garden-4465324_1280.jpg" alt="">
-            <p class="service-content">Texte de présentation du service, en quelques lignes, présenter le zoo,
-                essayer de faire sortir le coté écologique dans la pésentation aussi</p>
-        </article>
-        <!-- service -->
-        <article class="service">
-            <h3 class="service-title">Service</h3>
-            <img class="service-picture" src="<?php echo ASSETSIMG; ?>rails-416460_1280.jpg" alt="">
-            <p class="service-content">Texte de présentation du service, en quelques lignes, présenter le zoo,
-                essayer de faire sortir le coté écologique dans la pésentation aussi</p>
-        </article>
-        <!-- service -->
-        <article class="service">
-            <h3 class="service-title">Service</h3>
-            <img class="service-picture" src="<?php echo ASSETSIMG; ?>rails-416460_1280.jpg" alt="">
-            <p class="service-content">Texte de présentation du service, en quelques lignes, présenter le zoo,
-                essayer de faire sortir le coté écologique dans la pésentation aussi</p>
-        </article>
+        <?php foreach ($services as $service): ?>
+            <article class="service">
+                <h3 class="service-title">
+                    <?php
+                    echo $service->getName();
+                    ?></h3>
+                </h3>
+                <img class="service-picture"
+                     src="data:image/jpeg;base64,<?php echo base64_encode($service->getImage()->getData()); ?>" alt="">
+                <p class="service-content">
+                    <?php
+                    echo $service->getDescription();
+                    ?></p>
+            </article>
+        <?php endforeach; ?>
     </section>
 
     <!-- Reviews -->
@@ -202,78 +132,36 @@
             </p>
         </header>
         <!-- review -->
-        <article class="review">
-            <header class="review-header">
-                <svg class="review-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                     viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                </svg>
-                <p class="review-title">Pseudonyme</p>
-            </header>
-            <p class="review-content">
-                Cette div représente le texte d'un commentaire.
-                Super expérience au parc arcadia ou mes enfants
-                et moi meme ont pu découvrir plein d'animaux.
-            </p>
-        </article>
-        <!-- review -->
-        <article class="review">
-            <header class="review-header">
-                <svg class="review-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                     viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                </svg>
-                <p class="review-title">Pseudonyme</p>
-            </header>
-            <p class="review-content">
-                Cette div représente le texte d'un commentaire.
-                Super expérience au parc arcadia ou mes enfants
-                et moi meme ont pu découvrir plein d'animaux.
-            </p>
-        </article>
-        <!-- review -->
-        <article class="review">
-            <header class="review-header">
-                <svg class="review-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                     viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                </svg>
-                <p class="review-title">Pseudonyme</p>
-            </header>
-            <p class="review-content">
-                Cette div représente le texte d'un commentaire.
-                Super expérience au parc arcadia ou mes enfants
-                et moi meme ont pu découvrir plein d'animaux.
-            </p>
-        </article>
-        <!-- review -->
-        <article class="review">
-            <header class="review-header">
-                <svg class="review-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                     viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                    <path fill-rule="evenodd"
-                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                </svg>
-                <p class="review-title">Pseudonyme</p>
-            </header>
-            <p class="review-content">
-                Cette div représente le texte d'un commentaire.
-                Super expérience au parc arcadia ou mes enfants
-                et moi meme ont pu découvrir plein d'animaux.
-            </p>
-        </article>
+        <?php foreach ($comments as $comment):
+            if ($comment->getVisibility()) {
+                ?>
+                <article class="review">
+                    <header class="review-header">
+                        <svg class="review-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                             fill="currentColor"
+                             viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                        </svg>
+                        <p class="review-title">
+                            <?php
+                            echo $comment->getNickname();
+                            ?>
+                        </p>
+                    </header>
+                    <p class="review-content">
+                        <?php
+                        echo $comment->getContent();
+                        ?>
+                    </p>
+                </article>
+            <?php } endforeach; ?>
     </section>
     <!-- WriteReview -->
     <article class="writeReview">
         <h2 class="form-title">Ecrire un commentaire</h2>
-        <form class="form" action="/">
+        <form class="form">
             <ul class="form-container">
                 <li>
                     <label class="form-header" for="nickname">
@@ -291,12 +179,14 @@
                               maxlength="200"></textarea>
                 </li>
                 <li class="form-buttonContainer">
-                    <button class="button" type="submit" href="/">Submit</button>
+                    <button class="button" type="submit" formaction="<?php echo HOST; ?>submitComment"
+                            formmethod="post">Submit
+                    </button>
                     </div>
                 </li>
             </ul>
         </form>
     </article>
 </main>
-
+</body>
 

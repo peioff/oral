@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>main.css"/>
 </head>
-<body>
 <header class="header">
     <div class="header-container">
         <div class="logo-container">
@@ -38,7 +39,9 @@
 
 </header>
 
-<!-- Contenu de la page -->
+<body>
+
+<!-- Page content-->
 <?php if
 (isset($contentPage)) {
     echo $contentPage;

@@ -2,15 +2,13 @@
 declare(strict_types=1);
 
 /**
- * This class is an object based representation of a Service (Restaurant, visits ...)
+ * This class is an object based representation of an Animal
  */
-class ServiceModel {
-
+class AnimalModel {
     private int $id;
     private string $name;
-    private string $schedule;
-    private string $contact_info;
-    private string $description;
+    private string $species;
+    private string $living;
     private int $image_id;
     private ImageModel $image;
 
@@ -44,54 +42,33 @@ class ServiceModel {
         $this->name = $name;
     }
 
-    public function getSchedule(): string
+    public function getSpecies(): string
     {
-        return $this->schedule;
+        return $this->species;
     }
 
-    public function setSchedule(string $schedule): void
+    public function setSpecies(string $species): void
     {
-        $this->schedule = $schedule;
+        $this->species = $species;
     }
 
-    public function getContactInfo(): string
+    public function getLiving(): string
     {
-        return $this->contact_info;
+        return $this->living;
     }
 
-    public function setContactInfo(string $contact_info): void
+    public function setLiving(string $living): void
     {
-        $this->contact_info = $contact_info;
+        $this->living = $living;
     }
 
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getImageId() : int
     {
         return $this->image_id;
     }
 
-    /**
-     * @param mixed $image
-     */
     public function setImageId($image_id): void
     {
         $this->image_id = $image_id;
     }
-
-
-
-
-
 }
