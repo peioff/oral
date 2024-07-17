@@ -72,6 +72,8 @@ class DatabaseManager
             $living->setName($row['name']);
             $living->setDescription($row['description']);
             $living->setImageId($row['image_id']);
+            $living->setImage($this->getImg($row['image_id']));
+
         }
         return $living;
     }
@@ -97,7 +99,6 @@ class DatabaseManager
 
         $req->execute();
     }
-
     public function deleteLiving(int $livingId)
     {
         $bdd = $this->bdd;
@@ -200,6 +201,61 @@ class DatabaseManager
         }
         return $services;
     }
+    public function getServiceById(int $serviceId): ServiceModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * from services WHERE service_id = :service_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':service_id',$serviceId);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $service = new ServiceModel();
+            $service->setId($row['service_id']);
+            $service->setName($row['name']);
+            $service->setSchedule($row['schedule']);
+            $service->setContactInfo($row['contact_info']);
+            $service->setDescription($row['description']);
+            $service->setImageId($row['image_id']);
+            $service->setImage($this->getImg($row['image_id']));
+        }
+        return $service;
+    }
+    public function addServiceToDatabase($service){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO services(name,schedule,contact_info,description,image_id) VALUES (:name,:schedule,:contact_info, :description, :image_id)";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $service->getName());
+        $req->bindValue(':schedule', $service->getSchedule());
+        $req->bindValue(':contact_info', $service->getContactInfo());
+        $req->bindValue(':description', $service->getDescription());
+        $req->bindValue(':image_id', $service->getImageId());
+        $req->execute();
+    }
+    public function updateService(ServiceModel $service)
+    {
+        $bdd = $this->bdd;
+        $query = "UPDATE services SET name = :name, schedule = :schedule, contact_info = :contact_info , description = :description, image_id = :image_id WHERE service_id = :service_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $service->getName());
+        $req->bindValue(':schedule', $service->getSchedule());
+        $req->bindValue(':contact_info', $service->getContactInfo());
+        $req->bindValue(':description', $service->getDescription());
+        $req->bindValue(':image_id', $service->getImageId());
+        $req->bindValue(':service_id', $service->getId());
+        $req->execute();
+    }
+
+    public function deleteService(int $serviceId)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM services WHERE service_id = :service_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':service_id', $serviceId);
+        $image_id = $this->getServiceById($serviceId)->getImageId();
+        $this->deleteImg($image_id);
+        $req->execute();
+    }
+
 
     // Comments
     public function getComments(): array
@@ -218,7 +274,6 @@ class DatabaseManager
         }
         return $comments;
     }
-
     public function insertComment(string $nickname, string $message)
     {
         $bdd = $this->bdd;

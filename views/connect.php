@@ -1,3 +1,7 @@
+<?php
+echo '<pre>'; print_r($_SESSION); echo '</pre>';
+?>
+
 <head>
     <title>Arcadia - Connexion</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS;?>main.css">

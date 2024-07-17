@@ -31,7 +31,8 @@ class Routeur
         //Dashboard
         "connect"               => ["controller" => 'DashboardController', "method" => 'display'],
         "connection"            => ["controller" => 'DashboardController', "method" => 'connection'],
-            //Animals
+        "disconnect"            => ["controller" => 'DashboardController', "method" => 'disconnect'],
+        //Animals
         "dashboardAnimals"      => ["controller" => 'DashboardController', "method" => 'manageAnimals'],
         "addAnimal.php"         => ["controller" => 'DashboardController', "method" => 'addAnimalPage'],
         "addAnimalToDatabase"   => ["controller" => 'DashboardController', "method" => 'addAnimalToDatabase'],
@@ -45,6 +46,14 @@ class Routeur
         "editLiving.php"        => ["controller" => 'DashboardController', "method" => 'editLivingPage'],
         "updateLiving"        => ["controller" => 'DashboardController', "method" => 'updateLiving'],
         "deleteLiving"          => ["controller" => 'DashboardController', "method" => 'deleteLiving'],
+            //Services editService.php
+        "dashboardServices"      => ["controller" => 'DashboardController', "method" => 'manageServices'],
+        "addService.php"         => ["controller" => 'DashboardController', "method" => 'addService'],
+        "addServiceToDatabase"   => ["controller" => 'DashboardController', "method" => 'addServiceToDatabase'],
+        "editService.php"        => ["controller" => 'DashboardController', "method" => 'editServicePage'],
+        "updateService"        => ["controller" => 'DashboardController', "method" => 'updateService'],
+        "deleteService"          => ["controller" => 'DashboardController', "method" => 'deleteService'],
+
 
     ];
 

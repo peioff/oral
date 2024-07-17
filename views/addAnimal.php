@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <label  class="form-field" for="file"> Ajouter une photo :
-                        <input type="file" name="file" required>
+                        <input type="file" name="file" accept=".jpeg,.png,.jpg,.webp" required>
                     </label>
                 </li>
                 <li>

@@ -363,3 +363,55 @@ html {
     padding: 1rem;
 }
 
+/*Service card*/
+.services{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    padding: 1rem 2rem 1rem 2rem;
+    border-left: var(--grey-600) solid 3px;
+}
+.service{
+    width: 90%;
+    background-color: var(--grey-700);
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+.service-picture {
+    padding: 0.5rem;
+    width: 100%;
+    height: 75%;
+    border-radius: 2rem;
+}
+.service-infoAndActions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.service-name{
+    margin-left: 3rem;
+    font-family: var(--font-title);
+    font-size: 2.4rem;
+}
+.service-actions{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    margin-right: 2rem;
+}
+.service-description{
+    border-radius: 1rem;
+    background-color: var(--grey-800);
+    display: flex;
+    flex-wrap: wrap;
+    font-family: var(--font-content);
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
+
+

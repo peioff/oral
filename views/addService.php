@@ -7,17 +7,27 @@
 </head>
 
 <header class="view-header--animal">
-    <h1 class="view-title">Ajouter un habitat</h1>
+    <h1 class="view-title">Ajouter un service</h1>
 </header>
 
 <!--View Menu + content-->
 <section class="addAnimal-container">
     <div class="form-container">
-        <form class="form" action="<?php echo HOST; ?>addLivingToDatabase" method="post" enctype="multipart/form-data">
+        <form class="form" action="<?php echo HOST; ?>addServiceToDatabase" method="post" enctype="multipart/form-data">
             <ul>
                 <li >
-                    <label class="form-field" for="name"> Nom Habitat:
-                        <input type="text" name="name" placeholder="Savane" required>
+                    <label class="form-field" for="name"> Nom Service:
+                        <input type="text" name="name" placeholder="Restaurant" required>
+                    </label>
+                </li>
+                <li >
+                    <label class="form-field" for="schedule"> Horaires:
+                        <input type="text" name="schedule" placeholder="11h30 - 14h00" required>
+                    </label>
+                </li>
+                <li >
+                    <label class="form-field" for="contactInfos"> Information de contact:
+                        <input type="text" name="contactInfos" placeholder="04 56 78 91 01" required>
                     </label>
                 </li>
                 <li >
@@ -33,7 +43,7 @@
                 <li>
                     <div class="form-buttonContainer">
                         <button class="button button--success" type="submit">Ajouter</button>
-                        <a class="button button--danger" href="<?php echo HOST; ?>dashboardLivings" >Annuler</a>
+                        <a class="button button--danger" href="<?php echo HOST; ?>dashboardServices" >Annuler</a>
                     </div>
                 </li>
             </ul>

@@ -29,10 +29,12 @@ if (isset($living)){
                 </li>
                 <li>
                     <label  class="form-field" for="file"> Photo actuelle:
-
-
+                        <div class="form-imageContainer" >
+                            <img class="animal-picture"
+                                 src="data:image/jpeg;base64,<?php echo base64_encode($living->getImage()->getData()); ?>" alt="">
+                        </div>
                         Choisir une autre photo :
-                        <input type="file" name="file">
+                        <input type="file" name="file" accept=".jpeg,.png,.jpg,.webp" >
                     </label>
                 </li>
                 <li>
