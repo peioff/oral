@@ -7,4 +7,4 @@
 echo '<pre>'; print_r($_SERVER); echo '</pre>';
 
 //Encode image_data
-/*src="data:image/jpeg;base64,<?php echo base64_encode( $living->getImage() ); ?>"*/
+/*src="data:image/jpeg;base64,<?php echo base64_encode( $living->getImage()->getData() ); ?>"*/

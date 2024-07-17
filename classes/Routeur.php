@@ -19,41 +19,47 @@ class Routeur
     # and [1] is the method called in the controller
     private $routes = [
         //Home
-        ""                     => ["controller" => 'HomeController', "method" => 'display'],
-        "home"                  => ["controller" => 'HomeController', "method" => 'display'],
-        "submitComment"         => ["controller" => 'HomeController', "method" => 'submitComment'],
+        ""                          => ["controller" => 'HomeController', "method" => 'display'],
+        "home"                      => ["controller" => 'HomeController', "method" => 'display'],
+        "submitComment"             => ["controller" => 'HomeController', "method" => 'submitComment'],
         //Livings
-        "livings"               => ["controller" => 'LivingsController', "method" => 'display'],
+        "livings"                   => ["controller" => 'LivingsController', "method" => 'display'],
         //Services
-        "services"              => ["controller" => 'ServicesController', "method" => 'display'],
+        "services"                  => ["controller" => 'ServicesController', "method" => 'display'],
         //Contact
-        "contact"               => ["controller" => 'ContactController', "method" => 'display'],
+        "contact"                   => ["controller" => 'ContactController', "method" => 'display'],
         //Dashboard
-        "connect"               => ["controller" => 'DashboardController', "method" => 'display'],
-        "connection"            => ["controller" => 'DashboardController', "method" => 'connection'],
-        "disconnect"            => ["controller" => 'DashboardController', "method" => 'disconnect'],
+        "connect"                   => ["controller" => 'DashboardController', "method" => 'display'],
+        "connection"                => ["controller" => 'DashboardController', "method" => 'connection'],
+        "disconnect"                => ["controller" => 'DashboardController', "method" => 'disconnect'],
         //Animals
-        "dashboardAnimals"      => ["controller" => 'DashboardController', "method" => 'manageAnimals'],
-        "addAnimal.php"         => ["controller" => 'DashboardController', "method" => 'addAnimalPage'],
-        "addAnimalToDatabase"   => ["controller" => 'DashboardController', "method" => 'addAnimalToDatabase'],
-        "editAnimal.php"        => ["controller" => 'DashboardController', "method" => 'editAnimalPage'],
-        "updateAnimal"          => ["controller" => 'DashboardController', "method" => 'updateAnimal'],
-        "deleteAnimal"          => ["controller" => 'DashboardController', "method" => 'deleteAnimal'],
+        "dashboardAnimals"          => ["controller" => 'DashboardAnimalsController', "method" => 'manageAnimals'],
+        "addAnimal.php"             => ["controller" => 'DashboardAnimalsController', "method" => 'addAnimalPage'],
+        "addAnimalToDatabase"       => ["controller" => 'DashboardAnimalsController', "method" => 'addAnimalToDatabase'],
+        "editAnimal.php"            => ["controller" => 'DashboardAnimalsController', "method" => 'editAnimalPage'],
+        "updateAnimal"              => ["controller" => 'DashboardAnimalsController', "method" => 'updateAnimal'],
+        "deleteAnimal"              => ["controller" => 'DashboardAnimalsController', "method" => 'deleteAnimal'],
             //Livings
-        "dashboardLivings"      => ["controller" => 'DashboardController', "method" => 'manageLivings'],
-        "addLiving.php"         => ["controller" => 'DashboardController', "method" => 'addLiving'],
-        "addLivingToDatabase"   => ["controller" => 'DashboardController', "method" => 'addLivingToDatabase'],
-        "editLiving.php"        => ["controller" => 'DashboardController', "method" => 'editLivingPage'],
-        "updateLiving"        => ["controller" => 'DashboardController', "method" => 'updateLiving'],
-        "deleteLiving"          => ["controller" => 'DashboardController', "method" => 'deleteLiving'],
-            //Services editService.php
-        "dashboardServices"      => ["controller" => 'DashboardController', "method" => 'manageServices'],
-        "addService.php"         => ["controller" => 'DashboardController', "method" => 'addService'],
-        "addServiceToDatabase"   => ["controller" => 'DashboardController', "method" => 'addServiceToDatabase'],
-        "editService.php"        => ["controller" => 'DashboardController', "method" => 'editServicePage'],
-        "updateService"        => ["controller" => 'DashboardController', "method" => 'updateService'],
-        "deleteService"          => ["controller" => 'DashboardController', "method" => 'deleteService'],
-
+        "dashboardLivings"          => ["controller" => 'DashboardLivingsController', "method" => 'manageLivings'],
+        "addLiving.php"             => ["controller" => 'DashboardLivingsController', "method" => 'addLiving'],
+        "addLivingToDatabase"       => ["controller" => 'DashboardLivingsController', "method" => 'addLivingToDatabase'],
+        "editLiving.php"            => ["controller" => 'DashboardLivingsController', "method" => 'editLivingPage'],
+        "updateLiving"              => ["controller" => 'DashboardLivingsController', "method" => 'updateLiving'],
+        "deleteLiving"              => ["controller" => 'DashboardLivingsController', "method" => 'deleteLiving'],
+            //Services
+        "dashboardServices"         => ["controller" => 'DashboardServicesController', "method" => 'manageServices'],
+        "addService.php"            => ["controller" => 'DashboardServicesController', "method" => 'addService'],
+        "addServiceToDatabase"      => ["controller" => 'DashboardServicesController', "method" => 'addServiceToDatabase'],
+        "editService.php"           => ["controller" => 'DashboardServicesController', "method" => 'editServicePage'],
+        "updateService"             => ["controller" => 'DashboardServicesController', "method" => 'updateService'],
+        "deleteService"             => ["controller" => 'DashboardServicesController', "method" => 'deleteService'],
+            //Feeding
+        "dashboardFeedings"         => ["controller" => 'DashboardFeedingsController', "method" => 'manageFeeding'],
+        "addFeeding.php"            => ["controller" => 'DashboardFeedingsController', "method" => 'addFeeding'],
+        "addFeedingToDatabase"      => ["controller" => 'DashboardFeedingsController', "method" => 'addFeedingToDatabase'],
+        "editFeeding.php"           => ["controller" => 'DashboardFeedingsController', "method" => 'editFeedingPage'],
+        "updateFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'updateFeeding'],
+        "deleteFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'deleteFeeding'],
 
     ];
 

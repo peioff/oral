@@ -122,6 +122,12 @@ html {
 }
 
 /*Commons*/
+.addView-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
 .button {
     color: var(--color-content);
     background-color: var(--grey-400);
@@ -267,12 +273,6 @@ html {
     padding: 2rem;
     border-bottom: white solid 1px;
 }
-.addAnimal-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-}
 .form-container {
     margin: 5rem;
     padding: 1rem;
@@ -412,6 +412,83 @@ html {
     font-size: 1.6rem;
     padding: 1rem;
 }
+
+/*FeedingRow*/
+.feedings {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 2rem;
+    padding:0.5rem;
+    border-left: var(--grey-600) solid 3px;
+}
+.feeding-cell{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--grey-700);
+    border-radius: 2rem;
+    padding: 0.5rem;
+}
+.feeding-animal{
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--light);
+}
+.feeding-img{
+    width: 100%;
+}
+.table-row{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.table-cell{
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table-action{
+    color: var(--primary-400);
+    background-color: var(--grey-800);
+    border-radius: 1rem;
+}
+.table-actions{
+    display: flex;
+    justify-content: space-around;
+}
+.feeding-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+/*NewFeeding*/
+.image-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    border: var(--light) solid 1px;
+    border-radius: 2rem;
+}
+.newFeeding-img{
+    width: 20rem;
+    height: 20rem;
+    border-radius: 2rem;
+}
+.newFeeding-title{
+    font-family: var(--color-title--card);
+    font-size: 2rem;
+}
+
+
+
 
 
 

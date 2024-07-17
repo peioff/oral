@@ -51,6 +51,7 @@ if (isset($service))
                         <input type="file" name="file" accept=".jpeg,.png,.jpg,.webp">
                     </label>
                 </li>
+
                 <li>
                     <div class="form-buttonContainer">
                         <button class="button button--success" type="submit">Modifier</button>

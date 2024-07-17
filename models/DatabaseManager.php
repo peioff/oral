@@ -244,7 +244,6 @@ class DatabaseManager
         $req->bindValue(':service_id', $service->getId());
         $req->execute();
     }
-
     public function deleteService(int $serviceId)
     {
         $bdd = $this->bdd;
@@ -255,7 +254,6 @@ class DatabaseManager
         $this->deleteImg($image_id);
         $req->execute();
     }
-
 
     // Comments
     public function getComments(): array
@@ -282,6 +280,80 @@ class DatabaseManager
         $req->execute();
     }
 
+    // Feeding
+    public function getFeedings():array{
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM feedings";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $feeding = new FeedingModel();
+            $feeding->setId($row['feeding_id']);
+            try {
+                $feeding->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $feeding->setFood($row['food']);
+            $feeding->setQuantity($row['quantity']);
+            $feeding->setAnimalId($row['animal_id']);
+            $feedings[] = $feeding;
+        }
+        return $feedings;
+    }
+    public function getFeedingById(int $feedingId): FeedingModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * from feedings WHERE feeding_id = :feeding_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':feeding_id',$feedingId);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $feeding = new FeedingModel();
+            $feeding->setId(intval($row['feeding_id']));
+            try {
+                $feeding->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $feeding->setFood($row['food']);
+            $feeding->setQuantity($row['quantity']);
+            $feeding->setAnimalId(intval($row['animal_id']));
+        }
+        return $feeding;
+    }
+    public function addFeedingToDatabase(FeedingModel $feeding){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO feedings(date,food,quantity,animal_id) VALUES (:date,:food,:quantity,:animal_id)";
+        $req = $bdd->prepare($query);
+        $date = $feeding->getDate();
+        $result =  $date->format('d-m-Y');
+        $req->bindValue(':date', $result);
+        $req->bindValue(':food', $feeding->getFood());
+        $req->bindValue(':quantity', $feeding->getQuantity());
+        $req->bindValue(':animal_id', $feeding->getAnimalId());
+        $req->execute();
+    }
+    public function updateFeeding(FeedingModel $feeding)
+    {
+        $bdd = $this->bdd;
+        $query = "UPDATE feedings SET date = :date, food = :food, quantity = :quantity , animal_id = :animal_id WHERE feeding_id = :feeding_id";
+        $req = $bdd->prepare($query);
+        $date = $feeding->getDate();
+        $result =  $date->format('d-m-Y');
+        $req->bindValue(':date', $result);
+        $req->bindValue(':food', $feeding->getFood());
+        $req->bindValue(':quantity', $feeding->getQuantity());
+        $req->bindValue(':animal_id', $feeding->getAnimalId());
+        $req->bindValue(':feeding_id', $feeding->getId());
+        $req->execute();
+    }
+
+    public function deleteFeeding(int $feedingId){
+        $bdd = $this->bdd;
+        $query = "DELETE FROM feedings WHERE feeding_id = :feeding_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':feeding_id', $feedingId);
+        $req->execute();
+    }
 
     //Img
 
