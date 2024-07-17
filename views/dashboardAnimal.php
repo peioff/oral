@@ -8,7 +8,7 @@ if (isset($userAndAnimals)) {
 
 ?>
 <head>
-    <title>Dashboard</title>
+    <title>Dashboard - Animals</title>
 </head>
 
 <header class="view-header">

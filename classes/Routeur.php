@@ -19,7 +19,7 @@ class Routeur
     # and [1] is the method called in the controller
     private $routes = [
         //Home
-        "/"                     => ["controller" => 'HomeController', "method" => 'display'],
+        ""                     => ["controller" => 'HomeController', "method" => 'display'],
         "home"                  => ["controller" => 'HomeController', "method" => 'display'],
         "submitComment"         => ["controller" => 'HomeController', "method" => 'submitComment'],
         //Livings
@@ -31,12 +31,21 @@ class Routeur
         //Dashboard
         "connect"               => ["controller" => 'DashboardController', "method" => 'display'],
         "connection"            => ["controller" => 'DashboardController', "method" => 'connection'],
+            //Animals
         "dashboardAnimals"      => ["controller" => 'DashboardController', "method" => 'manageAnimals'],
         "addAnimal.php"         => ["controller" => 'DashboardController', "method" => 'addAnimalPage'],
         "addAnimalToDatabase"   => ["controller" => 'DashboardController', "method" => 'addAnimalToDatabase'],
         "editAnimal.php"        => ["controller" => 'DashboardController', "method" => 'editAnimalPage'],
         "updateAnimal"          => ["controller" => 'DashboardController', "method" => 'updateAnimal'],
         "deleteAnimal"          => ["controller" => 'DashboardController', "method" => 'deleteAnimal'],
+            //Livings
+        "dashboardLivings"      => ["controller" => 'DashboardController', "method" => 'manageLivings'],
+        "addLiving.php"         => ["controller" => 'DashboardController', "method" => 'addLiving'],
+        "addLivingToDatabase"   => ["controller" => 'DashboardController', "method" => 'addLivingToDatabase'],
+        "editLiving.php"        => ["controller" => 'DashboardController', "method" => 'editLivingPage'],
+        "updateLiving"        => ["controller" => 'DashboardController', "method" => 'updateLiving'],
+        "deleteLiving"          => ["controller" => 'DashboardController', "method" => 'deleteLiving'],
+
     ];
 
 

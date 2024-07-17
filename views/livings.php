@@ -3,7 +3,11 @@
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>livings.css">
 </head>
 <?php
-if (isset($livings))
+if (isset($allLivingPageData)){
+    $livings=$allLivingPageData[0];
+    $animals=$allLivingPageData[1];
+
+}
 ?>
 <body class="body flux">
     <main class="main">
@@ -20,13 +24,15 @@ if (isset($livings))
                          src="data:image/jpeg;base64,<?php echo base64_encode($living->getImage()->getData()); ?>" alt="">
                 </article>
                 <section class="animals">
-                    <?php foreach ($living->getAnimals() as $animal): ?>
+                    <?php foreach ($animals as $animal):
+                        if ($animal->getLiving() == $living->getName()){
+                        ?>
                         <article class="animal">
                             <h3 class="animal-title"><?php echo $animal->getName() ?></h3>
                             <img class="animal-picture"
                                  src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
                         </article>
-                    <?php endforeach; ?>
+                    <?php } endforeach; ?>
                 </section>
             <?php endforeach; ?>
         </section>

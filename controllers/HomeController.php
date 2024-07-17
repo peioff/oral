@@ -24,7 +24,6 @@ class HomeController
         $services = $databaseManager->getServices();
         $comments = $databaseManager->getComments();
 
-
         $allHomePageData = array($livings, $animals, $services,$comments);
 
         $homeView = new View('home');

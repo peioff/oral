@@ -3,24 +3,19 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 *::-webkit-scrollbar {
     width: 0;
 }
-
 *::-webkit-scrollbar-track {
     background: transparent;
 }
-
 *::-webkit-scrollbar-thumb {
     background: transparent;
     border: none;
 }
-
 * {
     box-sizing: border-box;
 }
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -43,38 +38,31 @@ time, mark, audio, video {
     text-decoration: none;
     color: white;
 }
-
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
-
 body {
     line-height: 1;
     display: flex;
     flex-direction: column;
 }
-
 ol, ul {
     list-style: none;
 }
-
 blockquote, q {
     quotes: none;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
     content: '';
     content: none;
 }
-
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
 /* Variables */
 html {
     font-size: 62.5%;
@@ -112,18 +100,15 @@ html {
     --font-content: 'Montserrat', "Time New Roman", sans-serif;
 
 }
-
 /* Polices */
 @font-face {
     font-family: 'Lilita-one';
     src: url('../fonts/Lilita_One/LilitaOne-Regular.ttf');
 }
-
 @font-face {
     font-family: 'Days-One';
     src: url('../fonts/Days_One/DaysOne-Regular.ttf');
 }
-
 @font-face {
     font-family: 'Capriola';
     src: url('../fonts/Capriola/Capriola-Regular.ttf');
@@ -144,7 +129,6 @@ html {
     font-size: 1.6rem;
     padding: 0.5rem 1rem;
 }
-
 .button-edit{
     color: var(--warning);
 }
@@ -152,6 +136,11 @@ html {
     color: var(--danger);
 }
 
+/*Menu*/
+.menu{
+    min-height: 50rem;
+    max-height: 50rem;
+}
 .menu-button {
     color: var(--color-content);
     background-color: var(--grey-600);
@@ -168,17 +157,14 @@ html {
     border-bottom: white solid 1px;
 
 }
-
 .logo-container {
     display: flex;
     align-items: center;
 }
-
 .review-svg {
     margin-right: 1rem;
     color: white;
 }
-
 .welcome-text {
     font-size: 2rem;
     color: white;
@@ -192,18 +178,15 @@ html {
     align-items: center;
     border-bottom: white solid 1px;
 }
-
 .view-title {
     font: var(--font-title);
     color: var(--light);
     font-size: 3.8rem;
 }
-
 .view-search {
     color: white;
     font-size: 2rem;
 }
-
 .view-action {
     color: var(--color-content);
     background-color: var(--primary-400);
@@ -218,7 +201,6 @@ html {
     justify-content: center;
     padding: 1rem;
 }
-
 .menu {
     color: white;
     font-family: var(--font-content);
@@ -230,7 +212,6 @@ html {
     padding: 3rem 3rem 0 3rem;
 }
 
-
 /*Animal card*/
 .animals {
     width: 100%;
@@ -239,9 +220,7 @@ html {
     grid-gap: 2rem;
     padding: 1rem 2rem 1rem 2rem;
     border-left: var(--grey-600) solid 3px;
-
 }
-
 .animal {
     display: flex;
     align-items: center;
@@ -250,14 +229,12 @@ html {
     background-color: var(--grey-700);
     min-height: 12rem;
 }
-
 .animal-picture {
     padding: 0.5rem;
     max-height: 13rem;
     max-width: 13rem;
     border-radius: 2rem;
 }
-
 .animal-infos {
     width: 100%;
     height: 100%;
@@ -267,19 +244,16 @@ html {
     align-items: start;
     padding-left: 2rem;
 }
-
 .animal-name {
     font: var(--font-title);
     color: var(--color-content);
     font-size: 2.4rem;
 }
-
 .animal-living {
     font: var(--font-content);
     color: var(--color-content);
     font-size: 1.2rem;
 }
-
 .animal-score {
     font: var(--font-content--card);
     color: var(--color-content);
@@ -287,8 +261,6 @@ html {
 }
 
 /*Add animal*/
-
-
 .view-header--animal {
     display: flex;
     justify-content: center;
@@ -311,7 +283,6 @@ html {
     background-color: var(--grey-700);
     border-radius: 2rem;
 }
-
 .form-field {
     font-family: var(--font-content);
     font-size: 1.6rem;
@@ -320,7 +291,6 @@ html {
     row-gap: 1rem;
     margin-top: 1rem;
 }
-
 .form-buttonContainer {
     margin-top: 2rem;
     display: flex;
@@ -328,7 +298,6 @@ html {
     column-gap: 1rem;
     padding-right: 1rem;
 }
-
 .animal-actions{
     display: flex;
     flex-direction: column;
@@ -340,8 +309,57 @@ html {
 .button--success {
     background-color: var(--primary-400);
 }
-
 .button--danger {
     background-color: var(--danger);
+}
+
+/*Living card*/
+.livings{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    padding: 1rem 2rem 1rem 2rem;
+    border-left: var(--grey-600) solid 3px;
+}
+.living{
+    width: 90%;
+    background-color: var(--grey-700);
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+.living-picture {
+    padding: 0.5rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+}
+.living-infoAndActions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.living-name{
+    margin-left: 3rem;
+    font-family: var(--font-title);
+    font-size: 2.4rem;
+}
+.living-actions{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    margin-right: 2rem;
+}
+.living-description{
+    border-radius: 1rem;
+    background-color: var(--grey-800);
+    display: flex;
+    flex-wrap: wrap;
+    font-family: var(--font-content);
+    font-size: 1.6rem;
+    padding: 1rem;
 }
 

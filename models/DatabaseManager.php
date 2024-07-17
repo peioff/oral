@@ -28,7 +28,6 @@ class DatabaseManager
         }
         return $users;
     }
-
     public function getUser($username)
     {
         foreach ($this->getusers() as $user) {
@@ -47,20 +46,67 @@ class DatabaseManager
         $req = $bdd->prepare($query);
         $req->execute();
 
+
         while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
 
             $living = new LivingModel();
             $living->setId($row['living_id']);
             $living->setName($row['name']);
             $living->setDescription($row['description']);
-
-            $living->setAnimals($this->getAnimalsByLiving($row['name']));
-
             $living->setImageId($row['image_id']);
             $living->setImage($this->getImg($row['image_id']));
             $livings[] = $living; // array of objects (LivingModel)
         }
         return $livings;
+    }
+    public function getLivingById(int $living_id): LivingModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * from livings WHERE living_id = :living_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':living_id',$living_id);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $living = new LivingModel();
+            $living->setId($row['living_id']);
+            $living->setName($row['name']);
+            $living->setDescription($row['description']);
+            $living->setImageId($row['image_id']);
+        }
+        return $living;
+    }
+    public function addLivingToDatabase($living){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO livings(name,description,image_id) VALUES (:name, :description, :image_id)";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $living->getName());
+        $req->bindValue(':description', $living->getDescription());
+        $req->bindValue(':image_id', $living->getImageId());
+        $req->execute();
+
+    }
+    public function updateLiving(LivingModel $living)
+    {
+        $bdd = $this->bdd;
+        $query = "UPDATE livings SET name = :name, description = :description, image_id = :image_id WHERE living_id = :living_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $living->getName());
+        $req->bindValue(':description', $living->getDescription());
+        $req->bindValue(':image_id', $living->getImageId());
+        $req->bindValue(':living_id', $living->getId());
+
+        $req->execute();
+    }
+
+    public function deleteLiving(int $livingId)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM livings WHERE living_id = :living_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':living_id', $livingId);
+        $image_id = $this->getLivingById($livingId)->getImageId();
+        $this->deleteImg($image_id);
+        $req->execute();
     }
 
     // Animals
@@ -84,7 +130,6 @@ class DatabaseManager
         }
         return $animals;
     }
-
     public function getAnimalById(int $animal_id): AnimalModel
     {
         $bdd = $this->bdd;
@@ -104,28 +149,6 @@ class DatabaseManager
         }
         return $animal;
     }
-
-    public function getAnimalsByLiving($living): array
-    {
-        $bdd = $this->bdd;
-        $query = "SELECT * FROM animals WHERE living = :living";
-        $req = $bdd->prepare($query);
-        $req->bindValue(':living', $living);
-        $req->execute();
-
-        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-            $animal = new AnimalModel();
-            $animal->setId($row['animal_id']);
-            $animal->setName($row['name']);
-            $animal->setSpecies($row['species']);
-            $animal->setLiving($row['living']);
-            $animal->setImageId($row['image_id']);
-            $animal->setImage($this->getImg($row['image_id']));
-            $animals[] = $animal; // Array of animals in a certain living
-        }
-        return  $animals;
-    }
-
     public function addAnimal($name, $species, $living, $lastInsertedId)
     {
         $bdd = $this->bdd;
@@ -145,7 +168,6 @@ class DatabaseManager
         $req->bindValue(':animal_id', $animal->getId());
         $req->execute();
     }
-
     public function deleteAnimal(int $animal_id){
         $bdd = $this->bdd;
         $query = "DELETE FROM animals WHERE animal_id = :animal_id";
