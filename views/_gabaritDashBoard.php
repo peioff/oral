@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION)) {
     $sessionUser = $_SESSION['sessionUser'];
+    echo '<pre>'; print_r($_SESSION); echo '</pre>';
 }
 ?>
 <!DOCTYPE html>
@@ -29,7 +30,7 @@ if (isset($_SESSION)) {
         </svg>
         <p class="welcome-text">Connected as <?php echo $sessionUser; ?></p>
     </div>
-    <a class="button" href="<?php echo HOST; ?>home"> Disconnect</a>
+    <a class="button" href="<?php echo HOST; ?>disconnect"> Disconnect</a>
 </header>
 
 <body class="body">

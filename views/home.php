@@ -43,13 +43,14 @@ if (isset($allHomePageData)) {
             <article class="living">
                 <img class="living-picture"
                      src="data:image/jpeg;base64,<?php echo base64_encode($living->getImage()->getData()); ?>" </img>
-                <footer class="living-content">
-                    <h3 class="living-title"><?php
+                <div class="living-content">
+                    <h3 class="living-title">
+                        <?php
                         echo $living->getName();
                         ?></h3>
                     <p class="living-text"><?php echo $living->getDescription() ?></p>
                     <a class="button" href="">Découvrir</a>
-                </footer>
+                </div>
             </article>
         <?php endforeach; ?>
 

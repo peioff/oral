@@ -11,12 +11,13 @@ declare(strict_types=1);
 class LivingsController
 {
     public function display(){
-
         $databaseManager = new DatabaseManager();
         $livings = $databaseManager->getLivings();
+        $animals = $databaseManager->getAllAnimals();
+        $allLivingPageData = array($livings, $animals);
 
         $livingsView = new View('livings');
-        $livingsView->render(array('livings' => $livings));
+        $livingsView->render(array('allLivingPageData' => $allLivingPageData));
     }
 }
 

@@ -28,7 +28,6 @@ class DatabaseManager
         }
         return $users;
     }
-
     public function getUser($username)
     {
         foreach ($this->getusers() as $user) {
@@ -47,20 +46,68 @@ class DatabaseManager
         $req = $bdd->prepare($query);
         $req->execute();
 
+
         while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
 
             $living = new LivingModel();
             $living->setId($row['living_id']);
             $living->setName($row['name']);
             $living->setDescription($row['description']);
-
-            $living->setAnimals($this->getAnimalsByLiving($row['name']));
-
             $living->setImageId($row['image_id']);
             $living->setImage($this->getImg($row['image_id']));
             $livings[] = $living; // array of objects (LivingModel)
         }
         return $livings;
+    }
+    public function getLivingById(int $living_id): LivingModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * from livings WHERE living_id = :living_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':living_id',$living_id);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $living = new LivingModel();
+            $living->setId($row['living_id']);
+            $living->setName($row['name']);
+            $living->setDescription($row['description']);
+            $living->setImageId($row['image_id']);
+            $living->setImage($this->getImg($row['image_id']));
+
+        }
+        return $living;
+    }
+    public function addLivingToDatabase($living){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO livings(name,description,image_id) VALUES (:name, :description, :image_id)";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $living->getName());
+        $req->bindValue(':description', $living->getDescription());
+        $req->bindValue(':image_id', $living->getImageId());
+        $req->execute();
+
+    }
+    public function updateLiving(LivingModel $living)
+    {
+        $bdd = $this->bdd;
+        $query = "UPDATE livings SET name = :name, description = :description, image_id = :image_id WHERE living_id = :living_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $living->getName());
+        $req->bindValue(':description', $living->getDescription());
+        $req->bindValue(':image_id', $living->getImageId());
+        $req->bindValue(':living_id', $living->getId());
+
+        $req->execute();
+    }
+    public function deleteLiving(int $livingId)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM livings WHERE living_id = :living_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':living_id', $livingId);
+        $image_id = $this->getLivingById($livingId)->getImageId();
+        $this->deleteImg($image_id);
+        $req->execute();
     }
 
     // Animals
@@ -84,7 +131,6 @@ class DatabaseManager
         }
         return $animals;
     }
-
     public function getAnimalById(int $animal_id): AnimalModel
     {
         $bdd = $this->bdd;
@@ -104,28 +150,6 @@ class DatabaseManager
         }
         return $animal;
     }
-
-    public function getAnimalsByLiving($living): array
-    {
-        $bdd = $this->bdd;
-        $query = "SELECT * FROM animals WHERE living = :living";
-        $req = $bdd->prepare($query);
-        $req->bindValue(':living', $living);
-        $req->execute();
-
-        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-            $animal = new AnimalModel();
-            $animal->setId($row['animal_id']);
-            $animal->setName($row['name']);
-            $animal->setSpecies($row['species']);
-            $animal->setLiving($row['living']);
-            $animal->setImageId($row['image_id']);
-            $animal->setImage($this->getImg($row['image_id']));
-            $animals[] = $animal; // Array of animals in a certain living
-        }
-        return  $animals;
-    }
-
     public function addAnimal($name, $species, $living, $lastInsertedId)
     {
         $bdd = $this->bdd;
@@ -145,7 +169,6 @@ class DatabaseManager
         $req->bindValue(':animal_id', $animal->getId());
         $req->execute();
     }
-
     public function deleteAnimal(int $animal_id){
         $bdd = $this->bdd;
         $query = "DELETE FROM animals WHERE animal_id = :animal_id";
@@ -178,6 +201,59 @@ class DatabaseManager
         }
         return $services;
     }
+    public function getServiceById(int $serviceId): ServiceModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * from services WHERE service_id = :service_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':service_id',$serviceId);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $service = new ServiceModel();
+            $service->setId($row['service_id']);
+            $service->setName($row['name']);
+            $service->setSchedule($row['schedule']);
+            $service->setContactInfo($row['contact_info']);
+            $service->setDescription($row['description']);
+            $service->setImageId($row['image_id']);
+            $service->setImage($this->getImg($row['image_id']));
+        }
+        return $service;
+    }
+    public function addServiceToDatabase($service){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO services(name,schedule,contact_info,description,image_id) VALUES (:name,:schedule,:contact_info, :description, :image_id)";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $service->getName());
+        $req->bindValue(':schedule', $service->getSchedule());
+        $req->bindValue(':contact_info', $service->getContactInfo());
+        $req->bindValue(':description', $service->getDescription());
+        $req->bindValue(':image_id', $service->getImageId());
+        $req->execute();
+    }
+    public function updateService(ServiceModel $service)
+    {
+        $bdd = $this->bdd;
+        $query = "UPDATE services SET name = :name, schedule = :schedule, contact_info = :contact_info , description = :description, image_id = :image_id WHERE service_id = :service_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':name', $service->getName());
+        $req->bindValue(':schedule', $service->getSchedule());
+        $req->bindValue(':contact_info', $service->getContactInfo());
+        $req->bindValue(':description', $service->getDescription());
+        $req->bindValue(':image_id', $service->getImageId());
+        $req->bindValue(':service_id', $service->getId());
+        $req->execute();
+    }
+    public function deleteService(int $serviceId)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM services WHERE service_id = :service_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':service_id', $serviceId);
+        $image_id = $this->getServiceById($serviceId)->getImageId();
+        $this->deleteImg($image_id);
+        $req->execute();
+    }
 
     // Comments
     public function getComments(): array
@@ -196,7 +272,6 @@ class DatabaseManager
         }
         return $comments;
     }
-
     public function insertComment(string $nickname, string $message)
     {
         $bdd = $this->bdd;
@@ -205,6 +280,80 @@ class DatabaseManager
         $req->execute();
     }
 
+    // Feeding
+    public function getFeedings():array{
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM feedings";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $feeding = new FeedingModel();
+            $feeding->setId($row['feeding_id']);
+            try {
+                $feeding->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $feeding->setFood($row['food']);
+            $feeding->setQuantity($row['quantity']);
+            $feeding->setAnimalId($row['animal_id']);
+            $feedings[] = $feeding;
+        }
+        return $feedings;
+    }
+    public function getFeedingById(int $feedingId): FeedingModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * from feedings WHERE feeding_id = :feeding_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':feeding_id',$feedingId);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $feeding = new FeedingModel();
+            $feeding->setId(intval($row['feeding_id']));
+            try {
+                $feeding->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $feeding->setFood($row['food']);
+            $feeding->setQuantity($row['quantity']);
+            $feeding->setAnimalId(intval($row['animal_id']));
+        }
+        return $feeding;
+    }
+    public function addFeedingToDatabase(FeedingModel $feeding){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO feedings(date,food,quantity,animal_id) VALUES (:date,:food,:quantity,:animal_id)";
+        $req = $bdd->prepare($query);
+        $date = $feeding->getDate();
+        $result =  $date->format('d-m-Y');
+        $req->bindValue(':date', $result);
+        $req->bindValue(':food', $feeding->getFood());
+        $req->bindValue(':quantity', $feeding->getQuantity());
+        $req->bindValue(':animal_id', $feeding->getAnimalId());
+        $req->execute();
+    }
+    public function updateFeeding(FeedingModel $feeding)
+    {
+        $bdd = $this->bdd;
+        $query = "UPDATE feedings SET date = :date, food = :food, quantity = :quantity , animal_id = :animal_id WHERE feeding_id = :feeding_id";
+        $req = $bdd->prepare($query);
+        $date = $feeding->getDate();
+        $result =  $date->format('d-m-Y');
+        $req->bindValue(':date', $result);
+        $req->bindValue(':food', $feeding->getFood());
+        $req->bindValue(':quantity', $feeding->getQuantity());
+        $req->bindValue(':animal_id', $feeding->getAnimalId());
+        $req->bindValue(':feeding_id', $feeding->getId());
+        $req->execute();
+    }
+
+    public function deleteFeeding(int $feedingId){
+        $bdd = $this->bdd;
+        $query = "DELETE FROM feedings WHERE feeding_id = :feeding_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':feeding_id', $feedingId);
+        $req->execute();
+    }
 
     //Img
 

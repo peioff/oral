@@ -10,7 +10,7 @@ class LivingModel
     private int $id;
     private string $name;
     private string $description;
-    private array $animals;
+//    private array $animals;
     private int $image_id;
     private ImageModel $image;
 
@@ -26,15 +26,15 @@ class LivingModel
 
 
 
-    public function getAnimals(): array
-    {
-        return $this->animals;
-    }
-
-    public function setAnimals(array $animals): void
-    {
-        $this->animals = $animals;
-    }
+//    public function getAnimals(): array
+//    {
+//        return $this->animals;
+//    }
+//
+//    public function setAnimals(array $animals): void
+//    {
+//        $this->animals = $animals;
+//    }
 
     public function getImageId(): int
     {

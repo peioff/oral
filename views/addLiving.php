@@ -7,27 +7,22 @@
 </head>
 
 <header class="view-header--animal">
-    <h1 class="view-title">Ajouter un animal</h1>
+    <h1 class="view-title">Ajouter un habitat</h1>
 </header>
 
 <!--View Menu + content-->
 <section class="addView-container">
     <div class="form-container">
-        <form class="form" action="<?php echo HOST; ?>addAnimalToDatabase" method="post" enctype="multipart/form-data">
+        <form class="form" action="<?php echo HOST; ?>addLivingToDatabase" method="post" enctype="multipart/form-data">
             <ul>
                 <li >
-                    <label class="form-field" for="name"> Nom animal:
-                        <input type="text" name="name" placeholder="Titus" required>
+                    <label class="form-field" for="name"> Nom Habitat:
+                        <input type="text" name="name" placeholder="Savane" required>
                     </label>
                 </li>
                 <li >
-                    <label class="form-field" for="species"> Espèce:
-                        <input type="text" name="species" placeholder="Antilopinae" required>
-                    </label>
-                </li>
-                <li >
-                    <label class="form-field" for="living"> Habitat:
-                        <input type="text" name="living" placeholder="Savane" required>
+                    <label class="form-field" for="description"> Description:
+                        <textarea rows="5" cols="33"  name="description" placeholder="Texte de description" required></textarea>
                     </label>
                 </li>
                 <li>
@@ -38,7 +33,7 @@
                 <li>
                     <div class="form-buttonContainer">
                         <button class="button button--success" type="submit">Ajouter</button>
-                        <a class="button button--danger" href="<?php echo HOST; ?>dashboardAnimals" >Annuler</a>
+                        <a class="button button--danger" href="<?php echo HOST; ?>dashboardLivings" >Annuler</a>
                     </div>
                 </li>
             </ul>

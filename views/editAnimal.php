@@ -39,7 +39,7 @@ if (isset($animals)) {
                                  src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
                         </div>
                         Choisir une autre photo :
-                        <input type="file" name="file">
+                        <input type="file" name="file" accept=".jpeg,.png,.jpg,.webp" >
                     </label>
                 </li>
                 <li>

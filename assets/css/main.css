@@ -224,7 +224,7 @@
     .header-nav {
       display: flex;
       justify-content: end;
-      column-gap: 10%;
+      column-gap: 3rem;
       padding: 1rem 0.5rem;
 
     }
