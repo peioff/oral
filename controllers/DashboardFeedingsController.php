@@ -31,10 +31,8 @@ class DashboardFeedingsController
         $feedingToAdd->setFood($_POST['food']);
         $feedingToAdd->setQuantity(intval($_POST['quantity']) );
         $feedingToAdd->setAnimalId(intval($params['id']));
-
         $bdd = new DatabaseManager();
         $bdd->addFeedingToDatabase($feedingToAdd);
-
         $view = new View();
         $view->redirect('dashboardFeedings');
 

@@ -11,7 +11,7 @@
 </header>
 
 <!--View Menu + content-->
-<section class="addView-container">
+<section class="dashboardView-container">
     <div class="form-container">
         <form class="form" action="<?php echo HOST; ?>addAnimalToDatabase" method="post" enctype="multipart/form-data">
             <ul>

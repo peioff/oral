@@ -73,6 +73,7 @@ html {
     --light: #C9E1CA;
     --lighter: #F6EBE0;
     --danger: #BF2B23;
+    --cta: #007bff;
     --warning: #F2B707;
     --green-300: #A4C0A3;
     --green-600: #6F8D68;
@@ -122,11 +123,12 @@ html {
 }
 
 /*Commons*/
-.addView-container{
+.dashboardView-container{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 3rem;
+    border: white solid;
 }
 .button {
     color: var(--color-content);
@@ -135,32 +137,55 @@ html {
     font-size: 1.6rem;
     padding: 0.5rem 1rem;
 }
+
 .button-edit{
     color: var(--warning);
+}
+.button-edit:hover{
+    background-color: var(--grey-600);
+    border-radius: 0.5rem;
 }
 .button-delete{
     color: var(--danger);
 }
+.button-delete:hover{
+    background-color: var(--grey-600);
+    border-radius: 0.5rem;
+
+}
+
 
 /*Menu*/
+
 .menu{
+    display: flex;
     min-height: 50rem;
     max-height: 50rem;
 }
 .menu-button {
+    display: flex;
     color: var(--color-content);
-    background-color: var(--grey-600);
     border-radius: 0.5rem;
     font-size: 1.6rem;
+    width: 100%;
+}
+.menu-link{
+    width: 100%;
     padding: 0.5rem 1rem;
+
+}
+.menu-button :hover {
+    background-color: var(--grey-900);
+    box-shadow: var(--grey-900) 1px 5px 15px;
+
 }
 
 /*Header*/
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 2rem;
-    border-bottom: white solid 1px;
+    align-items: center;
+    padding: 1rem 2rem;
 
 }
 .logo-container {
@@ -175,6 +200,21 @@ html {
     font-size: 2rem;
     color: white;
 }
+.disconnect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 5rem;
+    background-color: var(--grey-900);
+    border-radius: 2rem;
+    margin-right: 3rem;
+    box-shadow: var(--grey-600) 1px 3px 10px;
+}
+.disconnect:hover{
+    background-color: var(--grey-600);
+    box-shadow: var(--grey-600) 1px 3px 10px;
+}
 
 /*View header*/
 .view-header {
@@ -182,7 +222,11 @@ html {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: white solid 1px;
+    /*border-bottom: white solid 1px;*/
+    box-shadow: var(--grey-900) 1px 5px 15px;
+    background-color: var(--grey-900);
+    margin-bottom: 2rem;
+
 }
 .view-title {
     font: var(--font-title);
@@ -199,7 +243,27 @@ html {
     border-radius: 0.5rem;
     font-size: 1.6rem;
     padding: 0.5rem 1rem;
+    box-shadow: var(--grey-900) 1px 5px 15px;
+
 }
+.view-action:hover {
+    color: var(--primary-400);
+    background-color: var(--color-content);
+}
+.view-action--danger {
+    color: var(--color-content);
+    background-color: var(--danger);
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    padding: 0.5rem 1rem;
+    box-shadow: var(--grey-900) 1px 5px 15px;
+
+}
+.view-action--danger:hover {
+    color: var(--danger);
+    background-color: var(--color-content);
+}
+
 
 /*Main container*/
 .main-container {
@@ -235,6 +299,8 @@ html {
     border-radius: 2rem;
     background-color: var(--grey-700);
     min-height: 12rem;
+    box-shadow: var(--grey-900) 1px 5px 15px;
+
 }
 .animal-picture {
     padding: 0.5rem;
@@ -334,6 +400,7 @@ html {
     row-gap: 2rem;
     border-radius: 2rem;
     padding: 1rem;
+    box-shadow: var(--grey-900) 1px 5px 15px;
 }
 .living-picture {
     padding: 0.5rem;
@@ -384,6 +451,8 @@ html {
     row-gap: 2rem;
     border-radius: 2rem;
     padding: 1rem;
+    box-shadow: var(--grey-900) 1px 5px 15px;
+
 }
 .service-picture {
     padding: 0.5rem;
@@ -429,11 +498,13 @@ html {
 .feeding-cell{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--grey-700);
     border-radius: 2rem;
     padding: 0.5rem;
+    box-shadow: var(--grey-900) 1px 5px 15px;
+
 }
 .feeding-animal{
     font-family: var(--font-title);
@@ -458,6 +529,9 @@ html {
     color: var(--primary-400);
     background-color: var(--grey-800);
     border-radius: 1rem;
+}
+.table-action:hover{
+    background-color: var(--grey-600);
 }
 .table-actions{
     display: flex;
@@ -491,6 +565,107 @@ html {
     font-size: 2rem;
 }
 
+/*Reports*/
+.reports {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-left: var(--grey-600) solid 3px;
+}
+.report-table-row{
+    background-color:var(--grey-700) ;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin-left: 1rem;
+    box-shadow: var(--grey-900) 1px 5px 15px;
+
+}
+.report-table-row--content{
+    margin-top: 1rem;
+}
+.report-table-row--contentAlt {
+    margin-top: 1rem;
+    background-color: var(--grey-900);
+}
+.report-table-cell{
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: var(--grey-600) solid 1px;
+    border-right: var(--grey-600) solid 1px;
+    width: 20%;
+}
+.report-table-cell--food{
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+    color: var(--secondary);
+}
+.report-table-cell--action{
+    color: var(--lighter);
+}
+.report-table-cell--action:hover{
+    background-color: var(--grey-600);
+    border-radius: 0.5rem;
+}
+
+
+/*Feeding History*/
+.history {
+    width: 100%;
+    border-left: var(--grey-600) solid 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.history-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: white solid 1px;
+    padding: 2rem;
+    background-color: var(--grey-700);
+    border-radius: 2rem;
+
+}
+.history-img{
+    width: 20rem;
+    border-radius: 2rem;
+    margin: 2rem;
+}
+.history-animalName{
+    font-family: var(--font-title--card);
+    color: var(--color-content);
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+.history-feedings{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.history-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    border-bottom: var(--light) solid 1px;
+    padding : 1rem;
+}
+.history-cell--title{
+    font-family: var(--font-content);
+    font-size: 1.2rem;
+    color: var(--secondary);
+}
+
+.history-cell{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
 
 
 

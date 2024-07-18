@@ -60,6 +60,12 @@ class Routeur
         "editFeeding.php"           => ["controller" => 'DashboardFeedingsController', "method" => 'editFeedingPage'],
         "updateFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'updateFeeding'],
         "deleteFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'deleteFeeding'],
+            //VeterinaryReports deleteReport
+        "dashboardVet"              => ["controller" => 'DashboardVetController', "method" => 'manageReport'],
+        "addReport.php"             => ["controller" => 'DashboardVetController', "method" => 'addReport'],
+        "addReportToDatabase"       => ["controller" => 'DashboardVetController', "method" => 'addReportToDatabase'],
+        "feedingHistory"            => ["controller" => 'DashboardVetController', "method" => 'feedingHistory'],
+        "deleteReport"              => ["controller" => 'DashboardVetController', "method" => 'deleteReport'],
 
     ];
 

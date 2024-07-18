@@ -346,7 +346,6 @@ class DatabaseManager
         $req->bindValue(':feeding_id', $feeding->getId());
         $req->execute();
     }
-
     public function deleteFeeding(int $feedingId){
         $bdd = $this->bdd;
         $query = "DELETE FROM feedings WHERE feeding_id = :feeding_id";
@@ -355,8 +354,60 @@ class DatabaseManager
         $req->execute();
     }
 
-    //Img
+    //Report
+    public function getReports():array{
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM reports";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $report = new ReportModel();
+            $report->setId($row['report_id']);
 
+            try {
+                $report->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $report->setHealth($row['health']);
+            $report->setFood($row['food']);
+            $report->setFoodQuantity($row['food_quantity']);
+            try {
+                $report->setFeedingDate(new DateTime($row['feeding_date']));
+            } catch (Exception $e) {
+            }
+            $report->setRemark($row['remark']);
+            $report->setAnimalId($row['animal_id']);
+            $reports[] = $report;
+        }
+        return $reports;
+    }
+    public function addReportToDatabase(ReportModel $report){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO reports(date,health,food,food_quantity,feeding_date,remark,animal_id) VALUES (:date,:health,:food,:food_quantity,:feeding_date,:remark,:animal_id)";
+        $req = $bdd->prepare($query);
+        $date =   $report->getDate();
+        $result = $date->format('d-m-Y');
+
+        $req->bindValue(':date', $result);
+        $req->bindValue(':health', $report->getHealth());
+        $req->bindValue(':food', $report->getFood());
+        $req->bindValue(':food_quantity', $report->getFoodQuantity());
+        $date = $report->getFeedingDate();
+        $result = $date->format('d-m-Y');
+        $req->bindValue(':feeding_date', $result);
+        $req->bindValue(':remark', $report->getRemark());
+        $req->bindValue(':animal_id', $report->getAnimalId());
+        $req->execute();
+    }
+    public function deleteReport(int $reportId){
+        $bdd = $this->bdd;
+        $query = "DELETE FROM reports WHERE report_id = :report_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':report_id', $reportId);
+        $req->execute();
+    }
+
+    //Img
     public function getImg($image_id):ImageModel
     {
         $bdd = $this->bdd;

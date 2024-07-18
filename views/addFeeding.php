@@ -14,7 +14,7 @@
 </header>
 
 <!--View Menu + content-->
-<section class="addView-container">
+<section class="dashboardView-container">
     <div class="form-container">
         <form class="form" action="<?php echo HOST; ?>addFeedingToDatabase/id/<?php echo $animalToFeed->getId()?>" method="post">
             <ul>
