@@ -8,7 +8,7 @@ class CommentModel {
     private int $id;
     private string $nickname;
     private string $content;
-    private bool $visibility;
+    private int $visibility;
 
     public function getId(): int
     {
@@ -40,12 +40,12 @@ class CommentModel {
         $this->content = $content;
     }
 
-    public function getVisibility(): bool
+    public function getVisibility(): int
     {
         return $this->visibility;
     }
 
-    public function setVisibility(bool $visibility): void
+    public function setVisibility(int $visibility): void
     {
         $this->visibility = $visibility;
     }

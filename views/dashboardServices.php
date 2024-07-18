@@ -20,7 +20,7 @@ if (isset($servicesToManage)){
 
 <!--View Menu + content-->
 <section class="main-container">
-    <!--Menu-->
+    <!--Menu-->git bran
     <?php include_once VIEWS . '_dashboardMenu.php' ?>
     <!--Content-->
     <section class="livings">

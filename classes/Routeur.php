@@ -21,7 +21,6 @@ class Routeur
         //Home
         ""                          => ["controller" => 'HomeController', "method" => 'display'],
         "home"                      => ["controller" => 'HomeController', "method" => 'display'],
-        "submitComment"             => ["controller" => 'HomeController', "method" => 'submitComment'],
         //Livings
         "livings"                   => ["controller" => 'LivingsController', "method" => 'display'],
         //Services
@@ -60,12 +59,17 @@ class Routeur
         "editFeeding.php"           => ["controller" => 'DashboardFeedingsController', "method" => 'editFeedingPage'],
         "updateFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'updateFeeding'],
         "deleteFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'deleteFeeding'],
-            //VeterinaryReports deleteReport
+            //VeterinaryReports
         "dashboardVet"              => ["controller" => 'DashboardVetController', "method" => 'manageReport'],
         "addReport.php"             => ["controller" => 'DashboardVetController', "method" => 'addReport'],
         "addReportToDatabase"       => ["controller" => 'DashboardVetController', "method" => 'addReportToDatabase'],
         "feedingHistory"            => ["controller" => 'DashboardVetController', "method" => 'feedingHistory'],
         "deleteReport"              => ["controller" => 'DashboardVetController', "method" => 'deleteReport'],
+            //Comments
+        "submitComment"             => ["controller" => 'DashboardCommentsController', "method" => 'submitComment'],
+        "dashboardComments"         => ["controller" => 'DashboardCommentsController', "method" => 'manageComments'],
+        "switchVisibility"          => ["controller" => 'DashboardCommentsController', "method" => 'switchVisibility'],
+        "deleteComment"             => ["controller" => 'DashboardCommentsController', "method" => 'deleteComment'],
 
     ];
 

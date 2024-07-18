@@ -275,8 +275,41 @@ class DatabaseManager
     public function insertComment(string $nickname, string $message)
     {
         $bdd = $this->bdd;
-        $query = "INSERT INTO comments (nickname, content,visibility) VALUES ('$nickname', '$message' , 1)";
+        $query = "INSERT INTO comments (nickname, content,visibility) VALUES ('$nickname', '$message' , 0)";
         $req = $bdd->prepare($query);
+        $req->execute();
+    }
+    public function changeCommentVisibility(int $commentId){
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM comments WHERE comment_id = :comment_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':comment_id', $commentId);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $comment = new CommentModel();
+            $comment->setVisibility(intval($row['visibility']));
+
+        }
+
+        if($comment->getVisibility()){
+            $comment->setVisibility(false);
+        } else {
+            $comment->setVisibility(true);
+        }
+
+        $query = "UPDATE comments SET visibility = :visibility WHERE comment_id = :comment_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':visibility', $comment->getVisibility());
+        $req->bindValue(':comment_id', $commentId);
+        $req->execute();
+
+    }
+
+    public function deleteComment(int $commentId){
+        $bdd = $this->bdd;
+        $query = "DELETE FROM comments WHERE comment_id = :comment_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':comment_id', $commentId);
         $req->execute();
     }
 
