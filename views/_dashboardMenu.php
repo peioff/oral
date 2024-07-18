@@ -12,6 +12,6 @@ if (isset($user))
         <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardFeedings">Nourrissage</a></li>
         <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardVet">Vétérinaire</a></li>
         <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardComments">Commentaires</a></li>
-        <li class="menu-button"><a class="menu-link"  href="">Utilisateurs</a></li>
+        <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardUsers">Utilisateurs</a></li>
     </ul>
 </nav>

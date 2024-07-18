@@ -30,7 +30,7 @@ class DashboardController
         $password = $_POST['password'];
         $databaseManager = new DatabaseManager();
         $animals = $databaseManager->getAllAnimals();
-        $user = $databaseManager->getUser($user);
+            $user = $databaseManager->getUser($user);
 
         if (isset($user)) { // Users exists
             if ($password == $user->getPassword()) { // Password matches - User authenticated

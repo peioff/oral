@@ -2,7 +2,7 @@
 declare(strict_types=1);
 class UserModel {
     private string $username;
-    private int $role;
+    private string $role;
     private string $password;
     private string $lastname;
     private string $firstname;
@@ -17,12 +17,12 @@ class UserModel {
         $this->username = $username;
     }
 
-    public function getRole(): int
+    public function getRole(): string
     {
         return $this->role;
     }
 
-    public function setRole(int $role): void
+    public function setRole(string $role)
     {
         $this->role = $role;
     }

@@ -70,6 +70,18 @@ class Routeur
         "dashboardComments"         => ["controller" => 'DashboardCommentsController', "method" => 'manageComments'],
         "switchVisibility"          => ["controller" => 'DashboardCommentsController', "method" => 'switchVisibility'],
         "deleteComment"             => ["controller" => 'DashboardCommentsController', "method" => 'deleteComment'],
+            //Users
+        "dashboardUsers"            => ["controller" => 'DashboardUsersController', "method" => 'manageUsers'],
+        "addUser.php"               => ["controller" => 'DashboardUsersController', "method" => 'addUser'],
+        "addUserToDatabase"         => ["controller" => 'DashboardUsersController', "method" => 'addUserToDatabase'],
+        "editUser"                  => ["controller" => 'DashboardUsersController', "method" => 'editUser'],
+        "updateUser"                => ["controller" => 'DashboardUsersController', "method" => 'updateUser'],
+        "deleteUser"                => ["controller" => 'DashboardUsersController', "method" => 'deleteUser'],
+
+
+
+
+
 
     ];
 

@@ -11,12 +11,13 @@ class DatabaseManager
     }
 
     // Users
-    private function getusers(): array
+    public function getUsers(): array
     {
         $bdd = $this->bdd;
-        $query = $bdd->prepare('SELECT * FROM `users`');
-        $req = $query->execute();
-        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $query ="SELECT * FROM `users`";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
             $user = new UserModel();
             $user->setUsername($row['username']);
             $user->setRole($row['role']);
@@ -30,13 +31,64 @@ class DatabaseManager
     }
     public function getUser($username)
     {
-        foreach ($this->getusers() as $user) {
-            if ($user->getUsername() == $username) {
-                return $user;
+        $bdd = $this->bdd;
+        $query ="SELECT * FROM `users` WHERE `username` = :username";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username', $username);
+        try {
+            $req->execute();
+
+            while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
+                $user = new UserModel();
+                $user->setUsername($row['username']);
+                $user->setRole($row['role']);
+                $user->setPassword($row['password']);
+                $user->setLastname($row['lastname']);
+                $user->setFirstname($row['firstname']);
+                $user->setEmail($row['email']);
             }
+            return $user;
+        } catch (Exception $e) {
+            return new UserModel();
         }
-        return null;
+
     }
+    public function adduserToDatabase(UserModel $user){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO users(username,role,password,lastname,firstname,email) VALUES (:username,:role,:password,:lastname,:firstname,:email)";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username',$user->getUsername());
+        $req->bindValue(':role',$user->getRole());
+        $req->bindValue(':password',$user->getPassword());
+        $req->bindValue(':lastname',$user->getLastname());
+        $req->bindValue(':firstname',$user->getFirstname());
+        $req->bindValue(':email',$user->getEmail());
+        $req->execute();
+    }
+    public function updateUser(UserModel $user){
+        $bdd = $this->bdd;
+        $query = "UPDATE users SET role = :role, password = :password, lastname = :lastname, firstname = :firstname, email = :email WHERE username = :username";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username',$user->getUsername());
+        $req->bindValue(':role',$user->getRole());
+        $req->bindValue(':password',$user->getPassword());
+        $req->bindValue(':lastname',$user->getLastname());
+        $req->bindValue(':firstname',$user->getFirstname());
+        $req->bindValue(':email',$user->getEmail());
+        $req->bindValue(':username',$user->getUsername());
+        $req->execute();
+    }
+
+    public function deleteUser(string $username)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM users WHERE username = :username";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username',$username);
+        $req->execute();
+    }
+
+    //Role
 
     // Livings
     public function getLivings(): array
@@ -304,7 +356,6 @@ class DatabaseManager
         $req->execute();
 
     }
-
     public function deleteComment(int $commentId){
         $bdd = $this->bdd;
         $query = "DELETE FROM comments WHERE comment_id = :comment_id";
@@ -456,7 +507,6 @@ class DatabaseManager
         }
         return $image;
     }
-
     public function addImage($image_name, $image_data):int
     {
         $bdd = $this->bdd;
@@ -474,7 +524,6 @@ class DatabaseManager
         }
         return $result;
     }
-
     public function deleteImg(int $image_id){
         $bdd = $this->bdd;
         $query = "DELETE FROM images WHERE image_id = :image_id";
