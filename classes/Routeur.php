@@ -25,7 +25,7 @@ class Routeur
         "livings"                   => ["controller" => 'LivingsController', "method" => 'display'],
         //Services
         "services"                  => ["controller" => 'ServicesController', "method" => 'display'],
-        //Contact addContactToDatabase
+        //Contact
         "contact"                   => ["controller" => 'ContactController', "method" => 'display'],
         "addContactToDatabase"      => ["controller" => 'ContactController', "method" => 'addContactToDatabase'],
 
@@ -79,6 +79,13 @@ class Routeur
         "editUser"                  => ["controller" => 'DashboardUsersController', "method" => 'editUser'],
         "updateUser"                => ["controller" => 'DashboardUsersController', "method" => 'updateUser'],
         "deleteUser"                => ["controller" => 'DashboardUsersController', "method" => 'deleteUser'],
+            //Contacts
+        "dashboardContacts"         => ["controller" => 'DashboardContactsController', "method" => 'manageContacts'],
+        "answerContact"             => ["controller" => 'DashboardContactsController', "method" => 'answerContact'],
+        "deleteContact"             => ["controller" => 'DashboardContactsController', "method" => 'deleteContact'],
+
+
+
 
 
 

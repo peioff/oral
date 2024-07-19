@@ -13,5 +13,7 @@ if (isset($user))
         <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardVet">Vétérinaire</a></li>
         <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardComments">Commentaires</a></li>
         <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardUsers">Utilisateurs</a></li>
+        <li class="menu-button"><a class="menu-link"  href="<?php echo HOST; ?>dashboardContacts">Contacts</a></li>
+
     </ul>
 </nav>

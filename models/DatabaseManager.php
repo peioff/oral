@@ -505,6 +505,29 @@ class DatabaseManager
         }
         return $contacts;
     }
+
+    public function getContactById(int $id):ContactModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM contacts WHERE contact_id = :id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id);
+        $req->execute();
+        $row = $req->fetch(PDO::FETCH_ASSOC);
+        $contact = new ContactModel();
+        try {
+            $contact->setDate(new DateTime($row['date']));
+        } catch (Exception $e) {
+        }
+        $contact->setId($row['contact_id']);
+        $contact->setTitle($row['title']);
+        $contact->setEmail($row['email']);
+        $contact->setContent($row['content']);
+        $contact->setAnswered($row['answered']);
+
+        return $contact;
+
+    }
     public function addContactToDatabase(ContactModel $contact)
     {
         $bdd = $this->bdd;
@@ -518,6 +541,15 @@ class DatabaseManager
         $req->bindValue(':email', $contact->getEmail());
         $req->bindValue(':content', $contact->getContent());
         $req->bindValue(':answered', $contact->getAnswered());
+        $req->execute();
+    }
+
+    public function deleteContact(int $id)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM contacts WHERE contact_id = :id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id);
         $req->execute();
     }
 
