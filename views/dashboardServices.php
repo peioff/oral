@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($servicesToManage)){
     $services = $servicesToManage;
@@ -21,8 +22,18 @@ if (isset($servicesToManage)){
 <!--View Menu + content-->
 <section class="main-container">
     <!--Menu-->
-    <?php include_once VIEWS . '_dashboardMenu.php' ?>
-    <!--Content-->
+    <?php
+    switch ($_SESSION['role']) {
+        case 'Admin':
+            include_once VIEWS . '_dashboardMenu.php';
+            break;
+        case 'Employee':
+            include_once VIEWS . '_dashboardMenuEmployee.php';
+            break;
+        case 'Veterinary':
+            include_once VIEWS . '_dashboardMenuVeterinary.php';
+            break;
+    } ?>    <!--Content-->
     <section class="livings">
         <?php foreach ($services as $service): ?>
             <article class="service">

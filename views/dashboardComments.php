@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!empty($data)) {
     $comments = $data;
 }
@@ -21,8 +23,18 @@ if (!empty($data)) {
 <!--View Menu + content-->
 <section class="main-container">
     <!--Menu-->
-    <?php include_once VIEWS . '_dashboardMenu.php' ?>
-    <!--Content-->
+    <?php
+    switch ($_SESSION['role']) {
+        case 'Admin':
+            include_once VIEWS . '_dashboardMenu.php';
+            break;
+        case 'Employee':
+            include_once VIEWS . '_dashboardMenuEmployee.php';
+            break;
+        case 'Veterinary':
+            include_once VIEWS . '_dashboardMenuVeterinary.php';
+            break;
+    } ?>    <!--Content-->
     <section class="comments">
         <?php foreach ($comments as $comment):?>
                 <article class="comment">

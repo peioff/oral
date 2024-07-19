@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!empty($data)) {
     $animals = $data['animals'];
     $reports = $data['reports'];
@@ -22,8 +24,18 @@ $count = 1;
 <!--View Menu + content-->
 <section class="main-container">
     <!--Menu-->
-    <?php include_once VIEWS . '_dashboardMenu.php' ?>
-    <!--Content-->
+    <?php
+    switch ($_SESSION['role']) {
+        case 'Admin':
+            include_once VIEWS . '_dashboardMenu.php';
+            break;
+        case 'Employee':
+            include_once VIEWS . '_dashboardMenuEmployee.php';
+            break;
+        case 'Veterinary':
+            include_once VIEWS . '_dashboardMenuVeterinary.php';
+            break;
+    } ?>    <!--Content-->
     <section class="reports">
         <div class="report-table-row">
             <p class="report-table-cell">Date du rapport</p>

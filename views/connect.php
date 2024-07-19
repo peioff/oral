@@ -1,5 +1,4 @@
 <?php
-echo '<pre>'; print_r($_SESSION); echo '</pre>';
 ?>
 
 <head>
@@ -23,9 +22,9 @@ echo '<pre>'; print_r($_SESSION); echo '</pre>';
     <form class="form flux">
         <ul class="form-container">
             <li class="field">
-                <label class="label" for="id">
+                <label class="label" for="username">
                     <p class="label-text">Identifiant</p>
-                    <input class="input" type="text" name="user">
+                    <input class="input" type="text" name="username">
                 </label>
             </li>
             <li class="field">

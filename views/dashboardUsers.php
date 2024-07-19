@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($data)) {
     $users = $data;
@@ -22,8 +23,18 @@ if (isset($data)) {
 <!--View Menu + content-->
 <section class="main-container">
     <!--Menu-->
-    <?php include_once VIEWS . '_dashboardMenu.php' ?>
-    <!--Content-->
+    <?php
+    switch ($_SESSION['role']) {
+        case 'Admin':
+            include_once VIEWS . '_dashboardMenu.php';
+            break;
+        case 'Employee':
+            include_once VIEWS . '_dashboardMenuEmployee.php';
+            break;
+        case 'Veterinary':
+            include_once VIEWS . '_dashboardMenuVeterinary.php';
+            break;
+    } ?>    <!--Content-->
     <section class="users">
         <div class="user-table-row">
             <p class="user-table-cell">Username</p>

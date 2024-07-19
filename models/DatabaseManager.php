@@ -29,13 +29,12 @@ class DatabaseManager
         }
         return $users;
     }
-    public function getUser($username)
+    public function getUser($username):UserModel
     {
         $bdd = $this->bdd;
         $query ="SELECT * FROM `users` WHERE `username` = :username";
         $req = $bdd->prepare($query);
         $req->bindValue(':username', $username);
-        try {
             $req->execute();
 
             while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
@@ -48,10 +47,6 @@ class DatabaseManager
                 $user->setEmail($row['email']);
             }
             return $user;
-        } catch (Exception $e) {
-            return new UserModel();
-        }
-
     }
     public function adduserToDatabase(UserModel $user){
         $bdd = $this->bdd;
