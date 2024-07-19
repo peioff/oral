@@ -25,8 +25,10 @@ class Routeur
         "livings"                   => ["controller" => 'LivingsController', "method" => 'display'],
         //Services
         "services"                  => ["controller" => 'ServicesController', "method" => 'display'],
-        //Contact
+        //Contact addContactToDatabase
         "contact"                   => ["controller" => 'ContactController', "method" => 'display'],
+        "addContactToDatabase"      => ["controller" => 'ContactController', "method" => 'addContactToDatabase'],
+
         //Dashboard
         "connect"                   => ["controller" => 'DashboardController', "method" => 'display'],
         "connection"                => ["controller" => 'DashboardController', "method" => 'connection'],

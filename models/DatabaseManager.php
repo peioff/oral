@@ -73,7 +73,6 @@ class DatabaseManager
         $req->bindValue(':username',$user->getUsername());
         $req->execute();
     }
-
     public function deleteUser(string $username)
     {
         $bdd = $this->bdd;
@@ -82,8 +81,6 @@ class DatabaseManager
         $req->bindValue(':username',$username);
         $req->execute();
     }
-
-    //Role
 
     // Livings
     public function getLivings(): array
@@ -483,6 +480,44 @@ class DatabaseManager
         $query = "DELETE FROM reports WHERE report_id = :report_id";
         $req = $bdd->prepare($query);
         $req->bindValue(':report_id', $reportId);
+        $req->execute();
+    }
+
+    //Contact
+    public function getContacts(){
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM contacts";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $contact = new ContactModel();
+            $contact->setId($row['contact_id']);
+            try {
+                $contact->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $contact->setNickname($row['nickname']);
+            $contact->setTitle($row['title']);
+            $contact->setEmail($row['email']);
+            $contact->setContent($row['content']);
+            $contact->setAnswered($row['answered']);
+            $contacts[] = $contact;
+        }
+        return $contacts;
+    }
+    public function addContactToDatabase(ContactModel $contact)
+    {
+        $bdd = $this->bdd;
+        $query = "INSERT INTO contacts(date,nickname,title,email,content,answered) VALUES(:date,:nickname,:title,:email,:content,:answered)";
+        $req = $bdd->prepare($query);
+        $date = $contact->getDate();
+        $result =  $date->format('d-m-Y');
+        $req->bindValue(':date', $result);
+        $req->bindValue(':nickname', $contact->getNickname());
+        $req->bindValue(':title', $contact->getTitle());
+        $req->bindValue(':email', $contact->getEmail());
+        $req->bindValue(':content', $contact->getContent());
+        $req->bindValue(':answered', $contact->getAnswered());
         $req->execute();
     }
 

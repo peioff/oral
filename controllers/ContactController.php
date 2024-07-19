@@ -11,10 +11,27 @@ declare(strict_types=1);
 class ContactController
 {
     public function display(){
+        $view = new View('contact');
+        $view->render();
+    }
 
-        $contactInfos = [];
-        $contactView = new View('contact');
-        $contactView->render(array('contactInfos' => $contactInfos));
+    public function addContactToDatabase(){
+
+        $bdd = new DatabaseManager();
+
+        $contact = new ContactModel();
+        $contact->setDate(new DateTime());
+        $contact->setNickname($_POST['nickname']);
+        $contact->setTitle($_POST['title']);
+        $contact->setEmail($_POST['email']);
+        $contact->setContent($_POST['content']);
+        $contact->setAnswered(0);
+
+        $bdd->addContactToDatabase($contact);
+
+        $view = new View();
+        $view->redirect('home');
+
 
     }
 }
