@@ -1,6 +1,6 @@
 <?php
 
-    session_start();
+session_start();
 
 if (!empty($animalsToManage)) {
     $animals = $animalsToManage;
@@ -70,5 +70,3 @@ if (!empty($animalsToManage)) {
         <?php endforeach; ?>
     </section>
 </section>
-
-

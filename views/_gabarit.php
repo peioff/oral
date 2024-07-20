@@ -18,6 +18,7 @@
         </div>
         <nav class="header-navContainer">
             <ul class="header-nav">
+                <li class="header-link"><a href="<?php echo HOST; ?>ajax">ajax</a></li>
                 <li class="header-link"><a href="<?php echo HOST; ?>home">Accueil</a></li>
                 <li class="header-link  header-link--active"><a href="<?php echo HOST; ?>livings">Habitats</a></li>
                 <li class="header-link"><a href="<?php echo HOST; ?>services">Services</a></li>
