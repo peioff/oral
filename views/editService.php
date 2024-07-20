@@ -11,7 +11,7 @@ if (isset($service))
 </header>
 
 <!--View Menu + content-->
-<section class="addAnimal-container">
+<section class="dashboardView-container">
     <div class="form-container">
         <form class="form" action="<?php echo HOST; ?>updateService/id/<?php echo $service->getId() ?>" method="post"
               enctype="multipart/form-data">

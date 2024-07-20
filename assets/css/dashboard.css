@@ -134,6 +134,7 @@ html {
     background-color: var(--grey-800);
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 /*Commons*/
@@ -143,6 +144,7 @@ html {
     align-items: center;
     margin-top: 3rem;
 }
+
 
 .button {
     color: var(--color-content);
@@ -174,6 +176,10 @@ html {
 
 /*Menu*/
 
+#burger{
+    display: none;
+}
+
 .menu {
     display: flex;
     min-height: 50rem;
@@ -198,6 +204,26 @@ html {
     background-color: var(--grey-900);
     box-shadow: var(--grey-900) 1px 5px 15px;
 
+}
+@media screen and (max-width: 510px) {
+    .dashboardView-nav {
+        display: none;
+    }
+    #burger{
+        display: inline;
+        margin-right: 2rem;
+    }
+    #persona{
+        display: none;
+    }
+    .menu{
+        position: absolute;
+        top: 10rem;
+        left: 0;
+        background-color: var(--grey-800);
+        border: var(--light) solid 1px;
+        border-radius: 2rem;
+    }
 }
 
 /*Header*/
@@ -251,8 +277,8 @@ html {
     box-shadow: var(--grey-900) 1px 5px 15px;
     background-color: var(--grey-900);
     margin-bottom: 2rem;
-
 }
+
 
 .view-title {
     font: var(--font-title);
@@ -273,6 +299,16 @@ html {
     padding: 0.5rem 1rem;
     box-shadow: var(--grey-900) 1px 5px 15px;
 
+}
+
+@media screen and (max-width: 700px) {
+    .view-header{
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+    .view-actions{
+        margin-bottom: 2rem;
+    }
 }
 
 .view-action:hover {
@@ -320,6 +356,7 @@ html {
     display: flex;
     justify-content: center;
     padding: 1rem;
+    width: 100%;
 }
 
 .menu {
@@ -401,6 +438,21 @@ html {
     row-gap: 1rem;
 }
 
+@media screen and (max-width: 1280px) {
+    .animals{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 1015px) {
+    .animals{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 730px) {
+    .animals{
+        grid-template-columns:1fr;
+    }
+}
 
 /*Add animal*/
 .view-header--animal {
@@ -454,6 +506,16 @@ html {
     grid-gap: 2rem;
     padding: 1rem 2rem 1rem 2rem;
     border-left: var(--grey-600) solid 3px;
+}
+@media screen and (max-width: 1250px) {
+    .livings{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 700px) {
+    .livings{
+        grid-template-columns: 1fr;
+    }
 }
 
 .living {
@@ -512,12 +574,22 @@ html {
     padding: 1rem 2rem 1rem 2rem;
     border-left: var(--grey-600) solid 3px;
 }
-
+@media screen and (max-width: 1300px) {
+    .services{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 850px) {
+    .services{
+        grid-template-columns: 1fr;
+    }
+}
 .service {
     width: 90%;
     background-color: var(--grey-700);
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     row-gap: 2rem;
     border-radius: 2rem;
@@ -525,6 +597,7 @@ html {
     box-shadow: var(--grey-900) 1px 5px 15px;
 
 }
+
 
 .service-picture {
     padding: 0.5rem;
@@ -571,6 +644,22 @@ html {
     padding: 0.5rem;
     border-left: var(--grey-600) solid 3px;
 }
+@media screen and (max-width: 1315px) {
+    .feedings{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media screen and (max-width: 1100px) {
+    .feedings{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 870px) {
+    .feedings{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 
 .feeding-cell {
     display: flex;
@@ -598,6 +687,14 @@ html {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+}
+@media screen and (max-width: 645px) {
+    .feedings{
+        grid-template-columns: 1fr;
+    }
+    .table-row{
+        margin-top: 1rem;
+    }
 }
 
 .table-cell {
@@ -705,6 +802,29 @@ html {
     background-color: var(--grey-600);
     border-radius: 0.5rem;
 }
+@media screen and (max-width: 1210px) {
+    .report-table-cell{
+        padding: 1.5rem 2rem;
+    }
+}
+@media screen and (max-width: 1045px) {
+    .report-table-cell{
+        padding: 1.5rem 1rem;
+    }
+}
+@media screen and (max-width: 890px) {
+    .report-table-cell{
+        padding: 1.5rem 0.2rem;
+    }
+}
+@media screen and (max-width: 760px) {
+    .hidden{
+        display: none;
+    }
+    .report-table-cell--food {
+        column-gap: 0.5rem;
+    }
+}
 
 
 /*Feeding History*/
@@ -776,6 +896,21 @@ html {
     grid-gap: 2rem;
     padding: 1rem 2rem 1rem 2rem;
     border-left: var(--grey-600) solid 3px;
+}
+@media screen and (max-width: 1200px) {
+    .comments{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 970px) {
+    .comments{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 660px) {
+    .comments{
+        grid-template-columns: 1fr;
+    }
 }
 
 .comment {
@@ -879,6 +1014,32 @@ html {
     column-gap: 1rem;
 }
 
+@media screen and (max-width: 1160px) {
+    .user-table-cell{
+        padding: 1.5rem 2rem;
+    }
+}
+@media screen and (max-width: 1015px) {
+    .user-table-cell{
+        padding: 1.5rem 1rem;
+    }
+}
+@media screen and (max-width: 890px) {
+    .user-table-cell{
+        padding: 1.5rem 0.3rem;
+    }
+}
+@media screen and (max-width: 800px) {
+    .lastname{
+        display: none;
+    }
+}
+@media screen and (max-width: 625px) {
+    .mail{
+        display: none;
+    }
+}
+
 /*AddUser*/
 .adduser-fieldset {
     border: var(--grey-500) solid 1px;
@@ -898,6 +1059,12 @@ html {
     padding: 1rem 2rem 1rem 2rem;
     border-left: var(--grey-600) solid 3px;
 }
+@media screen and (max-width: 1260px) {
+    .contacts{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 
 .contact {
     display: flex;
@@ -950,6 +1117,15 @@ html {
     border: var(--light) solid 1px;
     border-radius: 1rem;
     margin-top: 3rem;
+}
+@media screen and (max-width: 830px) {
+    .contacts{
+        grid-template-columns: 1fr;
+    }
+    .contact-content{
+        min-height: 20rem;
+        max-width: 30rem;
+    }
 }
 
 .contact-actions {

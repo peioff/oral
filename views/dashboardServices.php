@@ -34,7 +34,7 @@ if (isset($servicesToManage)){
             include_once VIEWS . '_dashboardMenuVeterinary.php';
             break;
     } ?>    <!--Content-->
-    <section class="livings">
+    <section class="services">
         <?php foreach ($services as $service): ?>
             <article class="service">
                 <img class="service-picture"

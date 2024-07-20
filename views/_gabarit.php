@@ -9,6 +9,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>main.css"/>
+    <script type="text/javascript" src="<?php echo SCRIPTS?>responsiveMenu.js" defer></script>
 </head>
 <header class="header">
     <div class="header-container">
@@ -17,10 +18,10 @@
             <p>Brocéliande</p>
         </div>
         <nav class="header-navContainer">
-            <ul class="header-nav">
+            <ul class="header-nav" id="header-nav">
                 <li class="header-link"><a href="<?php echo HOST; ?>ajax">ajax</a></li>
                 <li class="header-link"><a href="<?php echo HOST; ?>home">Accueil</a></li>
-                <li class="header-link  header-link--active"><a href="<?php echo HOST; ?>livings">Habitats</a></li>
+                <li class="header-link"><a href="<?php echo HOST; ?>livings">Habitats</a></li>
                 <li class="header-link"><a href="<?php echo HOST; ?>services">Services</a></li>
                 <li class="header-link"><a href="<?php echo HOST; ?>contact">Contact</a></li>
                 <li class="header-link"><a href="<?php echo HOST; ?>connect">Connexion</a></li>
@@ -28,6 +29,7 @@
         </nav>
         <svg
                 class="burger"
+                id="burger"
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"

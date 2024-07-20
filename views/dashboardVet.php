@@ -42,8 +42,8 @@ $count = 1;
             <p class="report-table-cell">Animal</p>
             <p class="report-table-cell">Santé</p>
             <p class="report-table-cell report-table-cell--food">Dernière nourriture</p>
-            <p class="report-table-cell report-table-cell--food">Quantité</p>
-            <p class="report-table-cell report-table-cell--food">Date Nourr.</p>
+            <p class="report-table-cell report-table-cell--food hidden">Quantité</p>
+            <p class="report-table-cell report-table-cell--food hidden">Date Nourr.</p>
             <p class="report-table-cell">Remarques</p>
             <p class="report-table-cell">Action</p>
         </div>
@@ -72,8 +72,8 @@ $count = 1;
                     </a>
 
                     <?php echo $report->getFood()?></p>
-                <p class="report-table-cell report-table-cell--food"><?php echo $report->getFoodQuantity() . 'g'?></p>
-                <p class="report-table-cell report-table-cell--food"><?php echo $report->getFeedingDate()->format('d-m-Y') ?></p>
+                <p class="report-table-cell report-table-cell--food hidden"><?php echo $report->getFoodQuantity() . 'g'?></p>
+                <p class="report-table-cell report-table-cell--food hidden"><?php echo $report->getFeedingDate()->format('d-m-Y') ?></p>
                 <p class="report-table-cell"><?php echo $report->getRemark() . 'g' ?></p>
                 <p class="report-table-cell">
                     <a title="Supprimer le rapport" href="<?php echo HOST ?>deleteReport/id/<?php echo $report->getId()?>">

@@ -11,7 +11,7 @@ if (isset($data)) {
 </head>
 
 <header class="view-header">
-    <h1 class="view-title">Gestion des Utilisateurs</h1>
+    <h1 class="view-title">Gestion utilisateurs</h1>
     <div class="view-search">
         Barre de recherche
     </div>
@@ -40,9 +40,9 @@ if (isset($data)) {
             <p class="user-table-cell">Username</p>
             <p class="user-table-cell">Password</p>
             <p class="user-table-cell">Role</p>
-            <p class="user-table-cell">FirstName</p>
-            <p class="user-table-cell">LastName</p>
-            <p class="user-table-cell">Email</p>
+            <p class="user-table-cell ">FirstName</p>
+            <p class="user-table-cell lastname">LastName</p>
+            <p class="user-table-cell mail ">Email</p>
             <p class="user-table-cell">Actions</p>
 
         </div>
@@ -55,8 +55,8 @@ if (isset($data)) {
                     <p class="user-table-cell"><?php echo $user->getPassword()?></p>
                     <p class="user-table-cell"><?php echo $user->getRole()?></p>
                     <p class="user-table-cell"><?php echo $user->getFirstname()?></p>
-                    <p class="user-table-cell"><?php echo $user->getLastname()?></p>
-                    <p class="user-table-cell"><?php echo $user->getEmail()?></p>
+                    <p class="user-table-cell lastname"><?php echo $user->getLastname()?></p>
+                    <p class="user-table-cell mail"><?php echo $user->getEmail()?></p>
                     <div class="user-table-cell user-table-cell--actions">
                         <a title="Editer utilisateur" href="editUser/username/<?php echo $user->getUsername() ?>">
                             <svg  class="button-edit" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"

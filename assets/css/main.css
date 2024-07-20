@@ -41,6 +41,7 @@
     font: inherit;
     vertical-align: baseline;
     text-decoration: none;
+    color: white;
   }
 
   /* HTML5 display-role reset for older browsers */
@@ -204,17 +205,43 @@
 
   .header-nav {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 7rem;
+    right: 0;
+    row-gap: 3rem;
+    width: 20rem;
+    background-color: var(--grey-800);
+    border: var(--secondary) solid 1px;
+    border-radius: 1rem;
+  }
+  .header-link{
+    margin: 2rem;
+    font-family: var(--font-content);
+    font-size: 2rem;
   }
   .burger {
     height: 3rem;
     width: 3rem;
     margin-right: 1rem;
   }
+
   @media screen and (min-width : 900px) {
     .header-container {
       border-bottom: solid 1px;
       border-color: var(--light);
       margin-bottom: 2rem;
+    }
+    .header-nav {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      top: 0;
+      width: 100%;
+      border: none;
+    }
+    .header-link{
+      margin: 0;
     }
 
     .header-navContainer {
@@ -237,11 +264,10 @@
       /*box-shadow: var(--grey-900) 1px 5px 15px;*/
 
     }
-    .header-link--active>a {
+    .header-link:hover>a {
       color: white;
       background-color: var(--primary-400);
       border-radius: 1rem;
-      padding: 1rem 2rem;
       box-shadow: var(--grey-900) 1px 5px 15px;
     }
 

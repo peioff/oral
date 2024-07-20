@@ -12,3 +12,7 @@ echo '<pre>'; print_r($_SERVER); echo '</pre>';
 //Date to string
 $date = new DateTime();
 $result =  $date->format('d-m-Y');
+
+//Js
+//
+//console.log(window.innerWidth)

@@ -1,6 +1,5 @@
 <?php
     if (!empty($animalToFeed)){
-        echo $animalToFeed->getName();
     }
 
 ?>
