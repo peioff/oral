@@ -84,8 +84,7 @@ class Routeur
         "answerContact"             => ["controller" => 'DashboardContactsController', "method" => 'answerContact'],
         "deleteContact"             => ["controller" => 'DashboardContactsController', "method" => 'deleteContact'],
             //Ajax
-        "ajax"             => ["controller" => 'AjaxController', "method" => 'ajax'],
-        "testAjax"             => ["controller" => 'AjaxController', "method" => 'testAjax'],
+        "contactApproval"             => ["controller" => 'AjaxController', "method" => 'contactApproval'],
 
 
 

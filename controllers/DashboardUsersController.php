@@ -12,27 +12,118 @@ class DashboardUsersController
         $view->renderDashboard($data);
     }
 
-    public function addUser(){
+    public function addUser()
+    {
         $view = new View('addUser');
         $view->renderDashboard(array());
     }
 
-    public function addUserToDatabase(){
-        $bdd = new DatabaseManager();
-        $user = new UserModel();
-        $user->setUsername($_POST['username']);
-        if ($_POST['password'] === $_POST['confirmPassword']) {
-            $user->setPassword($_POST['password']);
+    public function addUserToDatabase()
+    {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $validUsername = false;
+            $username = $_POST["username"];
+            $validPassword = false;
+            $password = $_POST["password"];
+            $validConfirmPassword = false;
+            $confirmPassword = $_POST["confirmPassword"];
+            $validRole = false;
+            $role = $_POST["role"];
+            $validLastname = false;
+            $lastName = $_POST["lastname"];
+            $validFirstname = false;
+            $firstName = $_POST["firstname"];
+            $validEmail = false;
+            $email = $_POST["email"];
+
+            if (!empty($username)) {
+                $validUsername = true;
+            } else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'Invalid Username'
+                ];
+            }
+            if ($role !== 'Choose Role') {
+                $validRole = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'Invalid Role'
+                ];
+            }
+            if (!empty($firstName) && !empty($lastName)) {
+                $validFirstname = true;
+                $validLastname = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'Invalid First or Last name'
+                ];
+            }
+
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $validEmail = true;
+            }
+            else
+            {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'Invalid Email'
+                ];
+            }
+
+            if ($password === $confirmPassword){
+                $validConfirmPassword = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'MismatchPassword'
+                ];
+            }
+
+            if ($this->checkPassword($password)) {
+                $validPassword = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidPassword'
+                ];
+            }
+
+            if ($validUsername && $validConfirmPassword && $validPassword && $validRole && $validLastname && $validFirstname && $validEmail) {
+
+
+                $bdd = new DatabaseManager();
+                $user = new UserModel();
+                $user->setUsername($_POST['username']);
+                $user->setPassword($_POST['password']);
+                $user->setFirstname($_POST['firstname']);
+                $user->setLastname($_POST['lastname']);
+                $user->setRole($_POST['role']);
+                $user->setEmail($_POST['email']);
+
+                $bdd->adduserToDatabase($user);
+
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'none'
+                ];
+            }
+            echo json_encode($response);
         }
-        $user->setFirstname($_POST['firstname']);
-        $user->setLastname($_POST['lastname']);
-        $user->setRole($_POST['role']);
-        $user->setEmail($_POST['email']);
 
-        $bdd->adduserToDatabase($user);
-
-        $view = new View();
-        $view->redirect('dashboardUsers');
     }
 
     public function editUser($params)
@@ -75,5 +166,27 @@ class DashboardUsersController
 
         $view = new View();
         $view->redirect('dashboardUsers');
+    }
+
+    private function checkPassword(string $password) : bool{
+        $length = false;
+        $number = false;
+        $capital = false;
+        $special = false;
+
+        if (strlen($password) > 6) {
+            $length = true;
+        }
+        if (preg_match("/[0-9]/", $password)) {
+            $number = true;
+        }
+        if (preg_match("/[A-Z]/", $password)) {
+            $capital = true;
+        }
+        if (preg_match("/[$@#&!?]/", $password)) {
+            $special = true;
+        }
+
+        return $length && $capital && $number && $special ;
     }
 }

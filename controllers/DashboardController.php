@@ -26,45 +26,50 @@ class DashboardController
         //TODO Manage rôles
         //TODO Manage wrong username or wrong password
 
-        $databaseManager = new DatabaseManager();
-        $users = $databaseManager->getUsers();
 
-        foreach ($users as $user) {
-            if ($user->getUsername() == $_POST['username'] && $user->getPassword() == $_POST['password']) {
-                $anthentifiedUser = $user;
+            $databaseManager = new DatabaseManager();
+            $users = $databaseManager->getUsers();
+
+            foreach ($users as $user) {
+                if ($user->getUsername() == $_POST['username'] && $user->getPassword() == $_POST['password']) {
+                    $authentifiedUser = $user;
+                }
             }
-        }
 
-        if (isset($anthentifiedUser)) {
-            switch ($anthentifiedUser->getRole()) {
+        if (isset($authentifiedUser)) {
+
+            switch ($authentifiedUser->getRole()) {
                 case 'Admin':
                     echo 'Role : Admin';
                     session_start();
-                    $_SESSION['username'] = $anthentifiedUser->getUsername();
-                    $_SESSION['role'] = $anthentifiedUser->getRole();
+                    $_SESSION['username'] = $authentifiedUser->getUsername();
+                    $_SESSION['role'] = $authentifiedUser->getRole();
                     $view = new View();
                     $view->redirect('dashboardAnimals');
                     break;
                 case 'Employee':
                     echo 'Role : Employee';
                     session_start();
-                    $_SESSION['username'] = $anthentifiedUser->getUsername();
-                    $_SESSION['role'] = $anthentifiedUser->getRole();
+                    $_SESSION['username'] = $authentifiedUser->getUsername();
+                    $_SESSION['role'] = $authentifiedUser->getRole();
                     $view = new View();
                     $view->redirect('dashboardFeedings');
                     break;
                 case 'Veterinary':
                     echo 'Role : Veterinary';
                     session_start();
-                    $_SESSION['username'] = $anthentifiedUser->getUsername();
-                    $_SESSION['role'] = $anthentifiedUser->getRole();
+                    $_SESSION['username'] = $authentifiedUser->getUsername();
+                    $_SESSION['role'] = $authentifiedUser->getRole();
                     $view = new View();
                     $view->redirect('dashboardVet');
                     break;
             }
+
         } else {
-            echo 'Wrong username or password';
+            $view = new View();
+            $view->redirect('connect');
         }
+
     }
 
     public function disconnect()

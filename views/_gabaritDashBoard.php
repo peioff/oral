@@ -1,5 +1,13 @@
 <?php
 session_start();
+//echo '<pre>'; print_r($_SESSION); echo '</pre>';
+//exit();
+$test = array('Admin','Employee','Veterinary');
+if (!in_array($_SESSION['role'], $test)) {
+    $view = new View();
+    $view->redirect('connect');
+}
+
 
 ?>
 <!DOCTYPE html>

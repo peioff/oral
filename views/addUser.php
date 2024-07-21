@@ -3,6 +3,10 @@
 <head>
     <title>Dashboard - Add user</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>dashboard.css"/>
+    <link rel="stylesheet" href="<?php echo ASSETSCSS;?>toastr.css">
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer ></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>toastr.js" defer ></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>addUserApproval.js" defer></script>
 </head>
 
 <header class="view-header--animal">
@@ -12,28 +16,28 @@
 <!--View Menu + content-->
 <section class="dashboardView-container">
     <div class="form-container">
-        <form class="form" action="<?php echo HOST; ?>addUserToDatabase" method="post">
+        <form class="form" id="addUserForm" method="post">
             <fieldset class="adduser-fieldset">
                 <legend >Informations de connection</legend>
                 <ul>
                     <li>
                         <label class="form-field" for="username"> Nom d'utilisateur:
-                            <input type="text" name="username" required>
+                            <input id="formUsername" type="text" name="username" required>
                         </label>
                     </li>
                     <li>
                         <label class="form-field" for="password"> Mot de passe:
-                            <input type="password" name="password" required>
+                            <input id="formPassword" type="password" name="password" required>
                         </label>
                     </li>
                     <li>
                         <label class="form-field" for="confirmPassword"> Confirmez le mot de passe:
-                            <input type="password" name="confirmPassword" required>
+                            <input id="formConfirmPassword" type="password" name="confirmPassword" required>
                         </label>
                     </li>
                     <li>
                         <label class="form-field" for="role"> Rôle:
-                            <select name="role">
+                            <select id="formRole" name="role">
                                 <option>Choose Role</option>
                                 <option value="Employee">Employee</option>
                                 <option value="Veterinary">Veterinary</option>
@@ -47,22 +51,22 @@
                 <ul>
                     <li>
                         <label class="form-field" for="lastname"> Nom:
-                            <input type="text" name="lastname" required>
+                            <input id="formLastname" type="text" name="lastname" required>
                         </label>
                     </li>
                     <li>
                         <label class="form-field" for="firstname"> Prénom:
-                            <input type="text" name="firstname" required>
+                            <input id="formFirstname" type="text" name="firstname" required>
                         </label>
                     </li>
                     <li>
                         <label class="form-field" for="email"> Email:
-                            <input type="email" name="email" required>
+                            <input id="formEmail" type="email" name="email" required>
                         </label>
                 </ul>
             </fieldset>
             <div class="form-buttonContainer">
-                <button class="button button--success" type="submit">Ajouter</button>
+                <button class="button button--success" type="submit" onclick="formApproval()">Ajouter</button>
                 <a class="button button--danger" href="<?php echo HOST; ?>dashboardUsers">Annuler</a>
             </div>
 

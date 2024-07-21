@@ -30,58 +30,97 @@ class DashboardVetController
 
     public function addReportToDatabase($params)
     {
-        echo 'addReportToDatabase called';
-        echo '<pre>';
-        print_r($_POST);
-        echo '</pre>';
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $validAnimal = false;
+            $animal = $_POST['animal'];
+            $validDate = false;
+            $date = $_POST['date'];
+            $validHealth = false;
+            $health = $_POST['health'];
+            $remark = $_POST['remark'];
 
-        $bdd = new DatabaseManager();
-
-        foreach ($bdd->getAllAnimals() as $animal) {
-            if ($animal->getName() == $_POST['animal']) {
-                $animalId = $animal->getId();
+            if (!empty($animal)) {
+                $validAnimal = true;
             }
-        }
-        foreach ($bdd->getFeedings() as $feeding) {
-            if ($feeding->getAnimalId() == $animalId) {
-                $food = $feeding->getFood();
-                $foodQuantity = $feeding->getQuantity();
-                $feedingDate = $feeding->getDate();
-                $feedingDate = $feedingDate->format('d-m-Y');
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error'=> 'InvalidAnimal'
+                ];
             }
-        }
-
-        $report = new ReportModel();
-        try {
-            $report->setDate(new DateTime($_POST['date']));
-        } catch (Exception $e) {
-        }
-        $report->setHealth($_POST['health']);
-
-        if (isset($food)) {
-            $report->setFood($food);
-            $report->setFoodQuantity($foodQuantity);
-            try {
-                $report->setFeedingDate(new DateTime($feedingDate));
-            } catch (Exception $e) {
+            if (!empty($date)) {
+                $validDate = true;
             }
-        } else {
-            $report->setFood('Non renseigné');
-            $report->setFoodQuantity(0);
-            try {
-                $report->setFeedingDate(new DateTime('2000-01-01'));
-            } catch (Exception $e) {
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error'=> 'InvalidDate'
+                ];
             }
+            if (!empty($health)) {
+                $validHealth = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error'=> 'InvalidHealth'
+                ];
+            }
+            if ($validAnimal && $validDate && $validHealth) {
+                $bdd = new DatabaseManager();
 
+                foreach ($bdd->getAllAnimals() as $animal) {
+                    if ($animal->getName() == $_POST['animal']) {
+                        $animalId = $animal->getId();
+                    }
+                }
+                foreach ($bdd->getFeedings() as $feeding) {
+                    if ($feeding->getAnimalId() == $animalId) {
+                        $food = $feeding->getFood();
+                        $foodQuantity = $feeding->getQuantity();
+                        $feedingDate = $feeding->getDate();
+                        $feedingDate = $feedingDate->format('d-m-Y');
+                    }
+                }
+                $report = new ReportModel();
+                try {
+                    $report->setDate(new DateTime($_POST['date']));
+                } catch (Exception $e) {
+                }
+                $report->setHealth($_POST['health']);
+                if (isset($food)) {
+                    $report->setFood($food);
+                    $report->setFoodQuantity($foodQuantity);
+                    try {
+                        $report->setFeedingDate(new DateTime($feedingDate));
+                    } catch (Exception $e) {
+                    }
+                } else {
+                    $report->setFood('Non renseigné');
+                    $report->setFoodQuantity(0);
+                    try {
+                        $report->setFeedingDate(new DateTime('2000-01-01'));
+                    } catch (Exception $e) {
+                    }
+                }
+                $report->setRemark($_POST['remark']);
+                $report->setAnimalId($animalId);
+
+                $bdd->addReportToDatabase($report);
+
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error'=> 'none'
+                ];
+            }
+            echo json_encode($response);
         }
 
-        $report->setRemark($_POST['remark']);
-        $report->setAnimalId($animalId);
 
-        $bdd->addReportToDatabase($report);
-
-        $view = new View();
-        $view->redirect('dashboardVet');
 
     }
 

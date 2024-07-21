@@ -15,24 +15,9 @@ class ContactController
         $view->render();
     }
 
-    public function addContactToDatabase(){
-
+    public function addContactToDatabase(ContactModel $contact){
         $bdd = new DatabaseManager();
-
-        $contact = new ContactModel();
-        $contact->setDate(new DateTime());
-        $contact->setNickname($_POST['nickname']);
-        $contact->setTitle($_POST['title']);
-        $contact->setEmail($_POST['email']);
-        $contact->setContent($_POST['content']);
-        $contact->setAnswered(0);
-
         $bdd->addContactToDatabase($contact);
-
-        $view = new View();
-        $view->redirect('home');
-
-
     }
 }
 

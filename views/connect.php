@@ -5,6 +5,11 @@
     <title>Arcadia - Connexion</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS;?>main.css">
     <link rel="stylesheet" href="<?php echo ASSETSCSS;?>connect.css">
+    <link rel="stylesheet" href="<?php echo ASSETSCSS;?>toastr.css">
+
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer ></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>toastr.js" defer ></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>connectApproval.js" defer></script>
 </head>
 <body class="body" id="body">
 <header id="header">
@@ -19,12 +24,12 @@
     </p>
 </header>
 <main class="main">
-    <form class="form flux">
+    <form class="form flux" action="<?php echo HOST ?>connection" method="post">
         <ul class="form-container">
             <li class="field">
                 <label class="label" for="username">
                     <p class="label-text">Identifiant</p>
-                    <input class="input" type="text" name="username">
+                    <input class="input" type="text" name="username" id="username">
                 </label>
             </li>
             <li class="field">
@@ -41,11 +46,11 @@
                         </div>
 
                     </div>
-                    <input class="input" type="password" name="password">
+                    <input class="input" type="password" name="password" id="password">
                 </label>
             </li>
             <li class="form-buttonContainer">
-                <button class="button button--form" type="submit" formaction="<?php echo HOST; ?>connection" formmethod="post">Se connecter</button>
+                <button class="button button--form" type="submit" >Se connecter</button>
             </li>
         </ul>
     </form>
