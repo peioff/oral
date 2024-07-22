@@ -16,7 +16,7 @@ if (isset($allLivingPageData)){
                 <header class="living-footer">
                     <div class="living-container">
                         <h2 class="title"><?php echo $living->getName() ?></h2>
-                        <p class="content"><?php echo $living->getDescription() ?></p>
+                        <p class="headband-content"><?php echo $living->getDescription() ?></p>
                     </div>
                 </header>
                 <article class="living">

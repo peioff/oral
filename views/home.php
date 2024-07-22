@@ -12,8 +12,6 @@ if (isset($allHomePageData)) {
 <head>
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
-    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer></script>
-    <script type="text/javascript" src="<?php echo SCRIPTS; ?>animalScoreAndCheckout.js" defer></script>
 
 </head>
 <body class="body flux">
@@ -26,8 +24,8 @@ if (isset($allHomePageData)) {
                 écologique
             </p>
             <div class="banner-container--bottom">
-                <p class="title" id="open-days">Ouvert tous les jours</p>
-                <p class="content" id="open-hours">8h00 - 20h00</p>
+                <p class="title" id="open-days"> </p>
+                <p class="content" id="open-hours"> </p>
             </div>
         </div>
     </section>
@@ -35,8 +33,8 @@ if (isset($allHomePageData)) {
     <!-- Livings -->
     <section class="livings">
         <header class="headband">
-            <h2 class="title"></h2>
-            <p class="content" id="content">
+            <h2 class="title"> Nos habitats</h2>
+            <p class="headband-content" id="content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
@@ -75,31 +73,13 @@ if (isset($allHomePageData)) {
     <section class="animals" id="animals">
         <header class="headband">
             <h2 class="title">Les animaux</h2>
-            <p class="content">
+            <p class="headband-content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
         </header>
         <!-- animal -->
-        <?php foreach ($animals as $animal):
-
-            foreach ($reports as $element){
-                if ($element->getAnimalId() === $animal->getId()) {
-                    $report = $element;
-                    $food = $report->getFood();
-                    $quantity = $report->getFoodQuantity();
-                    $health = $report->getHealth();
-                    $date = ($report->getDate())->format('d/m/Y');
-                    $remark = $report->getRemark();
-                }
-                if (!isset($report)){
-                    $food = $animal->getName() . ' n\'a encore rien mangé!';
-                    $quantity = '0';
-                    $health = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
-                    $date = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
-                    $remark = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
-                }
-                }?>
+        <?php foreach ($animals as $animal):?>
             <article class="animal" >
                 <h3 class="animal-title">
                     <?php
@@ -113,14 +93,6 @@ if (isset($allHomePageData)) {
                         echo $animal->getLiving();
                         ?>
                     </p>
-                    <div class="animal-report" id="animal<?php echo $animal->getId(); ?>" >
-                        <p> <?php echo 'nourriture : ' . $food  ?></p>
-                        <p> <?php echo 'quantité : ' . $quantity  ?></p>
-                        <p> <?php echo 'Etat de santé : ' . $health  ?></p>
-                        <p> <?php echo 'Date : ' . $date  ?></p>
-                        <p> <?php echo 'Remarque : ' . $remark  ?></p>
-                    </div>
-
                 </div>
             </article>
         <?php  endforeach; ?>
@@ -130,7 +102,7 @@ if (isset($allHomePageData)) {
     <section class="services">
         <header class="headband">
             <h2 class="title">Les services</h2>
-            <p class="content">
+            <p class="headband-content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
@@ -155,7 +127,7 @@ if (isset($allHomePageData)) {
     <section class="reviews">
         <header class="headband">
             <h2 class="title">Les Avis</h2>
-            <p class="content">
+            <p class="headband-content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
