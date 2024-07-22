@@ -16,5 +16,6 @@ $request = "/"; // request set as "/" because no request is being set at the ver
 if (isset($_GET['r'])){
     $request = $_GET['r'];
 }
+
 $routeur = new Routeur($request);
 $routeur->renderController();
