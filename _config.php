@@ -19,8 +19,8 @@ class AutoLoad
         $host = $_SERVER['HTTP_HOST'];
 
         #Global variables
-        define('HOST', 'http://'.$host.'/ecf/');
-        define('ROOT', $root.'/ecf/');
+        define('HOST', 'http://'.$host.'/app/');
+        define('ROOT', $root.'/app/');
 
         define('CLASSES', ROOT.'classes/');
         define('CONTROLLERS', ROOT.'controllers/');
