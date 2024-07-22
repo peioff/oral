@@ -7,7 +7,12 @@ class DatabaseManager
 
     public function __construct()
     {
-        $this->bdd = new PDO('mysql:host=localhost;dbname=ecf', 'admin', 'N0pl4c3t0h1d3?');
+        if(getenv('JAWSDB_URL') !== false) {
+            $this->bdd = new PDO('mysql:host=bqmayq5x95g1sgr9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=f66fkds8bc5jmey7', 'fqxhwjixsc69oap6', 'wwyp88tvi4ok92qi');
+        } else {
+            $this->bdd = new PDO('mysql:host=localhost;dbname=ecf', 'admin', 'N0pl4c3t0h1d3?');
+        }
+
     }
 
     // Users
