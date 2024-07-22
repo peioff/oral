@@ -23,8 +23,9 @@ class HomeController
         $animals = $databaseManager->getAllAnimals();
         $services = $databaseManager->getServices();
         $comments = $databaseManager->getComments();
+        $reports = $databaseManager->getReports();
 
-        $allHomePageData = array($livings, $animals, $services,$comments);
+        $allHomePageData = array($livings, $animals, $services,$comments,$reports);
 
         $homeView = new View('home');
         $homeView->render(array('allHomePageData' => $allHomePageData));

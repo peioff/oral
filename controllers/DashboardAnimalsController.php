@@ -155,4 +155,63 @@ class DashboardAnimalsController
         $dashboardAnimalsView->redirect('dashboardAnimals');
     }
 
+    public function scoreAndCheckout()
+    {
+        if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' ) {
+
+            $bdd = new DatabaseManager();
+            $animal = $bdd->getAnimalById(intval($_GET['animalId']));
+
+
+             foreach ($bdd->getReports() as $element){
+                 if($element->getAnimalId() == $animal->getId()){
+                     $report = $element;
+                 }
+             }
+             foreach ($bdd->getFeedings() as $element){
+                 if($element->getAnimalId() == $animal->getId()){
+                     $feeding = $element;
+                 }
+             }
+
+             if (isset($report)){
+                 $date = ($report->getDate())->format('d-m-Y');
+                 $health = $report->getHealth();
+                 $remarks = $report->getRemark();
+             }
+             else{
+                 $date = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
+                 $health = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
+                 $remarks = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
+             }
+             if (isset($feeding)){
+                 $food = $feeding->getFood();
+                 $quantity = $feeding->getQuantity();
+             }
+             else {
+                 $food = $animal->getName() . ' n\'a encore rien mangé!';
+                 $quantity = '0';
+             }
+
+
+
+            $response = [
+                'success' => 'Request received successfully.',
+                'code' => HTTP_OK,
+                'id' => $animal->getId(),
+                'name' => $animal->getName(),
+                'species' => $animal->getSpecies(),
+                'living' => $animal->getLiving(),
+                'food' => $food,
+                'quantity' => $quantity,
+                'date' => $date,
+                'health' => $health,
+                'remarks' => $remarks
+
+                ];
+            echo json_encode($response);
+        }
+
+    }
+
 }

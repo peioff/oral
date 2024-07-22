@@ -4,14 +4,17 @@ if (isset($allHomePageData)) {
     $animals = $allHomePageData[1];
     $services = $allHomePageData[2];
     $comments = $allHomePageData[3];
+    $reports = $allHomePageData[4];
 }
-
 
 ?>
 
 <head>
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>animalScoreAndCheckout.js" defer></script>
+
 </head>
 <body class="body flux">
 <main class="main">
@@ -33,7 +36,7 @@ if (isset($allHomePageData)) {
     <section class="livings">
         <header class="headband">
             <h2 class="title"></h2>
-            <p class="content">
+            <p class="content" id="content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
@@ -69,7 +72,7 @@ if (isset($allHomePageData)) {
         <!-- living -->
     </section>
     <!-- Animals -->
-    <section class="animals">
+    <section class="animals" id="animals">
         <header class="headband">
             <h2 class="title">Les animaux</h2>
             <p class="content">
@@ -78,25 +81,51 @@ if (isset($allHomePageData)) {
             </p>
         </header>
         <!-- animal -->
-        <?php foreach ($animals as $animal): ?>
-            <article class="animal">
+        <?php foreach ($animals as $animal):
+
+            foreach ($reports as $element){
+                if ($element->getAnimalId() === $animal->getId()) {
+                    $report = $element;
+                    $food = $report->getFood();
+                    $quantity = $report->getFoodQuantity();
+                    $health = $report->getHealth();
+                    $date = ($report->getDate())->format('d/m/Y');
+                    $remark = $report->getRemark();
+                }
+                if (!isset($report)){
+                    $food = $animal->getName() . ' n\'a encore rien mangé!';
+                    $quantity = '0';
+                    $health = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
+                    $date = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
+                    $remark = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
+                }
+                }?>
+            <article class="animal" >
                 <h3 class="animal-title">
                     <?php
                     echo $animal->getName();
                     ?></h3>
                 </h3>
-                <img class="animal-picture"
+                <img class="animal-picture" onclick="hideOrShow(<?php echo $animal->getid() ?>)"
                      src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
-                <p class="animal-content">
-                    <?php
-                    echo $animal->getLiving();
-                    ?>
-                </p>
+                <div class="animal-content" id="<?php echo $animal->getId() ?>">
+                    <p>  <?php
+                        echo $animal->getLiving();
+                        ?>
+                    </p>
+                    <div class="animal-report" id="animal<?php echo $animal->getId(); ?>" >
+                        <p> <?php echo 'nourriture : ' . $food  ?></p>
+                        <p> <?php echo 'quantité : ' . $quantity  ?></p>
+                        <p> <?php echo 'Etat de santé : ' . $health  ?></p>
+                        <p> <?php echo 'Date : ' . $date  ?></p>
+                        <p> <?php echo 'Remarque : ' . $remark  ?></p>
+                    </div>
+
+                </div>
             </article>
-        <?php endforeach; ?>
+        <?php  endforeach; ?>
 
     </section>
-
     <!-- Services -->
     <section class="services">
         <header class="headband">
@@ -122,7 +151,6 @@ if (isset($allHomePageData)) {
             </article>
         <?php endforeach; ?>
     </section>
-
     <!-- Reviews -->
     <section class="reviews">
         <header class="headband">

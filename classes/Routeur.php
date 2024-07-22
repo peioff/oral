@@ -40,7 +40,9 @@ class Routeur
         "editAnimal.php"            => ["controller" => 'DashboardAnimalsController', "method" => 'editAnimalPage'],
         "updateAnimal"              => ["controller" => 'DashboardAnimalsController', "method" => 'updateAnimal'],
         "deleteAnimal"              => ["controller" => 'DashboardAnimalsController', "method" => 'deleteAnimal'],
-            //Livings
+        "scoreAndCheckout"          => ["controller" => 'DashboardAnimalsController', "method" => 'scoreAndCheckout'],
+
+        //Livings
         "dashboardLivings"          => ["controller" => 'DashboardLivingsController', "method" => 'manageLivings'],
         "addLiving.php"             => ["controller" => 'DashboardLivingsController', "method" => 'addLiving'],
         "addLivingToDatabase"       => ["controller" => 'DashboardLivingsController', "method" => 'addLivingToDatabase'],
