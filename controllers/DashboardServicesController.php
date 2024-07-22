@@ -15,29 +15,111 @@ class DashboardServicesController
         $addAnimalView = new View('addService');
         $addAnimalView->renderDashboard(array());
     }
-    public function addServiceToDatabase($params){
-//        echo '<pre>'; print_r($_POST); echo '</pre>';
-//        exit();
-        $name = $_POST['name'];
-        $schedule = $_POST['schedule'];
-        $contactInfos = $_POST['contactInfos'];
-        $description = $_POST['description'];
-        $image_name = $_FILES['file']['name'];
-        $image_data = file_get_contents($_FILES['file']['tmp_name']);
+    public function addServiceToDatabase(){
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 
-        $bdd = new DatabaseManager();
-        $lastInsertedId = $bdd->addImage($image_name,$image_data);
+            $validName = false;
+            $name = $_POST['name'];
+            $validSchedule = false;
+            $schedule = $_POST['schedule'];
+            $validContactInfos = false;
+            $contactInfos = $_POST['contactInfos'];
+            $validDescription = false;
+            $description = $_POST['description'];
+            $validFileName = false;
+            $fileName = $_FILES['file']['name'];
+            $validFileData = false;
+            $fileData = file_get_contents($_FILES['file']['tmp_name']);
 
-        $serviceToAdd = new ServiceModel();
-        $serviceToAdd->setName($name);
-        $serviceToAdd->setSchedule($schedule);
-        $serviceToAdd->setContactInfo($contactInfos);
-        $serviceToAdd->setDescription($description);
-        $serviceToAdd->setImageId($lastInsertedId);
-        $bdd->addServiceToDatabase($serviceToAdd);
+            if (!empty($name)){
+                $validName = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidName'
+                ];
+            }
+            if (!empty($schedule)){
+                $validSchedule = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidSchedule'
+                ];
+            }
+            if (!empty($contactInfos)){
+                $validContactInfos = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidCOntactInfos'
+                ];
+            }
+            if (!empty($description)){
+                $validDescription = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidDescription'
+                ];
+            }
+            if (preg_match('/^[\/\w\-. ]+$/', $fileName)){
+                $validFileName = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'Invalid FileName'
+                ];
+            }
+            if (mime_content_type($_FILES['file']['tmp_name']) == 'image/jpeg'){
+                $validFileData = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'Invalid fileType'
+                ];
+            }
 
-        $dashboardAnimalsView = new View();
-        $dashboardAnimalsView->redirect('dashboardServices');
+            if ($validName && $validSchedule && $validContactInfos && $validDescription && $validFileName && $validFileData){
+                $bdd = new DatabaseManager();
+                $lastInsertedId = $bdd->addImage($fileName,$fileData);
+
+                $serviceToAdd = new ServiceModel();
+                $serviceToAdd->setName($name);
+                $serviceToAdd->setSchedule($schedule);
+                $serviceToAdd->setContactInfo($contactInfos);
+                $serviceToAdd->setDescription($description);
+                $serviceToAdd->setImageId($lastInsertedId);
+                $bdd->addServiceToDatabase($serviceToAdd);
+
+                $response = [
+                    'success' => 'Request received successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'none'
+                ];
+            }
+
+
+            echo json_encode($response);
+        }
+
+
+
+
+
+
 
 
     }

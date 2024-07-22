@@ -21,13 +21,14 @@ class Routeur
         //Home
         ""                          => ["controller" => 'HomeController', "method" => 'display'],
         "home"                      => ["controller" => 'HomeController', "method" => 'display'],
-        "submitComment"             => ["controller" => 'HomeController', "method" => 'submitComment'],
         //Livings
         "livings"                   => ["controller" => 'LivingsController', "method" => 'display'],
         //Services
         "services"                  => ["controller" => 'ServicesController', "method" => 'display'],
         //Contact
         "contact"                   => ["controller" => 'ContactController', "method" => 'display'],
+        "addContactToDatabase"      => ["controller" => 'ContactController', "method" => 'addContactToDatabase'],
+
         //Dashboard
         "connect"                   => ["controller" => 'DashboardController', "method" => 'display'],
         "connection"                => ["controller" => 'DashboardController', "method" => 'connection'],
@@ -39,7 +40,9 @@ class Routeur
         "editAnimal.php"            => ["controller" => 'DashboardAnimalsController', "method" => 'editAnimalPage'],
         "updateAnimal"              => ["controller" => 'DashboardAnimalsController', "method" => 'updateAnimal'],
         "deleteAnimal"              => ["controller" => 'DashboardAnimalsController', "method" => 'deleteAnimal'],
-            //Livings
+        "scoreAndCheckout"          => ["controller" => 'DashboardAnimalsController', "method" => 'scoreAndCheckout'],
+
+        //Livings
         "dashboardLivings"          => ["controller" => 'DashboardLivingsController', "method" => 'manageLivings'],
         "addLiving.php"             => ["controller" => 'DashboardLivingsController', "method" => 'addLiving'],
         "addLivingToDatabase"       => ["controller" => 'DashboardLivingsController', "method" => 'addLivingToDatabase'],
@@ -60,6 +63,40 @@ class Routeur
         "editFeeding.php"           => ["controller" => 'DashboardFeedingsController', "method" => 'editFeedingPage'],
         "updateFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'updateFeeding'],
         "deleteFeeding"             => ["controller" => 'DashboardFeedingsController', "method" => 'deleteFeeding'],
+            //VeterinaryReports
+        "dashboardVet"              => ["controller" => 'DashboardVetController', "method" => 'manageReport'],
+        "addReport.php"             => ["controller" => 'DashboardVetController', "method" => 'addReport'],
+        "addReportToDatabase"       => ["controller" => 'DashboardVetController', "method" => 'addReportToDatabase'],
+        "feedingHistory"            => ["controller" => 'DashboardVetController', "method" => 'feedingHistory'],
+        "deleteReport"              => ["controller" => 'DashboardVetController', "method" => 'deleteReport'],
+            //Comments
+        "submitComment"             => ["controller" => 'DashboardCommentsController', "method" => 'submitComment'],
+        "dashboardComments"         => ["controller" => 'DashboardCommentsController', "method" => 'manageComments'],
+        "switchVisibility"          => ["controller" => 'DashboardCommentsController', "method" => 'switchVisibility'],
+        "deleteComment"             => ["controller" => 'DashboardCommentsController', "method" => 'deleteComment'],
+            //Users
+        "dashboardUsers"            => ["controller" => 'DashboardUsersController', "method" => 'manageUsers'],
+        "addUser.php"               => ["controller" => 'DashboardUsersController', "method" => 'addUser'],
+        "addUserToDatabase"         => ["controller" => 'DashboardUsersController', "method" => 'addUserToDatabase'],
+        "editUser"                  => ["controller" => 'DashboardUsersController', "method" => 'editUser'],
+        "updateUser"                => ["controller" => 'DashboardUsersController', "method" => 'updateUser'],
+        "deleteUser"                => ["controller" => 'DashboardUsersController', "method" => 'deleteUser'],
+            //Contacts
+        "dashboardContacts"         => ["controller" => 'DashboardContactsController', "method" => 'manageContacts'],
+        "answerContact"             => ["controller" => 'DashboardContactsController', "method" => 'answerContact'],
+        "deleteContact"             => ["controller" => 'DashboardContactsController', "method" => 'deleteContact'],
+            //Ajax
+        "contactApproval"             => ["controller" => 'AjaxController', "method" => 'contactApproval'],
+
+
+
+
+
+
+
+
+
+
 
     ];
 

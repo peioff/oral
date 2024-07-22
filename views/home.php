@@ -4,14 +4,15 @@ if (isset($allHomePageData)) {
     $animals = $allHomePageData[1];
     $services = $allHomePageData[2];
     $comments = $allHomePageData[3];
+    $reports = $allHomePageData[4];
 }
-
 
 ?>
 
 <head>
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
+
 </head>
 <body class="body flux">
 <main class="main">
@@ -23,8 +24,8 @@ if (isset($allHomePageData)) {
                 écologique
             </p>
             <div class="banner-container--bottom">
-                <p class="title" id="open-days">Ouvert tous les jours</p>
-                <p class="content" id="open-hours">8h00 - 20h00</p>
+                <p class="title" id="open-days"> </p>
+                <p class="content" id="open-hours"> </p>
             </div>
         </div>
     </section>
@@ -32,8 +33,8 @@ if (isset($allHomePageData)) {
     <!-- Livings -->
     <section class="livings">
         <header class="headband">
-            <h2 class="title"></h2>
-            <p class="content">
+            <h2 class="title"> Nos habitats</h2>
+            <p class="headband-content" id="content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
@@ -69,39 +70,39 @@ if (isset($allHomePageData)) {
         <!-- living -->
     </section>
     <!-- Animals -->
-    <section class="animals">
+    <section class="animals" id="animals">
         <header class="headband">
             <h2 class="title">Les animaux</h2>
-            <p class="content">
+            <p class="headband-content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
         </header>
         <!-- animal -->
-        <?php foreach ($animals as $animal): ?>
-            <article class="animal">
+        <?php foreach ($animals as $animal):?>
+            <article class="animal" >
                 <h3 class="animal-title">
                     <?php
                     echo $animal->getName();
                     ?></h3>
                 </h3>
-                <img class="animal-picture"
+                <img class="animal-picture" onclick="hideOrShow(<?php echo $animal->getid() ?>)"
                      src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
-                <p class="animal-content">
-                    <?php
-                    echo $animal->getLiving();
-                    ?>
-                </p>
+                <div class="animal-content" id="<?php echo $animal->getId() ?>">
+                    <p>  <?php
+                        echo $animal->getLiving();
+                        ?>
+                    </p>
+                </div>
             </article>
-        <?php endforeach; ?>
+        <?php  endforeach; ?>
 
     </section>
-
     <!-- Services -->
     <section class="services">
         <header class="headband">
             <h2 class="title">Les services</h2>
-            <p class="content">
+            <p class="headband-content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
@@ -122,12 +123,11 @@ if (isset($allHomePageData)) {
             </article>
         <?php endforeach; ?>
     </section>
-
     <!-- Reviews -->
     <section class="reviews">
         <header class="headband">
             <h2 class="title">Les Avis</h2>
-            <p class="content">
+            <p class="headband-content">
                 Texte de présentation du zoo, en quelques lignes, présenter le zoo,
                 essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>

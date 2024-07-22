@@ -15,7 +15,7 @@
 </header>
 
 <!--View Menu + content-->
-<section class="addView-container">
+<section class="dashboardView-container">
     <div class="form-container">
         <form class="form" action="<?php echo HOST; ?>updateFeeding/id/<?php echo $feeding->getId()?>" method="post">
             <ul>

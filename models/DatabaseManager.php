@@ -7,16 +7,22 @@ class DatabaseManager
 
     public function __construct()
     {
-        $this->bdd = new PDO('mysql:host=localhost;dbname=ecf', 'admin', 'N0pl4c3t0h1d3?');
+        if(getenv('JAWSDB_URL') !== false) {
+            $this->bdd = new PDO('mysql:host=bqmayq5x95g1sgr9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=f66fkds8bc5jmey7', 'fqxhwjixsc69oap6', 'wwyp88tvi4ok92qi');
+        } else {
+            $this->bdd = new PDO('mysql:host=localhost;dbname=ecf', 'admin', 'N0pl4c3t0h1d3?');
+        }
+
     }
 
     // Users
-    private function getusers(): array
+    public function getUsers(): array
     {
         $bdd = $this->bdd;
-        $query = $bdd->prepare('SELECT * FROM `users`');
-        $req = $query->execute();
-        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $query ="SELECT * FROM `users`";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
             $user = new UserModel();
             $user->setUsername($row['username']);
             $user->setRole($row['role']);
@@ -28,14 +34,57 @@ class DatabaseManager
         }
         return $users;
     }
-    public function getUser($username)
+    public function getUser($username):UserModel
     {
-        foreach ($this->getusers() as $user) {
-            if ($user->getUsername() == $username) {
-                return $user;
+        $bdd = $this->bdd;
+        $query ="SELECT * FROM `users` WHERE `username` = :username";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username', $username);
+            $req->execute();
+
+            while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
+                $user = new UserModel();
+                $user->setUsername($row['username']);
+                $user->setRole($row['role']);
+                $user->setPassword($row['password']);
+                $user->setLastname($row['lastname']);
+                $user->setFirstname($row['firstname']);
+                $user->setEmail($row['email']);
             }
-        }
-        return null;
+            return $user;
+    }
+    public function adduserToDatabase(UserModel $user){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO users(username,role,password,lastname,firstname,email) VALUES (:username,:role,:password,:lastname,:firstname,:email)";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username',$user->getUsername());
+        $req->bindValue(':role',$user->getRole());
+        $req->bindValue(':password',$user->getPassword());
+        $req->bindValue(':lastname',$user->getLastname());
+        $req->bindValue(':firstname',$user->getFirstname());
+        $req->bindValue(':email',$user->getEmail());
+        $req->execute();
+    }
+    public function updateUser(UserModel $user){
+        $bdd = $this->bdd;
+        $query = "UPDATE users SET role = :role, password = :password, lastname = :lastname, firstname = :firstname, email = :email WHERE username = :username";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username',$user->getUsername());
+        $req->bindValue(':role',$user->getRole());
+        $req->bindValue(':password',$user->getPassword());
+        $req->bindValue(':lastname',$user->getLastname());
+        $req->bindValue(':firstname',$user->getFirstname());
+        $req->bindValue(':email',$user->getEmail());
+        $req->bindValue(':username',$user->getUsername());
+        $req->execute();
+    }
+    public function deleteUser(string $username)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM users WHERE username = :username";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':username',$username);
+        $req->execute();
     }
 
     // Livings
@@ -275,8 +324,40 @@ class DatabaseManager
     public function insertComment(string $nickname, string $message)
     {
         $bdd = $this->bdd;
-        $query = "INSERT INTO comments (nickname, content,visibility) VALUES ('$nickname', '$message' , 1)";
+        $query = "INSERT INTO comments (nickname, content,visibility) VALUES ('$nickname', '$message' , 0)";
         $req = $bdd->prepare($query);
+        $req->execute();
+    }
+    public function changeCommentVisibility(int $commentId){
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM comments WHERE comment_id = :comment_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':comment_id', $commentId);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $comment = new CommentModel();
+            $comment->setVisibility(intval($row['visibility']));
+
+        }
+
+        if($comment->getVisibility()){
+            $comment->setVisibility(false);
+        } else {
+            $comment->setVisibility(true);
+        }
+
+        $query = "UPDATE comments SET visibility = :visibility WHERE comment_id = :comment_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':visibility', $comment->getVisibility());
+        $req->bindValue(':comment_id', $commentId);
+        $req->execute();
+
+    }
+    public function deleteComment(int $commentId){
+        $bdd = $this->bdd;
+        $query = "DELETE FROM comments WHERE comment_id = :comment_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':comment_id', $commentId);
         $req->execute();
     }
 
@@ -346,7 +427,6 @@ class DatabaseManager
         $req->bindValue(':feeding_id', $feeding->getId());
         $req->execute();
     }
-
     public function deleteFeeding(int $feedingId){
         $bdd = $this->bdd;
         $query = "DELETE FROM feedings WHERE feeding_id = :feeding_id";
@@ -355,8 +435,130 @@ class DatabaseManager
         $req->execute();
     }
 
-    //Img
+    //Report
+    public function getReports():array{
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM reports";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $report = new ReportModel();
+            $report->setId($row['report_id']);
 
+            try {
+                $report->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $report->setHealth($row['health']);
+            $report->setFood($row['food']);
+            $report->setFoodQuantity($row['food_quantity']);
+            try {
+                $report->setFeedingDate(new DateTime($row['feeding_date']));
+            } catch (Exception $e) {
+            }
+            $report->setRemark($row['remark']);
+            $report->setAnimalId($row['animal_id']);
+            $reports[] = $report;
+        }
+        return $reports;
+    }
+    public function addReportToDatabase(ReportModel $report){
+        $bdd = $this->bdd;
+        $query = "INSERT INTO reports(date,health,food,food_quantity,feeding_date,remark,animal_id) VALUES (:date,:health,:food,:food_quantity,:feeding_date,:remark,:animal_id)";
+        $req = $bdd->prepare($query);
+        $date =   $report->getDate();
+        $result = $date->format('d-m-Y');
+
+        $req->bindValue(':date', $result);
+        $req->bindValue(':health', $report->getHealth());
+        $req->bindValue(':food', $report->getFood());
+        $req->bindValue(':food_quantity', $report->getFoodQuantity());
+        $date = $report->getFeedingDate();
+        $result = $date->format('d-m-Y');
+        $req->bindValue(':feeding_date', $result);
+        $req->bindValue(':remark', $report->getRemark());
+        $req->bindValue(':animal_id', $report->getAnimalId());
+        $req->execute();
+    }
+    public function deleteReport(int $reportId){
+        $bdd = $this->bdd;
+        $query = "DELETE FROM reports WHERE report_id = :report_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':report_id', $reportId);
+        $req->execute();
+    }
+
+    //Contact
+    public function getContacts(){
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM contacts";
+        $req = $bdd->prepare($query);
+        $req->execute();
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $contact = new ContactModel();
+            $contact->setId($row['contact_id']);
+            try {
+                $contact->setDate(new DateTime($row['date']));
+            } catch (Exception $e) {
+            }
+            $contact->setNickname($row['nickname']);
+            $contact->setTitle($row['title']);
+            $contact->setEmail($row['email']);
+            $contact->setContent($row['content']);
+            $contact->setAnswered($row['answered']);
+            $contacts[] = $contact;
+        }
+        return $contacts;
+    }
+
+    public function getContactById(int $id):ContactModel
+    {
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM contacts WHERE contact_id = :id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id);
+        $req->execute();
+        $row = $req->fetch(PDO::FETCH_ASSOC);
+        $contact = new ContactModel();
+        try {
+            $contact->setDate(new DateTime($row['date']));
+        } catch (Exception $e) {
+        }
+        $contact->setId($row['contact_id']);
+        $contact->setTitle($row['title']);
+        $contact->setEmail($row['email']);
+        $contact->setContent($row['content']);
+        $contact->setAnswered($row['answered']);
+
+        return $contact;
+
+    }
+    public function addContactToDatabase(ContactModel $contact)
+    {
+        $bdd = $this->bdd;
+        $query = "INSERT INTO contacts(date,nickname,title,email,content,answered) VALUES(:date,:nickname,:title,:email,:content,:answered)";
+        $req = $bdd->prepare($query);
+        $date = $contact->getDate();
+        $result =  $date->format('d-m-Y');
+        $req->bindValue(':date', $result);
+        $req->bindValue(':nickname', $contact->getNickname());
+        $req->bindValue(':title', $contact->getTitle());
+        $req->bindValue(':email', $contact->getEmail());
+        $req->bindValue(':content', $contact->getContent());
+        $req->bindValue(':answered', $contact->getAnswered());
+        $req->execute();
+    }
+
+    public function deleteContact(int $id)
+    {
+        $bdd = $this->bdd;
+        $query = "DELETE FROM contacts WHERE contact_id = :id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':id', $id);
+        $req->execute();
+    }
+
+    //Img
     public function getImg($image_id):ImageModel
     {
         $bdd = $this->bdd;
@@ -372,7 +574,6 @@ class DatabaseManager
         }
         return $image;
     }
-
     public function addImage($image_name, $image_data):int
     {
         $bdd = $this->bdd;
@@ -390,7 +591,6 @@ class DatabaseManager
         }
         return $result;
     }
-
     public function deleteImg(int $image_id){
         $bdd = $this->bdd;
         $query = "DELETE FROM images WHERE image_id = :image_id";

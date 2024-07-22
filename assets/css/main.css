@@ -1,5 +1,5 @@
 /* Reset */
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -7,20 +7,20 @@
 *::-webkit-scrollbar {
     width: 0;
   }
-  
+
   *::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   *::-webkit-scrollbar-thumb {
     background: transparent;
     border: none;
   }
-  
+
   * {
     box-sizing: border-box;
   }
-  
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -41,34 +41,35 @@
     font: inherit;
     vertical-align: baseline;
     text-decoration: none;
+    color: white;
   }
-  
+
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
-  
+
   body {
     line-height: 1;
     display: flex;
     flex-direction: column;
   }
-  
+
   ol, ul {
     list-style: none;
   }
-  
+
   blockquote, q {
     quotes: none;
   }
-  
+
   blockquote:before, blockquote:after,
   q:before, q:after {
     content: '';
     content: none;
   }
-  
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -76,7 +77,7 @@
 /* Variables */
   html {
     font-size: 62.5%;
-  
+
     --primary-200: #A2CB92;
     --primary-400: #8AB254;
     --secondary: #CFE38C;
@@ -86,7 +87,7 @@
     --warning: #F2B707;
     --green-300: #A4C0A3;
     --green-600: #6F8D68;
-  
+
     --grey-100: #F8F9FA;
     --grey-200: #E9ECEF;
     --grey-300: #DEE2E6;
@@ -96,14 +97,14 @@
     --grey-700: #495057;
     --grey-800: #343A40;
     --grey-800-50: rgba(52, 58, 64, 0.2);
-  
+
     --grey-900: #212529;
-  
+
     --color-background: var(--grey-800);
     --color-content: var(--lighter);
     --color-title--main: var(--light);
     --color-title--card: var(--green-300);
-  
+
     --font-title: 'Lilita-one', "Time New Roman", sans-serif;
     --font-title--card: 'Days-One', "Time New Roman", sans-serif;
     --font-content--card: 'Capriola', "Time New Roman", sans-serif;
@@ -116,17 +117,17 @@
     font-family: 'Lilita-one';
     src: url('../fonts/Lilita_One/LilitaOne-Regular.ttf');
   }
-  
+
   @font-face {
     font-family: 'Days-One';
     src: url('../fonts/Days_One/DaysOne-Regular.ttf');
   }
-  
+
   @font-face {
     font-family: 'Capriola';
     src: url('../fonts/Capriola/Capriola-Regular.ttf');
   }
-  
+
   /* Body */
 .body {
     background-color: var(--grey-800);
@@ -139,17 +140,27 @@
   /* Groups */
 .headband {
     display: flex;
+  flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     padding: 2rem;
-    display: flex;
-    justify-content: space-around;
     height: 10%;
     column-gap: 1rem;
     background-color: var(--grey-700);
     width: 100%;
+  row-gap: 1rem;
   }
-  
+
+.headband-content{
+  font-size: 1.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 400px;
+  font-family: var(--font-content);
+  line-height: 2.2rem;
+
+}
+
   .button {
     color: var(--color-content);
     background-color: var(--primary-400);
@@ -163,7 +174,7 @@
     color: var(--color-title--main);
     font-size: 3.2rem;
   }
-  
+
   .content {
     font-family: var(--font-content);
     color: var(--color-content);
@@ -175,7 +186,7 @@
 .header {
     padding: 0 5%;
   }
-  
+
   .header-container {
     display: flex;
     align-items: center;
@@ -183,44 +194,70 @@
     background-color: var(--grey-800);
     padding: 2rem 0;
   }
-  
+
   .logo-container {
     display: flex;
     align-items: center;
     column-gap: 1rem;
   }
-  
+
   .logo-container>p {
     color: var(--secondary);
     font: var(--font-content);
   }
-  
+
   .logo {
     height: 4rem;
     width: 5rem;
     border-radius: 2rem;
     border: var(--secondary) solid 2px;
   }
-  
+
   .header-nav {
     display: none;
-  }  
+    flex-direction: column;
+    position: absolute;
+    top: 7rem;
+    right: 0;
+    row-gap: 3rem;
+    width: 20rem;
+    background-color: var(--grey-800);
+    border: var(--secondary) solid 1px;
+    border-radius: 1rem;
+  }
+  .header-link{
+    margin: 2rem;
+    font-family: var(--font-content);
+    font-size: 2rem;
+  }
   .burger {
     height: 3rem;
     width: 3rem;
     margin-right: 1rem;
   }
+
   @media screen and (min-width : 900px) {
     .header-container {
       border-bottom: solid 1px;
       border-color: var(--light);
       margin-bottom: 2rem;
     }
-  
+    .header-nav {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      top: 0;
+      width: 100%;
+      border: none;
+    }
+    .header-link{
+      margin: 0;
+    }
+
     .header-navContainer {
       width: 100%;
     }
-  
+
     .header-nav {
       display: flex;
       justify-content: end;
@@ -228,31 +265,32 @@
       padding: 1rem 0.5rem;
 
     }
-  
+
     .header-link>a {
       color: var(--primary-400);
       font-family: var(--font-content);
       font-size: 1.6rem;
       padding: 1rem 0.5rem;
+      /*box-shadow: var(--grey-900) 1px 5px 15px;*/
+
     }
-  
-    .header-link--active>a {
+    .header-link:hover>a {
       color: white;
       background-color: var(--primary-400);
       border-radius: 1rem;
-      padding: 1rem 2rem;
+      box-shadow: var(--grey-900) 1px 5px 15px;
     }
-  
+
     .burger {
       display: none;
     }
-  
+
   .banner-container--bottom{
    flex-direction: row;
    align-items: center;
-  }  
-  
-  
+  }
+
+
   }
   /* Main */
 .main {
@@ -264,7 +302,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .footer-header {
     grid-column: 1/5;
     display: flex;
@@ -274,30 +312,30 @@
     background-color: var(--grey-900);
     padding: 1rem 0;
   }
-  
+
   .footer-logo {
     height: 10rem;
     width: 10rem;
   }
-  
+
   .footer-slogan {
     font-family: var(--font-title);
     font-size: 3rem;
     color: var(--primary-200);
   }
-  
+
   .footer-subText {
     font-family: var(--font-title--card);
     font-size: 1.5rem;
     color: var(--primary-200);
   }
-  
+
   .footer-navContainer {
     grid-column: 1 /5;
     display: flex;
     padding: 1rem;
   }
-  
+
   .footer-nav {
     display: flex;
     flex-direction: column;
@@ -305,40 +343,82 @@
     width: 100%;
     row-gap: 2rem;
   }
-  
+
   .footer-footer {
     grid-column: 1 /5;
     background-color: var(--grey-900);
   }
-  
+
   .footer-link>a {
     font-family: var(--font-content);
     font-size: 1.6rem;
     color: var(--primary-400)
   }
-  
+
   .footer-link--light>a, .trademark {
     color: var(--color-content);
     font-size: 1.2rem;
   }
-  
+
   @media screen and (min-width:700px) {
     .footer-header {
       grid-column: 1;
       border-bottom: var(--light) solid 1px;
     }
-  
+
     .footer-navContainer {
       align-items: center;
       grid-column: 2/5;
       background-color: var(--grey-900);
       border-bottom: var(--light) solid 1px;
-  
+
     }
     .footer-nav--row {
       flex-direction: row-reverse;
       column-gap: 10%;
     }
-  
+
   }
-  
+
+
+
+/*Modal*/
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+

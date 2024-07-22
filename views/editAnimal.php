@@ -13,7 +13,7 @@ if (isset($animals)) {
 </header>
 
 <!--View Menu + content-->
-<section class="addAnimal-container">
+<section class="dashboardView-container">
     <div class="form-container">
         <form class="form" action="<?php echo HOST ?>updateAnimal/id/<?php echo $animal->getId() ?>" method="post" enctype="multipart/form-data">
             <ul>

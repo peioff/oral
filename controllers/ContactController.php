@@ -11,11 +11,13 @@ declare(strict_types=1);
 class ContactController
 {
     public function display(){
+        $view = new View('contact');
+        $view->render();
+    }
 
-        $contactInfos = [];
-        $contactView = new View('contact');
-        $contactView->render(array('contactInfos' => $contactInfos));
-
+    public function addContactToDatabase(ContactModel $contact){
+        $bdd = new DatabaseManager();
+        $bdd->addContactToDatabase($contact);
     }
 }
 

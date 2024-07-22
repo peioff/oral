@@ -21,22 +21,75 @@ class DashboardFeedingsController
         $view->renderDashboard(array('animalToFeed' => $animalToFeed));
     }
     public function addFeedingToDatabase($params){
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+
+            $validDate = false;
+            $date = $_POST["date"];
+            $validFood = false;
+            $food = $_POST["food"];
+            $validQuantity = false;
+            $quantity = $_POST["quantity"];
+            $animalId = $_POST["animalId"];
+
+            if (!empty($date)) {
+                $validDate = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidDate'
+                ];
+            }
+            if (!empty($food)) {
+                $validFood = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidFood'
+                ];
+            }
+            if (!empty($quantity)) {
+                $validQuantity = true;
+            }
+            else {
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'InvalidQuantity'
+                ];
+            }
+
+            if ($validDate && $validFood && $validQuantity) {
+                $feedingToAdd = new FeedingModel();
+                try {
+                    $feedingToAdd->setDate(new DateTime($_POST['date']));
+                } catch (Exception $e) {
+                }
+                $feedingToAdd->setFood($_POST['food']);
+                $feedingToAdd->setQuantity(intval($_POST['quantity']) );
+                $feedingToAdd->setAnimalId(intval($animalId));
+                $bdd = new DatabaseManager();
+                $bdd->addFeedingToDatabase($feedingToAdd);
+
+                $response = [
+                    'success' => 'Request recieved successfully.',
+                    'code' => HTTP_OK,
+                    'error' => 'none'
+                ];
+            }
 
 
-        $feedingToAdd = new FeedingModel();
-        try {
-            $feedingToAdd->setDate(new DateTime($_POST['date']));
-        } catch (Exception $e) {
+
+
+
+
+
+            echo json_encode($response);
         }
-        $feedingToAdd->setFood($_POST['food']);
-        $feedingToAdd->setQuantity(intval($_POST['quantity']) );
-        $feedingToAdd->setAnimalId(intval($params['id']));
 
-        $bdd = new DatabaseManager();
-        $bdd->addFeedingToDatabase($feedingToAdd);
-
-        $view = new View();
-        $view->redirect('dashboardFeedings');
 
     }
     public function editFeedingPage($params){

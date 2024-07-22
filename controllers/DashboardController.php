@@ -11,7 +11,7 @@ class DashboardController
 
     /**
      * This function is used to display the connectPage
-    */
+     */
     public function display()
     {
         include(VIEWS . 'connect.php');
@@ -20,52 +20,65 @@ class DashboardController
     /**
      * This function is used to authenticate user and redirect him to the
      * Dashboard belonging to him
-    */
+     */
     public function connection()
     {
         //TODO Manage rôles
         //TODO Manage wrong username or wrong password
 
-        $user = $_POST['user'];
-        $password = $_POST['password'];
-        $databaseManager = new DatabaseManager();
-        $animals = $databaseManager->getAllAnimals();
-        $user = $databaseManager->getUser($user);
 
-        if (isset($user)) { // Users exists
-            if ($password == $user->getPassword()) { // Password matches - User authenticated
-                $userView = new View('dashboardAnimal');
-                $userAndAnimals = array($user, $animals);
-                $userView->renderDashboard(array('userAndAnimals' => $userAndAnimals));
-                session_start();
-                $_SESSION["sessionUser"] = $user->getUsername();
+            $databaseManager = new DatabaseManager();
+            $users = $databaseManager->getUsers();
 
-            } else {
-                echo "Wrong password";
+            foreach ($users as $user) {
+                if ($user->getUsername() == $_POST['username'] && $user->getPassword() == $_POST['password']) {
+                    $authentifiedUser = $user;
+                }
             }
+
+        if (isset($authentifiedUser)) {
+
+            switch ($authentifiedUser->getRole()) {
+                case 'Admin':
+                    echo 'Role : Admin';
+                    session_start();
+                    $_SESSION['username'] = $authentifiedUser->getUsername();
+                    $_SESSION['role'] = $authentifiedUser->getRole();
+                    $view = new View();
+                    $view->redirect('dashboardAnimals');
+                    break;
+                case 'Employee':
+                    echo 'Role : Employee';
+                    session_start();
+                    $_SESSION['username'] = $authentifiedUser->getUsername();
+                    $_SESSION['role'] = $authentifiedUser->getRole();
+                    $view = new View();
+                    $view->redirect('dashboardFeedings');
+                    break;
+                case 'Veterinary':
+                    echo 'Role : Veterinary';
+                    session_start();
+                    $_SESSION['username'] = $authentifiedUser->getUsername();
+                    $_SESSION['role'] = $authentifiedUser->getRole();
+                    $view = new View();
+                    $view->redirect('dashboardVet');
+                    break;
+            }
+
         } else {
-            echo "User does not exist";
+            $view = new View();
+            $view->redirect('connect');
         }
+
     }
 
-    public function disconnect(){
-        //TODO Manage sessionUser
-        echo 'disconnect called';
-        session_destroy();
+    public function disconnect()
+    {
         session_start();
+        $_SESSION['username'] = "Session non définie";
         $view = new View();
         $view->redirect('home');
     }
-    /**
-     * This function is called to redirect user with the appropriate role
-     * to the manage animals page
-    */
-
-
-
-
-
-
 
 
 }

@@ -2,6 +2,11 @@
 <head>
     <title>Arcadia - Contact</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS;?>contact.css">
+    <link rel="stylesheet" href="<?php echo ASSETSCSS;?>toastr.css">
+
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer ></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>toastr.js" defer ></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>contactFormApproval.js" defer></script>
 </head>
 <body class="body flux">
 <main class="main">
@@ -43,34 +48,34 @@
 </section>
 <article class="contact">
     <h2 class="contact-title">Envoyer un message</h2>
-    <form class="form" action="/">
+    <form class="form" action="<?php echo HOST ?>addContactToDatabase" method="post">
         <ul class="form-container">
             <li class="form-field--nickname">
                 <label class="form-labelContainer" for="nickname">
                     <h3 class="form-label">Pseudonyme</h3>
-                    <input class="form-input" name="nickname" type="text" placeholder="ex: Martin56" >
+                    <input class="form-input" id="contactNickname" name="nickname" type="text" placeholder="ex: Martin56" >
                 </label>
             </li>
             <li class="form-field--messageTitle">
-                <label class="form-labelContainer" for="messageTitle">
+                <label class="form-labelContainer" for="title">
                     <h3 class="form-label">Titre du message</h3>
-                    <input class="form-input" name="messageTitle" type="text" placeholder="Quel est l'objet de votre demande?" >
+                    <input class="form-input" id="contactTitle" name="title" type="text" placeholder="Quel est l'objet de votre demande?" >
                 </label>
             </li>
             <li class="form-field--email">
                 <label class="form-labelContainer" for="email">
                     <h3 class="form-label">Votre Email</h3>
-                    <input class="form-input" name="email" type="text" placeholder="exemple@exemple.com" >
+                    <input class="form-input" id="contactMail" name="email" type="email" placeholder="exemple@exemple.com" >
                 </label>
             </li>
             <li class="form-field--message">
-                <label class="form-labelContainer" for="message">
+                <label class="form-labelContainer" for="content">
                     <h3 class="form-label">Votre message</h3>
-                    <textarea class="form-input form-input--area" name="message" placeholder="Votre message" rows="5" maxlength="200"></textarea>
+                    <textarea class="form-input form-input--area" id="contactContent" name="content" placeholder="Votre message" rows="5" maxlength="200"></textarea>
                 </label>
             </li>
             <li class="form-buttonContainer">
-                <button class="button button--form" type="submit" href="/">Submit</button>
+                <button class="button button--form" onclick="formApproval()" type="button" >Envoyer</button>
                 </div>
             </li>
         </ul>

@@ -13,7 +13,7 @@ if (isset($living)){
 </header>
 
 <!--View Menu + content-->
-<section class="addAnimal-container">
+<section class="dashboardView-container">
     <div class="form-container">
         <form class="form" action="<?php echo HOST ?>updateLiving/id/<?php echo $living->getId() ?>" method="post" enctype="multipart/form-data">
             <ul>
