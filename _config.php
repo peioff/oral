@@ -14,6 +14,7 @@ class AutoLoad
         # autoLoad Function declaration
         spl_autoload_register(array(__CLASS__, 'autoload'));
 
+
         #Get server variables
         $root = $_SERVER['DOCUMENT_ROOT'];
         $host = $_SERVER['HTTP_HOST'];
