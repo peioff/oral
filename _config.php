@@ -19,7 +19,7 @@ class AutoLoad
         $host = $_SERVER['HTTP_HOST'];
 
         #Global variables
-        define('HOST', 'http://'.$host.'/app/');
+        define('HOST', 'https://'.$host.'/app/');
         define('ROOT', $root.'/app/');
 
         define('CLASSES', ROOT.'classes/');
