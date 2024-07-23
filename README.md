@@ -23,7 +23,9 @@ Si vous êtes sur un environement Windows, assurer vous que les variables d'envi
 
   Choisir une méthode afin de récupérer le code source.
 
-  ## 5 - Modifier le fichier __config.php à la racine du dossier
+  ## 5 - Déplacer le dosssier récupéré dans : " C:\\...\XAMPP\htdocs "  
+
+  ## 6 - Modifier le fichier __config.php à la racine du dossier  
 
   Il faut modifier dans ce fichier les deux variables HOST et ROOT.  
 
@@ -36,12 +38,12 @@ Si vous êtes sur un environement Windows, assurer vous que les variables d'envi
         define('ROOT', $root.'/[nom_du_dossier_cloné_ou_téléchargé]/');
 ```
 
-## 6 - Lancer XAMPP Control Panel
+## 7 - Lancer XAMPP Control Panel
 
 Une fois lancé, activer le module Apache en cliquand sur "Start"  
 activer le module MySQL en cliquant sur "Start"
 
-## 7 - Importer database.sql dans PhpMyAdmin
+## 8 - Importer database.sql dans PhpMyAdmin
 
 Il est maintenant necessaire d'importer la base de donnée fournie.  
 Le fichier "database.sql" se trouve à la racine du dossier.  
@@ -49,7 +51,7 @@ Dans XAMPP, dans le module MySQL, cliquer sur "Admin"
 Dans la fenêtre principale, cliquer sur "Importer"  
 Selectionner "database.sql" et cliquer sur "Importer"
 
-## 8 - Naviguer
+## 9 - Naviguer
 
 L'application web est maintenant déployée, elle est accessible via l'URL : 
  "http://localhost/nom-du_dossier_cloné_ou_téléchargé/"
