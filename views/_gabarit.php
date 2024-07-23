@@ -49,11 +49,11 @@ echo '<pre>';
 <body>
 
 <!-- Page content-->
-<?php if
-(isset($contentPage)) {
-    echo $contentPage;
-}
-?>
+<?php //if
+//(isset($contentPage)) {
+//    echo $contentPage;
+//}
+//?>
 </body>
 <footer class="footer">
     <header class="footer-header">
