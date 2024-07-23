@@ -44,9 +44,10 @@ function formApproval() {
             .fail(function (error) {
                 toast('Une erreur s\'est produite, retour à la page d\'accueil dans 3 secondes','error');
                 // Simulate an HTTP redirect:
-                window.setTimeout(() => {
-                    window.location.replace( "home");
-                }, 3000);            })
+                // window.setTimeout(() => {
+                //     window.location.replace( "home");
+                // }, 3000);
+            })
             .always(function () {
             });
     }

@@ -25,7 +25,6 @@ function formApproval() {
         toast('Select a file', 'error');
     }
 
-
     $( '#formId' )
         .submit( function( e ) {
             $.ajax( {
