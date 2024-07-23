@@ -17,5 +17,10 @@ if (isset($_GET['r'])){
     $request = $_GET['r'];
 }
 
-$routeur = new Routeur($request);
-$routeur->renderController();
+try {
+    $routeur = new Routeur($request);
+    $routeur->renderController();
+} catch (Exception $e) {
+    echo '<pre>'; print_r($_SERVER); echo '</pre>';
+    throw new Exception("$e");
+}
