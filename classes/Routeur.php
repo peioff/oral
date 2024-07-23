@@ -20,6 +20,7 @@ class Routeur
     private $routes = [
         //Home
         ""                          => ["controller" => 'HomeController', "method" => 'display'],
+        "/"                          => ["controller" => 'HomeController', "method" => 'display'],
         "home"                      => ["controller" => 'HomeController', "method" => 'display'],
         //Livings
         "livings"                   => ["controller" => 'LivingsController', "method" => 'display'],
