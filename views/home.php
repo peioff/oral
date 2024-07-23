@@ -6,10 +6,6 @@ if (isset($allHomePageData)) {
     $comments = $allHomePageData[3];
     $reports = $allHomePageData[4];
 }
-
-echo '<pre>';
-echo 'home.php called';
-echo '<pre>';
 ?>
 
 <!DOCTYPE html>

@@ -21,6 +21,11 @@ class View {
     */
     public function render($data = array()) {
 
+        echo '<pre>';
+        echo 'render from view called';
+        echo '<pre>';
+
+
         #set $data the name of the array given as parameter in the controller
         #Method 1
 //        forEach($data as $name => $value) {
