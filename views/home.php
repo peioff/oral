@@ -6,7 +6,8 @@ if (isset($allHomePageData)) {
     $comments = $allHomePageData[3];
     $reports = $allHomePageData[4];
 }
-
+echo 'homeview Called';
+exit();
 ?>
 
 <head>
