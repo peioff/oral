@@ -19,6 +19,5 @@ if (isset($_GET['r'])){
     $request = $_GET['r'];
 }
 
-include_once (ROOT . 'classes/Router.php');
     $routeur = new Routeur($request);
     $routeur->renderController();
