@@ -20,7 +20,6 @@ echo '<pre>'; print_r($_POST); echo '<pre>';
 echo '<pre>'; echo 'host : ' . HOST; echo '<pre>';
 echo '<pre>'; echo 'root : ' . ROOT; echo '<pre>';
 
-exit();
 
 #request recovery after being filtered by .htaccess
 $request = "/"; // request set as "/" because no request is being set at the very first launch
