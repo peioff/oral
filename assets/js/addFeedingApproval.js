@@ -27,7 +27,8 @@ function formApproval() {
                 if (response.error === 'none') {
                     toast('Nourrissage ajouté! Redirection dans 2 secondes', 'success');
                     window.setTimeout(() => {
-                        window.location.replace("dashboardFeedings");
+                        // window.location.protocol + "//" + window.location.host + "/"
+                        window.location = window.location.protocol + "//" + window.location.host + "/dashboardFeedings";
                     }, 2000);
                 }
 
@@ -35,8 +36,8 @@ function formApproval() {
                 toast('Une erreur s\'est produite, retour à la page Nourrissage dans 2 secondes','error');
                 // Simulate an HTTP redirect:
                 window.setTimeout(() => {
-                    window.location.replace("dashboardFeedings");
-                }, 2000);
+                    window.location = window.location.protocol + "//" + window.location.host + "/dashboardFeedings";
+                    }, 2000);
             });
             e.preventDefault();
         } );
