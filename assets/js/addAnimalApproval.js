@@ -28,7 +28,7 @@ function formApproval() {
     $( '#formId' )
         .submit( function( e ) {
             $.ajax( {
-                url: "http://localhost/ecf/addAnimalToDatabase",
+                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addAnimalToDatabase",
                 type: 'POST',
                 dataType: "json",
                 data: new FormData( this ),
@@ -39,7 +39,7 @@ function formApproval() {
                 if (response.error === 'none') {
                     toast('Animal ajouté! Redirection dans 3 secondes', 'success');
                     window.setTimeout(() => {
-                        window.location.replace("http://localhost/ecf/dashboardAnimals");
+                        window.location.replace("dashboardAnimals");
                     }, 3000);
                 }
 
@@ -48,7 +48,7 @@ function formApproval() {
                 toast('Une erreur s\'est produite, retour à la page Animaux dans 3 secondes','error');
                 // Simulate an HTTP redirect:
                 window.setTimeout(() => {
-                    window.location.replace("http://localhost/ecf/dashboardAnimals");
+                    window.location.replace("dashboardAnimals");
                 }, 3000);
             });
             e.preventDefault();
