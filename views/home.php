@@ -49,7 +49,7 @@ if (isset($allHomePageData)) {
                         echo $living->getName();
                         ?></h3>
                     <p class="living-text"><?php echo $living->getDescription() ?></p>
-                    <a class="button" href="">Découvrir</a>
+                    <a class="button" href="<?php echo HOST; ?>livings">Découvrir</a>
                 </div>
             </article>
         <?php endforeach; ?>
