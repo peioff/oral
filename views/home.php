@@ -35,8 +35,7 @@ if (isset($allHomePageData)) {
         <header class="headband">
             <h2 class="title"> Nos habitats</h2>
             <p class="headband-content" id="content">
-                Texte de présentation du zoo, en quelques lignes, présenter le zoo,
-                essayer de faire sortir le coté écologique dans la pésentation aussi
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Lacus in at proin interdum eget quisque congue arcu ut; malesuada penatibus condimentum vehicula erat enim ac donec cras.
             </p>
         </header>
         <!-- living -->
@@ -74,8 +73,7 @@ if (isset($allHomePageData)) {
         <header class="headband">
             <h2 class="title">Les animaux</h2>
             <p class="headband-content">
-                Texte de présentation du zoo, en quelques lignes, présenter le zoo,
-                essayer de faire sortir le coté écologique dans la pésentation aussi
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Lacus in at proin interdum eget quisque congue arcu ut; malesuada penatibus condimentum vehicula erat enim ac donec cras.
             </p>
         </header>
         <!-- animal -->
@@ -103,8 +101,7 @@ if (isset($allHomePageData)) {
         <header class="headband">
             <h2 class="title">Les services</h2>
             <p class="headband-content">
-                Texte de présentation du zoo, en quelques lignes, présenter le zoo,
-                essayer de faire sortir le coté écologique dans la pésentation aussi
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Lacus in at proin interdum eget quisque congue arcu ut; malesuada penatibus condimentum vehicula erat enim ac donec cras.
             </p>
         </header>
         <?php foreach ($services as $service): ?>
@@ -128,8 +125,7 @@ if (isset($allHomePageData)) {
         <header class="headband">
             <h2 class="title">Les Avis</h2>
             <p class="headband-content">
-                Texte de présentation du zoo, en quelques lignes, présenter le zoo,
-                essayer de faire sortir le coté écologique dans la pésentation aussi
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Lacus in at proin interdum eget quisque congue arcu ut; malesuada penatibus condimentum vehicula erat enim ac donec cras.
             </p>
         </header>
         <!-- review -->
