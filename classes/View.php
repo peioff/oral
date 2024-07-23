@@ -21,19 +21,26 @@ class View {
     */
     public function render($data = array()) {
 
+        echo '<pre>';
+        echo 'render from view called';
+        echo '<pre>';
+
+
+        exit();
+
         #set $data the name of the array given as parameter in the controller
         #Method 1
 //        forEach($data as $name => $value) {
 //            ${$name} = $value;
 //        }
         #Method 2
-        //extract($data);
+        extract($data);
 
-       // $template = $this->template;
+        $template = $this->template;
         #$template is cached with ob_start()
-       // ob_start();
-        //include(VIEWS.$template . '.php');
-        //$contentPage = ob_get_clean();
+        ob_start();
+        include(VIEWS.$template . '.php');
+        $contentPage = ob_get_clean();
         #$template is merged with _gabarit.php
         include_once(VIEWS.'_gabarit.php');
     }

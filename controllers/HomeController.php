@@ -17,7 +17,7 @@ class HomeController
      * The display is achieved with the View Object
     */
     public function display(){
-
+        echo '<pre>';
         echo 'display from home controller called';
         echo '<pre>';
 
