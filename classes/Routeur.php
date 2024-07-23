@@ -150,7 +150,7 @@ class Routeur
             $currentController->$method($params);
 
         } else {
-            echo "404 Page not found";
+            echo "Rooter called but 404 Page not found";
         }
     }
 
