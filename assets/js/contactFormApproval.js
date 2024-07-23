@@ -15,7 +15,7 @@ function formApproval() {
     }
     else {
         $.ajax({
-                url: window.location.hostname + 'contactApproval',
+                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/contactApproval",
                 method: "post",
                 dataType: "json"
                 ,
