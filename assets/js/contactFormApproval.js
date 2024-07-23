@@ -15,7 +15,7 @@ function formApproval() {
     }
     else {
         $.ajax({
-                url: 'contactApproval',
+                url: window.location.hostname + 'contactApproval',
                 method: "post",
                 dataType: "json"
                 ,
