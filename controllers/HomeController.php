@@ -18,10 +18,10 @@ class HomeController
     */
     public function display(){
 
-     
-        include_once (ROOT . 'models/DatabaseManager.php');
-        include_once (ROOT . 'classes/View.php');
+        echo 'display from home controller called';
+        echo '<pre>';
 
+        exit();
 
         $databaseManager = new DatabaseManager();
         $livings = $databaseManager->getLivings();
