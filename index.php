@@ -29,5 +29,5 @@ if (isset($_GET['r'])){
 
 include_once(ROOT . 'classes/Routeur.php');
 
-    $routeur = new Routeur('');
+    $routeur = new Routeur('home');
     $routeur->renderController();
