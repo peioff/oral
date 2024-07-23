@@ -27,13 +27,13 @@ class View {
 //            ${$name} = $value;
 //        }
         #Method 2
-        extract($data);
+        //extract($data);
 
-        $template = $this->template;
+       // $template = $this->template;
         #$template is cached with ob_start()
-        ob_start();
-        include(VIEWS.$template . '.php');
-        $contentPage = ob_get_clean();
+       // ob_start();
+        //include(VIEWS.$template . '.php');
+        //$contentPage = ob_get_clean();
         #$template is merged with _gabarit.php
         include_once(VIEWS.'_gabarit.php');
     }
