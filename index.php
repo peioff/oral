@@ -11,6 +11,8 @@ include_once("_config.php");
 
 AutoLoad::start();
 
+echo '<pre>'; print_r($_SERVER); echo '<pre>';
+
 #request recovery after being filtered by .htaccess
 $request = "/"; // request set as "/" because no request is being set at the very first launch
 if (isset($_GET['r'])){
