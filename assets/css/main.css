@@ -149,7 +149,9 @@
     background-color: var(--grey-700);
     width: 100%;
   row-gap: 1rem;
-  }
+  box-shadow: var(--grey-900) 1px 5px 15px;
+
+}
 
 .headband-content{
   font-size: 1.8rem;
