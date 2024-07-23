@@ -21,8 +21,6 @@ class HomeController
         echo 'display from home controller called';
         echo '<pre>';
 
-        exit();
-
         $databaseManager = new DatabaseManager();
         $livings = $databaseManager->getLivings();
         $animals = $databaseManager->getAllAnimals();
