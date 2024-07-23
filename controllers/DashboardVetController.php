@@ -126,10 +126,7 @@ class DashboardVetController
 
     public function feedingHistory($params)
     {
-        echo 'feedingHistory called';
-        echo '<pre>';
-        print_r($params);
-        echo '</pre>';
+
 
         $bdd = new DatabaseManager();
         $feedings = $bdd->getFeedings();
