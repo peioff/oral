@@ -17,6 +17,9 @@ class HomeController
      * The display is achieved with the View Object
     */
     public function display(){
+
+        echo 'home controller called';
+        exit();
         include_once (ROOT . 'models/DatabaseManager.php');
         include_once (ROOT . 'classes/View.php');
 
