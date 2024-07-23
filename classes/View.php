@@ -20,6 +20,9 @@ class View {
      * $data is an array to pass to $template
     */
     public function render($data = array()) {
+
+           echo 'view called';
+        exit();
         #set $data the name of the array given as parameter in the controller
         #Method 1
 //        forEach($data as $name => $value) {
