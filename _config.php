@@ -30,6 +30,8 @@ class AutoLoad
         define('ASSETSCSS', HOST.'assets/css/');
         define('ASSETSIMG', HOST.'assets/images/');
         define('ASSETSLOGO', HOST.'assets/logos/');
+
+        define('SCRIPTS', HOST.'assets/js/');
     }
 
     #autoLoad function. Avoid to include classes in each objects
