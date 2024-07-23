@@ -1,7 +1,4 @@
 <?php
-echo '<pre>';
-echo '_gabarit.php called';
-echo '<pre>';
 ?>
 
 
