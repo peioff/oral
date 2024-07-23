@@ -15,7 +15,7 @@ function formApproval() {
     }
     else {
         $.ajax({
-                url: window.location.host + "/contactApproval",
+                url: 'contactApproval',
                 method: "post",
                 dataType: "json"
                 ,
@@ -37,7 +37,7 @@ function formApproval() {
                 toast(response.message,'success');
                 // Simulate an HTTP redirect:
                 window.setTimeout(() => {
-                    window.location.replace("http://localhost/ecf/home");
+                    window.location.replace('home');
                 }, 3000);
             }
         })
