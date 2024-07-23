@@ -7,6 +7,8 @@ if (isset($allHomePageData)) {
     $reports = $allHomePageData[4];
 }
 echo 'homeview Called';
+echo '<pre>';
+echo count($allHomePageData);
 exit();
 ?>
 
