@@ -15,7 +15,7 @@ function formApproval() {
     }
     else {
         $.ajax({
-                url: "http://localhost/ecf/contactApproval",
+                url: window.location.host + "/contactApproval",
                 method: "post",
                 dataType: "json"
                 ,
