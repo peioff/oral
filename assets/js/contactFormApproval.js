@@ -45,7 +45,7 @@ function formApproval() {
                 toast('Une erreur s\'est produite, retour à la page d\'accueil dans 3 secondes','error');
                 // Simulate an HTTP redirect:
                 window.setTimeout(() => {
-                    window.location.replace(window.location.host + "/home");
+                    window.location.replace(window.location.host + "home");
                 }, 3000);            })
             .always(function () {
             });
