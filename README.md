@@ -4,7 +4,7 @@ Bienvenue sur mon repository Git.
 Ce repository contient le code necessaire à l'éxécution de l'application web crée lors de mon cursus de formation et nommée ECF-Arcadia.  
 Ce fichier README.md contient aussi les instructions à suivre afin d'être en mesure de déployer l'application web en local.  
 
-LE CLONAGE OU LE TELECHARGEMENT DU CODE POUR UNE EXECUTION LOCALE DOIT SE FAIRE DEPUIS LA BRANCHE DEV  
+LE CLONAGE OU LE TELECHARGEMENT DU CODE POUR UNE EXECUTION LOCALE DOIT SE FAIRE DEPUIS LA BRANCHE DEV, LA BRANCHE MAIN ETANT LA VERSION EN PRODUCTION  
 
 # Instructions de déploiement en local
 
