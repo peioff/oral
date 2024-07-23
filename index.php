@@ -28,5 +28,5 @@ if (isset($_GET['r'])){
 }
 
 
-    $routeur = new Routeur('home');
+    $routeur = new Routeur('test');
     $routeur->renderController();
