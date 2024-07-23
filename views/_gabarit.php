@@ -11,7 +11,7 @@ echo '<pre>';
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>main.css"/>
-    <script type="text/javascript" src="<?php echo SCRIPTS?>responsiveMenu.js" defer></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS ?>responsiveMenu.js" defer></script>
 </head>
 <header class="header">
     <div class="header-container">
@@ -45,47 +45,48 @@ echo '<pre>';
     </div>
 
 </header>
-
 <body>
-
-<!-- Page content-->
-<?php //if
-//(isset($contentPage)) {
-//    echo $contentPage;
-//}
-//?>
 </body>
-<footer class="footer">
-    <header class="footer-header">
-        <img class="footer-logo" src="<?php echo ASSETSLOGO; ?>main_logo.png" alt="">
-        <p class="footer-slogan">Slogan du site</p>
-        <p class="footer-subText">Un autre texte</p>
-    </header>
-    <nav class="footer-navContainer">
-        <ul class="footer-nav">
-            <li class="footer-link"><a href="">Lien</a></li>
-            <li class="footer-link"><a href="">Lien</a></li>
-            <li class="footer-link"><a href="">Lien</a></li>
-        </ul>
-        <ul class="footer-nav">
-            <li class="footer-link"><a href="">Lien</a></li>
-            <li class="footer-link"><a href="">Lien</a></li>
-            <li class="footer-link"><a href="">Lien</a></li>
-        </ul>
-        <ul class="footer-nav">
-            <li class="footer-link"><a href="">Lien</a></li>
-            <li class="footer-link"><a href="">Lien</a></li>
-            <li class="footer-link"><a href="">Lien</a></li>
-        </ul>
-    </nav>
-    <footer class="footer-footer">
-        <nav class="footer-navContainer">
-            <ul class="footer-nav footer-nav--row">
-                <li class="footer-link footer-link--light"><a href="">Terms of service</a></li>
-                <li class="footer-link footer-link--light"><a href="">Privacy policy</a></li>
-                <li class="footer-link footer-link--light"><a href="">Remerciements</a></li>
-                <li class="trademark">@2024</li>
-            </ul>
-        </nav>
-    </footer>
-</footer>
+</html>
+<!---->
+<!--<!-- Page content-->-->
+<?php ////if
+////(isset($contentPage)) {
+////    echo $contentPage;
+////}
+////?>
+<!--</body>-->
+<!--<footer class="footer">-->
+<!--    <header class="footer-header">-->
+<!--        <img class="footer-logo" src="--><?php //echo ASSETSLOGO; ?><!--main_logo.png" alt="">-->
+<!--        <p class="footer-slogan">Slogan du site</p>-->
+<!--        <p class="footer-subText">Un autre texte</p>-->
+<!--    </header>-->
+<!--    <nav class="footer-navContainer">-->
+<!--        <ul class="footer-nav">-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--        </ul>-->
+<!--        <ul class="footer-nav">-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--        </ul>-->
+<!--        <ul class="footer-nav">-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--            <li class="footer-link"><a href="">Lien</a></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+<!--    <footer class="footer-footer">-->
+<!--        <nav class="footer-navContainer">-->
+<!--            <ul class="footer-nav footer-nav--row">-->
+<!--                <li class="footer-link footer-link--light"><a href="">Terms of service</a></li>-->
+<!--                <li class="footer-link footer-link--light"><a href="">Privacy policy</a></li>-->
+<!--                <li class="footer-link footer-link--light"><a href="">Remerciements</a></li>-->
+<!--                <li class="trademark">@2024</li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--    </footer>-->
+<!--</footer>-->
