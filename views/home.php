@@ -12,10 +12,11 @@ echo count($allHomePageData);
 exit();
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
-
 </head>
 <body class="body flux">
 <main class="main">
@@ -193,4 +194,8 @@ exit();
     </article>
 </main>
 </body>
+</html>
+
+
+
 
