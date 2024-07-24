@@ -13,6 +13,15 @@ if (isset($allHomePageData)) {
 <head>
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>script.css">
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>AnimalClass.js" defer></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>animalOnClick.js" defer></script>
+
+
+>>>>>>> Home-OnClickAnimal
 </head>
 <body class="body flux">
 <main class="main">
@@ -84,14 +93,14 @@ if (isset($allHomePageData)) {
                     echo $animal->getName();
                     ?></h3>
                 </h3>
-                <img class="animal-picture" onclick="hideOrShow(<?php echo $animal->getid() ?>)"
+                <img class="animal-picture"<?php $animal->getId() ?>" onclick="animalOnClick(<?php echo $animal->getid();?>,this)"
                      src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
-                <div class="animal-content" id="<?php echo $animal->getId() ?>">
-                    <p>  <?php
-                        echo $animal->getLiving();
-                        ?>
-                    </p>
-                </div>
+<!--                <div class="animal-content" id="--><?php //echo $animal->getId() ?><!--">-->
+<!--                    <p>  --><?php
+//                        echo $animal->getLiving();
+//                        ?>
+<!--                    </p>-->
+<!--                </div>-->
             </article>
         <?php  endforeach; ?>
 

@@ -86,8 +86,12 @@ class Routeur
         "dashboardContacts"         => ["controller" => 'DashboardContactsController', "method" => 'manageContacts'],
         "answerContact"             => ["controller" => 'DashboardContactsController', "method" => 'answerContact'],
         "deleteContact"             => ["controller" => 'DashboardContactsController', "method" => 'deleteContact'],
-            //Ajax
-        "contactApproval"             => ["controller" => 'AjaxController', "method" => 'contactApproval'],
+            //Ajax AnimalOnClick
+        "contactApproval"           => ["controller" => 'AjaxController', "method" => 'contactApproval'],
+        "animalOnClick"             => ["controller" => 'AjaxController', "method" => 'animalOnClick'],
+
+
+
 
 
 
