@@ -13,15 +13,11 @@ if (isset($allHomePageData)) {
 <head>
     <title>Arcadia - Accueil</title>
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>index.css">
-<<<<<<< HEAD
-=======
     <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>script.css">
     <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer></script>
     <script type="text/javascript" src="<?php echo SCRIPTS; ?>AnimalClass.js" defer></script>
     <script type="text/javascript" src="<?php echo SCRIPTS; ?>animalOnClick.js" defer></script>
 
-
->>>>>>> Home-OnClickAnimal
 </head>
 <body class="body flux">
 <main class="main">
