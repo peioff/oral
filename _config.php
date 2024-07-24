@@ -1,12 +1,9 @@
 <?php
 #Error managing setup
 ini_set('display_errors', 1);
-<<<<<<< HEAD
 error_reporting(E_ALL & ~E_NOTICE); // add " & ~E_NOTICE " (To disable notices)
-=======
-error_reporting(E_ALL); // add " & ~E_NOTICE " (To disable notices)
 
->>>>>>> Home-OnClickAnimal
+
 /**
  * The AutoLoad Class is used to avoid having to include classes in files each time a class is used
  * The start function defines global variables that will be used in the application
@@ -23,13 +20,8 @@ class AutoLoad
         $host = $_SERVER['HTTP_HOST'];
 
         #Global variables
-<<<<<<< HEAD
         define('HOST', 'https://'.$host.'/');
         define('ROOT', $root.'/');
-=======
-        define('HOST', 'http://'.$host.'/ecf/');
-        define('ROOT', $root.'/ecf/');
->>>>>>> Home-OnClickAnimal
 
         define('CLASSES', ROOT.'classes/');
         define('CONTROLLERS', ROOT.'controllers/');
@@ -42,16 +34,8 @@ class AutoLoad
 
         define('SCRIPTS', HOST.'assets/js/');
 
-<<<<<<< HEAD
         define('HTTP_OK', '200');
-=======
-        define('HTTP_OK', "200");
-        define('HTTP_BAD_REQUEST', "400");
-        define('HTTP_UNAUTHORIZED', "401");
-        define('HTTP_FORBIDDEN', "403");
-        define('HTTP_NOT_FOUND', "404");
-        define('HTTP_METHOD_NOT_ALLOWED', "405");
->>>>>>> Home-OnClickAnimal
+
     }
 
     #autoLoad function. Avoid to include classes in each objects
