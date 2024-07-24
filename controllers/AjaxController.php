@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 class AjaxController
 {
-    public function contactApproval(){
-        if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' ){
+    public function contactApproval()
+    {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 
             $response = array();
             $fieldsCompleted = false;
@@ -64,6 +65,56 @@ class AjaxController
             echo json_encode($response);
         }
     }
+
+    public function animalOnClick()
+    {
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+
+            $bdd = new DatabaseManager();
+            $animal = $bdd->getAnimalById(intval($_GET['animalId']));
+            $reports = $bdd->getReports();
+            $food = "";
+            $foodQuantity = "";
+            $feedingDate = "";
+            $date = "";
+            $health ="";
+            $remark ="";
+
+            foreach ($reports as $element) {
+                if ($element->getAnimalId() == $animal->getId() ) {
+                    $food = $element->getFood();
+                    $foodQuantity = $element->getFoodQuantity();
+                    $feedingDate = $element->getFeedingDate()->format('d-m-Y');
+                    $date = $element->getDate()->format('d-m-Y');
+                    $health = $element->getHealth();
+                    $remark = $element->getRemark();
+                }
+            }
+
+
+            $response = [
+                'success' => 'Request received successfully.',
+                'code' => HTTP_OK,
+                'name' => $animal->getName(),
+                'specie' => $animal->getSpecies(),
+                'living' => $animal->getLiving(),
+                'food' => $food,
+                'foodQuantity' => $foodQuantity,
+                'feedingDate' => $feedingDate,
+                'date' => $date,
+                'health' => $health,
+                'remark' => $remark,
+            ];
+        } else {
+            $response = [
+                'success' => 'false',
+                'message' => 'Request has failed'
+            ];
+        }
+        echo json_encode($response);
+
+    }
+
 
 }
 
