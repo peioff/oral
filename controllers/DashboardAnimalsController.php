@@ -80,6 +80,7 @@ class DashboardAnimalsController
             $imageName = $_FILES['file']['name'];
             $validData = false;
             $imageData = file_get_contents($_FILES['file']['tmp_name']);
+            $score = 0;
 
             if (!empty($name)){
                 $validName = true;
@@ -135,7 +136,7 @@ class DashboardAnimalsController
             if ($validName && $validSpecies && $validLiving && $validFileName && $validData){
                 $bdd = new DatabaseManager();
                 $lastInsertedId = $bdd->addImage($imageName, $imageData);
-                $bdd->addAnimal($name, $species, $living, $lastInsertedId);
+                $bdd->addAnimal($name, $species, $living, $lastInsertedId, $score);
                 $response = [
                     'success' => 'Request received successfully.',
                     'code' => HTTP_OK,
@@ -153,65 +154,6 @@ class DashboardAnimalsController
 
         $dashboardAnimalsView = new View();
         $dashboardAnimalsView->redirect('dashboardAnimals');
-    }
-
-    public function scoreAndCheckout()
-    {
-        if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' ) {
-
-            $bdd = new DatabaseManager();
-            $animal = $bdd->getAnimalById(intval($_GET['animalId']));
-
-
-             foreach ($bdd->getReports() as $element){
-                 if($element->getAnimalId() == $animal->getId()){
-                     $report = $element;
-                 }
-             }
-             foreach ($bdd->getFeedings() as $element){
-                 if($element->getAnimalId() == $animal->getId()){
-                     $feeding = $element;
-                 }
-             }
-
-             if (isset($report)){
-                 $date = ($report->getDate())->format('d-m-Y');
-                 $health = $report->getHealth();
-                 $remarks = $report->getRemark();
-             }
-             else{
-                 $date = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
-                 $health = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
-                 $remarks = $animal->getName() . ' n\'a pas encore été visité par le vétérinaire!';
-             }
-             if (isset($feeding)){
-                 $food = $feeding->getFood();
-                 $quantity = $feeding->getQuantity();
-             }
-             else {
-                 $food = $animal->getName() . ' n\'a encore rien mangé!';
-                 $quantity = '0';
-             }
-
-
-
-            $response = [
-                'success' => 'Request received successfully.',
-                'code' => HTTP_OK,
-                'id' => $animal->getId(),
-                'name' => $animal->getName(),
-                'species' => $animal->getSpecies(),
-                'living' => $animal->getLiving(),
-                'food' => $food,
-                'quantity' => $quantity,
-                'date' => $date,
-                'health' => $health,
-                'remarks' => $remarks
-
-                ];
-            echo json_encode($response);
-        }
-
     }
 
 }

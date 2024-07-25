@@ -175,6 +175,8 @@ class DatabaseManager
             $animal->setLiving($row['living']);
             $animal->setImageId($row['image_id']);
             $animal->setImage($this->getImg($row['image_id']));
+            $animal->setScore($row['score']);
+
 
             $animals[] = $animal; // Array of all animals in database
         }
@@ -196,13 +198,14 @@ class DatabaseManager
             $animal->setLiving($row['living']);
             $animal->setImageId($row['image_id']);
             $animal->setImage($this->getImg($row['image_id']));
+            $animal->setScore($row['score']);
         }
         return $animal;
     }
-    public function addAnimal($name, $species, $living, $lastInsertedId)
+    public function addAnimal($name, $species, $living, $lastInsertedId, $score)
     {
         $bdd = $this->bdd;
-        $query = "INSERT INTO animals(name, species, living, image_id) VALUES ('$name', '$species', '$living', '$lastInsertedId')";
+        $query = "INSERT INTO animals(name, species, living, image_id,score) VALUES ('$name', '$species', '$living', '$lastInsertedId','$score')";
         $req = $bdd->prepare($query);
         $req->execute();
     }
@@ -215,6 +218,15 @@ class DatabaseManager
         $req->bindValue(':species', $animal->getSpecies());
         $req->bindValue(':living', $animal->getLiving());
         $req->bindValue(':image_id', $animal->getImageId());
+        $req->bindValue(':animal_id', $animal->getId());
+        $req->execute();
+    }
+
+    public function incrementAnimalScore(AnimalModel $animal){
+        $bdd = $this->bdd;
+        $query = "UPDATE animals SET score = :score WHERE animal_id = :animal_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':score', $animal->getScore() + 1);
         $req->bindValue(':animal_id', $animal->getId());
         $req->execute();
     }
