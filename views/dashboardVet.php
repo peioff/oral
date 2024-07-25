@@ -9,12 +9,18 @@ $count = 1;
 ?>
 <head>
     <title>Dashboard - Veterinary</title>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>reportsFilter.js" defer></script>
 </head>
 
 <header class="view-header">
-    <h1 class="view-title">Rapports vétérinaire</h1>
-    <div class="view-search">
-        Barre de recherche
+    <h1 class="view-title">Rapports vétérinaires</h1>
+    <div class="search-container">
+        <form>
+            <label for="search">
+                <input class="search-field" oninput="reportFilter()" id="search-field" type="text" placeholder="Rechercher.." name="search"/>
+            </label>
+        </form>
     </div>
     <div class="view-actions">
         <a class="view-action" href="<?php echo HOST; ?>addReport.php">Créer un rapport</a>
@@ -55,12 +61,12 @@ $count = 1;
                 $class = 'report-table-row  report-table-row--contentAlt';
             }
             ?>
-            <div class="<?php echo $class?>">
-                <p class="report-table-cell"><?php echo $report->getDate()->format('d-m-Y') ?></p>
+            <div class="<?php echo $class?> report">
+                <p class="report-table-cell report-date"><?php echo $report->getDate()->format('d-m-Y') ?></p>
                 <?php foreach ($animals as $animal):
                     if ($animal->getId() == $report->getAnimalId()) {
                         ?>
-                        <p class="report-table-cell"><?php echo $animal->getName()?></p>
+                        <p class="report-table-cell report-animal"><?php echo $animal->getName()?></p>
                     <?php } endforeach; ?>
                 <p class="report-table-cell"><?php echo $report->getHealth()?></p>
                 <p class="report-table-cell report-table-cell--food">

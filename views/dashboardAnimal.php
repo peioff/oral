@@ -1,19 +1,28 @@
 <?php
-
 session_start();
-
 if (!empty($animalsToManage)) {
     $animals = $animalsToManage;
+    foreach ($animals as $animal) {
+        $names[] = $animal->getName();
+    }
+    $test = json_encode($names);
 }
 ?>
 <head>
     <title>Dashboard - Animals</title>
+    <link rel="stylesheet" href="<?php echo ASSETSCSS; ?>script.css"/>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>jquery3.7.1.js" defer></script>
+    <script type="text/javascript" src="<?php echo SCRIPTS; ?>animalsFilter.js" defer></script>
 </head>
 
 <header class="view-header">
     <h1 class="view-title">Gestion des animaux</h1>
-    <div class="view-search">
-        Barre de recherche
+    <div class="search-container">
+        <form>
+            <label for="search">
+                <input class="search-field" oninput="animalsFilter()" id="search-field" type="text" placeholder="Rechercher.." name="search"/>
+            </label>
+        </form>
     </div>
     <div class="view-actions">
         <a class="view-action" href="<?php echo HOST; ?>addAnimal.php">Ajouter un animal</a>
@@ -44,7 +53,8 @@ if (!empty($animalsToManage)) {
                      src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt=""/>
                 <div class="animal-infos">
                     <p class="animal-name"><?php echo $animal->getName() ?></p>
-                    <p class="animal-living"><?php echo $animal->getLiving() ?></p>
+                    <p class="animal-living"><?php echo  $animal->getLiving() ?></p>
+                    <p class="animal-specie"><?php echo  $animal->getSpecies() ?></p>
                     <p class="animal-score">SCORE</p>
                 </div>
                 <div class="animal-actions">
