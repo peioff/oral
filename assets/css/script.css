@@ -25,13 +25,11 @@
 .popupHide{
     display: none;
 }
-
 #animalInfo{
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
 
 }
-
 /*Titles*/
 #mainTitle{
     font-family: var(--font-title);
@@ -43,7 +41,6 @@
     font-size: 1.6rem;
     color: var(--lighter);
 }
-
 /*Animal info*/
 #animalInfo{
     display: flex;
@@ -56,7 +53,6 @@
     font-size: 1.6rem;
     width: 100%;
     box-shadow: var(--grey-900) 1px 5px 15px;
-
 }
 /*Picture*/
 #picture{
@@ -64,7 +60,6 @@
     max-width: 50%;
     border-radius: 2rem;
 }
-
 /*Feeding Infos and Vet Infos*/
 #feedingContainer , #vetContainer {
     width: 100%;
@@ -81,6 +76,4 @@
 #vetContainer{
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
-
 }
-
