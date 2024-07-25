@@ -137,6 +137,8 @@ html {
     width: 100%;
 }
 
+
+
 /*Commons*/
 .dashboardView-container {
     display: flex;
@@ -286,10 +288,13 @@ html {
     font-size: 3.8rem;
 }
 
-.view-search {
-    color: white;
-    font-size: 2rem;
+/*SearchBar*/
+.search-field{
+    padding-left: 1rem;
+    outline: none;
+    border-radius: 1rem;
 }
+
 
 .view-action {
     color: var(--color-content);
@@ -416,7 +421,7 @@ html {
     font-size: 2.4rem;
 }
 
-.animal-living {
+.animal-living, .animal-specie {
     font: var(--font-content);
     color: var(--color-content);
     font-size: 1.2rem;

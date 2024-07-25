@@ -1,7 +1,7 @@
 <?php
 #Error managing setup
 ini_set('display_errors', 1);
-error_reporting(E_ALL); // add " & ~E_NOTICE " (To disable notices)
+error_reporting(E_ALL & ~E_NOTICE); // add " & ~E_NOTICE " (To disable notices)
 
 /**
  * The AutoLoad Class is used to avoid having to include classes in files each time a class is used
