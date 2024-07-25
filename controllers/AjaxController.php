@@ -72,6 +72,8 @@ class AjaxController
 
             $bdd = new DatabaseManager();
             $animal = $bdd->getAnimalById(intval($_GET['animalId']));
+            $bdd->incrementAnimalScore($animal);
+
             $reports = $bdd->getReports();
             $food = "";
             $foodQuantity = "";

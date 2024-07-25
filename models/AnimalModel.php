@@ -11,6 +11,17 @@ class AnimalModel {
     private string $living;
     private int $image_id;
     private ImageModel $image;
+    private int $score;
+
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
+    public function setScore(int $score): void
+    {
+        $this->score = $score;
+    }
 
     public function getImage(): ImageModel
     {
