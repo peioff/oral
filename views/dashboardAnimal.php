@@ -55,7 +55,7 @@ if (!empty($animalsToManage)) {
                     <p class="animal-name"><?php echo $animal->getName() ?></p>
                     <p class="animal-living"><?php echo  $animal->getLiving() ?></p>
                     <p class="animal-specie"><?php echo  $animal->getSpecies() ?></p>
-                    <p class="animal-score">SCORE</p>
+                    <p class="animal-score"><?php echo 'Score : ' .  $animal->getScore() ?></p>
                 </div>
                 <div class="animal-actions">
                     <a title="Editer animal" href="<?php echo HOST ?>editAnimal.php/id/<?php echo $animal->getId() ?>">
