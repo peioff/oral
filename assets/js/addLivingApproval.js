@@ -35,7 +35,7 @@ function formApprovalTest() {
     $( '#addLivingForm' )
         .submit( function( e ) {
             $.ajax( {
-                url: baseUrl + "addLivingToDatabase",
+                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addLivingToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),

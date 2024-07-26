@@ -26,9 +26,9 @@ function formApproval() {
 
 
     $( '#addReportForm' )
-        .submit( function( e ) {
+        .submit( function( e ) { addReportToDatabase
             $.ajax( {
-                url: baseUrl + "addReportToDatabase",
+                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addReportToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),

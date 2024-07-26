@@ -40,7 +40,7 @@ function formApproval() {
     $( '#addServiceForm' )
         .submit( function( e ) {
             $.ajax( {
-                url: baseUrl + "addServiceToDatabase",
+                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addServiceToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),

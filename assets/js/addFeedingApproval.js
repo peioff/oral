@@ -23,7 +23,7 @@ function formApproval() {
     $( '#addFeedingForm' )
         .submit( function( e ) {
             $.ajax( {
-                url: baseUrl + "addFeedingToDatabase",
+                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addFeedingToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),
