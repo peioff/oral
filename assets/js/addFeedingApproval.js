@@ -1,3 +1,9 @@
+let baseUrl;
+if (window.location.hostname === 'localhost') {
+    baseUrl = window.location.origin + '/ecf/';
+} else {
+    baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
+}
 function formApproval() {
     let feedingDate = document.getElementById('feedingDate').value;
     let feedingFood = document.getElementById('feedingFood').value;
@@ -17,7 +23,7 @@ function formApproval() {
     $( '#addFeedingForm' )
         .submit( function( e ) {
             $.ajax( {
-                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addFeedingToDatabase",
+                url: baseUrl + "addFeedingToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),
@@ -27,8 +33,7 @@ function formApproval() {
                 if (response.error === 'none') {
                     toast('Nourrissage ajouté! Redirection dans 2 secondes', 'success');
                     window.setTimeout(() => {
-                        // window.location.protocol + "//" + window.location.host + "/"
-                        window.location = window.location.protocol + "//" + window.location.host + "/dashboardFeedings";
+                        window.location.replace( baseUrl + "dashboardFeedings");
                     }, 2000);
                 }
 
@@ -36,8 +41,8 @@ function formApproval() {
                 toast('Une erreur s\'est produite, retour à la page Nourrissage dans 2 secondes','error');
                 // Simulate an HTTP redirect:
                 window.setTimeout(() => {
-                    window.location = window.location.protocol + "//" + window.location.host + "/dashboardFeedings";
-                    }, 2000);
+                    window.location.replace(baseUrl + "dashboardFeedings");
+                }, 2000);
             });
             e.preventDefault();
         } );

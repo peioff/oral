@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 22 juil. 2024 à 15:57
+-- Généré le : jeu. 25 juil. 2024 à 15:32
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -32,29 +32,30 @@ CREATE TABLE `animals` (
   `name` varchar(50) NOT NULL,
   `species` varchar(50) NOT NULL,
   `living` varchar(50) NOT NULL,
-  `image_id` int(11) NOT NULL
+  `image_id` int(11) NOT NULL,
+  `score` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `animals`
 --
 
-INSERT INTO `animals` (`animal_id`, `name`, `species`, `living`, `image_id`) VALUES
-(1, 'Squirrel', 'Rongeur', 'La foret', 1),
-(2, 'Fox', 'Canide', 'La foret', 2),
-(3, 'Racoon', '?', 'La foret', 3),
-(4, 'Bobcat', 'Félin', 'La foret', 4),
-(5, 'Wolf', 'Canide', 'La foret', 5),
-(6, 'Turtle', 'Reptile', 'L\'étang', 6),
-(9, 'Otter', '?', 'L\'étang', 9),
-(10, 'Swan', 'Volatile', 'L\'étang', 10),
-(11, 'Frog', 'Reptile', 'L\'étang', 11),
-(12, 'Crocodile', 'Reptile', 'L\'étang', 12),
-(13, 'Giraffe', '?', 'La savane', 13),
-(14, 'Zebra', '?', 'La savane', 14),
-(15, 'Nandu', 'Volatile', 'La savane', 15),
-(16, 'Meerkat', '?', 'La savane', 16),
-(17, 'Impala', '?', 'La savane', 17);
+INSERT INTO `animals` (`animal_id`, `name`, `species`, `living`, `image_id`, `score`) VALUES
+(1, 'Squirrel', 'Rongeur', 'La foret', 1, 4),
+(2, 'Fox', 'Canide', 'La foret', 2, 2),
+(3, 'Racoon', '?', 'La foret', 3, 1),
+(4, 'Bobcat', 'Félin', 'La foret', 4, 4),
+(5, 'Wolf', 'Canide', 'La foret', 5, 5),
+(6, 'Turtle', 'Reptile', 'L\'étang', 6, 2),
+(9, 'Otter', '?', 'L\'étang', 9, 6),
+(10, 'Swan', 'Volatile', 'L\'étang', 10, 1),
+(11, 'Frog', 'Reptile', 'L\'étang', 11, 1),
+(12, 'Crocodile', 'Reptile', 'L\'étang', 12, 1),
+(13, 'Giraffe', '?', 'La savane', 13, 0),
+(14, 'Zebra', '?', 'La savane', 14, 0),
+(15, 'Nandu', 'Volatile', 'La savane', 15, 1),
+(16, 'Meerkat', '?', 'La savane', 16, 3),
+(17, 'Impala', '?', 'La savane', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -364,7 +365,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `animal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `animal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT pour la table `comments`
@@ -388,7 +389,7 @@ ALTER TABLE `feedings`
 -- AUTO_INCREMENT pour la table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT pour la table `livings`

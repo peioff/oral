@@ -1,3 +1,9 @@
+let baseUrl;
+if (window.location.hostname === 'localhost') {
+    baseUrl = window.location.origin + '/ecf/';
+} else {
+    baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
+}
 function formApproval() {
     let animalName = document.getElementById('animalName').value;
     let reportDate = document.getElementById('reportDate').value;
@@ -22,7 +28,7 @@ function formApproval() {
     $( '#addReportForm' )
         .submit( function( e ) {
             $.ajax( {
-                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addReportToDatabase",
+                url: baseUrl + "addReportToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),

@@ -1,3 +1,9 @@
+let baseUrl;
+if (window.location.hostname === 'localhost') {
+    baseUrl = window.location.origin + '/ecf/';
+} else {
+    baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
+}
 function formApproval() {
     let serviceName = document.getElementById('serviceName').value;
     let serviceSchedule = document.getElementById('serviceSchedule').value;
@@ -34,7 +40,7 @@ function formApproval() {
     $( '#addServiceForm' )
         .submit( function( e ) {
             $.ajax( {
-                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addServiceToDatabase",
+                url: baseUrl + "addServiceToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),

@@ -1,3 +1,9 @@
+let baseUrl;
+if (window.location.hostname === 'localhost') {
+    baseUrl = window.location.origin + '/ecf/';
+} else {
+    baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
+}
 function formApprovalTest() {
     let livingName = document.getElementById('livingName').value;
     let livingDescription = document.getElementById('livingDescription').value;
@@ -29,7 +35,7 @@ function formApprovalTest() {
     $( '#addLivingForm' )
         .submit( function( e ) {
             $.ajax( {
-                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addLivingToDatabase",
+                url: baseUrl + "addLivingToDatabase",
                 type: 'POST',
                 dataType:'json',
                 data: new FormData( this ),

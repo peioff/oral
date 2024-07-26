@@ -1,3 +1,10 @@
+let baseUrl;
+if (window.location.hostname === 'localhost') {
+    baseUrl = window.location.origin + '/ecf/';
+} else {
+    baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
+}
+
 function formApproval() {
     let animalName = document.getElementById('animalName').value;
     let animalSpecie = document.getElementById('animalSpecie').value;
@@ -25,10 +32,11 @@ function formApproval() {
         toast('Select a file', 'error');
     }
 
+
     $( '#formId' )
         .submit( function( e ) {
             $.ajax( {
-                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addAnimalToDatabase",
+                url: baseUrl + "addAnimalToDatabase",
                 type: 'POST',
                 dataType: "json",
                 data: new FormData( this ),
@@ -40,7 +48,7 @@ function formApproval() {
                     toast('Animal ajouté! Redirection dans 3 secondes', 'success');
                     window.setTimeout(() => {
                         window.location.replace("dashboardAnimals");
-                    }, 3000);
+                        }, 3000);
                 }
 
 
@@ -49,7 +57,7 @@ function formApproval() {
                 // Simulate an HTTP redirect:
                 window.setTimeout(() => {
                     window.location.replace("dashboardAnimals");
-                }, 3000);
+                    }, 3000);
             });
             e.preventDefault();
         } );
