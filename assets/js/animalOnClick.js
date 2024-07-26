@@ -44,7 +44,7 @@ function animalOnClick(animalId,element){
         let image;
         //Reaching Server and creating a new Animal
         $.ajax({
-            url: baseUrl + "animalOnClick",
+            url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/animalOnClick",
             method: "GET",
             dataType: "json",
             data: {
