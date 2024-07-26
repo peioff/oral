@@ -36,7 +36,7 @@ function formApproval() {
     $( '#formId' )
         .submit( function( e ) {
             $.ajax( {
-                url: baseUrl + "addAnimalToDatabase",
+                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addAnimalToDatabase",
                 type: 'POST',
                 dataType: "json",
                 data: new FormData( this ),
