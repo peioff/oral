@@ -85,7 +85,7 @@ class DashboardVetController
                         $feedingDate = $feedingDate->format('d-m-Y');
                     }
                 }
-                $report = new ReportModel();
+                $report = new ReportModel(0,new DateTime(),"Good","Na",0,new DateTime(),"Na",0);
                 try {
                     $report->setDate(new DateTime($_POST['date']));
                 } catch (Exception $e) {
