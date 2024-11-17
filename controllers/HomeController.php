@@ -32,6 +32,36 @@ class HomeController
         $homeView->render(array('allHomePageData' => $allHomePageData));
     }
 
+    public function animalOnclick($id): void
+    {
+        $animalId = intval($id['id']);
+
+//        //NoSql
+//        $mongo = new NoSQLDbManager();
+//        if (isset($animal)) {
+//            $actualScore = $mongo->getAnimalScore($animalId);
+//            $mongo->increaseAnimalSCore($animalId, $actualScore + 1);
+//        }
+//        else{
+//            $mongo->addNewAnimal($animalId);
+//        }
+
+        //Sql
+        $databaseManager = new DatabaseManager();
+        $animal = $databaseManager->getAnimalById($animalId);
+        $reports = $databaseManager->getReportById($animal->getScore());
+
+        if (count($reports) > 1) {
+            array_shift($reports);
+        }
+
+        $data = ['animal' => $animal, 'report' => $reports[0]];
+
+        $view = new View('animalOnclick');
+        $view->renderSinglePage($data);
+    }
+
+
 
 
 }
