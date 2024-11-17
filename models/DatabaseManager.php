@@ -189,9 +189,9 @@ class DatabaseManager
         $req = $bdd->prepare($query);
         $req->bindValue(':animal_id',$animal_id);
         $req->execute();
+        $animal = new AnimalModel();
 
         while ($row = $req->fetch(PDO::FETCH_ASSOC)){
-            $animal = new AnimalModel();
             $animal->setId($row['animal_id']);
             $animal->setName($row['name']);
             $animal->setSpecies($row['species']);
@@ -202,6 +202,7 @@ class DatabaseManager
         }
         return $animal;
     }
+
     public function addAnimal($name, $species, $living, $lastInsertedId, $score)
     {
         $bdd = $this->bdd;
