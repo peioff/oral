@@ -41,7 +41,7 @@
                 </li>
                 <li>
                     <div class="form-buttonContainer">
-                        <button class="button button--success" type="submit" onclick="formApproval()">Ajouter</button>
+                        <button class="button button--success" type="submit" onclick="addAnimal()">Ajouter</button>
                         <a class="button button--danger" href="<?php echo HOST; ?>dashboardAnimals" >Annuler</a>
                     </div>
                 </li>

@@ -5,7 +5,7 @@ if (window.location.hostname === 'localhost') {
     baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
 }
 
-function formApproval() {
+function addAnimal() {
     let animalName = document.getElementById('animalName').value;
     let animalSpecie = document.getElementById('animalSpecie').value;
     let animalLiving = document.getElementById('animalLiving').value;
