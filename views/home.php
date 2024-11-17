@@ -19,7 +19,7 @@ if (isset($allHomePageData)) {
     <script type="text/javascript" src="<?php echo SCRIPTS; ?>animalOnClick.js" defer></script>
 
 </head>
-<body class="body flux">
+<body id="body" class="body flux">
 <main class="main">
     <!-- Banner -->
     <section class="banner">
