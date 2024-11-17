@@ -92,7 +92,7 @@ if (isset($allHomePageData)) {
                     ?>
                 </h3>
                 <img class="animal-picture"
-                     onclick="displayAnimalInfos(<?php echo $animal->getid(); ?>,this)"
+                     onclick="displayAnimalInfo(<?php echo $animal->getid(); ?>,this)"
                      src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt=""/>
                 <div class="animal-content" id="<?php echo $animal->getId() ?>">
                     <p>

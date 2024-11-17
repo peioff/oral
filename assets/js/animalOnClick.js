@@ -4,7 +4,7 @@ if (window.location.hostname === 'localhost') {
 } else {
     baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
 }
-function displayAnimalInfos(animalId) {
+function displayAnimalInfo(animalId) {
     //Body
     const body = document.getElementById('body')
     //InfosContainer
