@@ -59,7 +59,7 @@ if (!empty($data)) {
                 <p class="contact-content"><?php echo $contact->getContent(); ?></p>
                 <?php if (!$contact->getAnswered()){ ?>
                 <div class="contact-actions">
-                    <a class="view-action" href="<?php echo HOST?>answerContact/id/<?php echo $contact->getId()?>">Répondre</a>
+                    <a class="view-action" href="mailto:<?php echo $contact->getEmail()?>>">Répondre</a>
                     <a class="view-action--danger" href="<?php echo HOST?>deleteContact/id/<?php echo $contact->getId()?>">Supprimer</a>
                 </div>
                 <?php } else {?>
