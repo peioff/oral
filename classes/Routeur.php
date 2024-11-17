@@ -22,6 +22,7 @@ class Routeur
         ""                          => ["controller" => 'HomeController', "method" => 'display'],
         "/"                          => ["controller" => 'HomeController', "method" => 'display'],
         "home"                      => ["controller" => 'HomeController', "method" => 'display'],
+        "animalOnclick"              => ["controller" => 'HomeController', "method" => 'animalOnclick'],
         //Livings
         "livings"                   => ["controller" => 'LivingsController', "method" => 'display'],
         //Services
@@ -87,7 +88,6 @@ class Routeur
         "deleteContact"             => ["controller" => 'DashboardContactsController', "method" => 'deleteContact'],
             //Ajax AnimalOnClick
         "contactApproval"           => ["controller" => 'AjaxController', "method" => 'contactApproval'],
-        "animalOnClick"             => ["controller" => 'AjaxController', "method" => 'animalOnClick'],
 
 
 
