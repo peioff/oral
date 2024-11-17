@@ -33,7 +33,7 @@ function addFeeding() {
                 if (response.error === 'none') {
                     toast('Nourrissage ajouté! Redirection dans 2 secondes', 'success');
                     window.setTimeout(() => {
-                        window.location.replace( baseUrl + "dashboardFeedings");
+                        window.location.replace( "https://oral-56a335cd47f2.herokuapp.com/dashboardFeedings");
                     }, 2000);
                 }
 
@@ -41,7 +41,7 @@ function addFeeding() {
                 toast('Une erreur s\'est produite, retour à la page Nourrissage dans 2 secondes','error');
                 // Simulate an HTTP redirect:
                 window.setTimeout(() => {
-                    window.location.replace(baseUrl + "dashboardFeedings");
+                    window.location.replace( "https://oral-56a335cd47f2.herokuapp.com/dashboardFeedings");
                 }, 2000);
             });
             e.preventDefault();
