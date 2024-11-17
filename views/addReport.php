@@ -56,7 +56,7 @@ if (!empty($data)){
                     </label>
                 </li>
                     <div class="form-buttonContainer">
-                        <button class="button button--success" type="submit" onclick="formApproval()">Ajouter</button>
+                        <button class="button button--success" type="submit" onclick="addReport()">Ajouter</button>
                         <a class="button button--danger" href="<?php echo HOST; ?>dashboardVet" >Annuler</a>
                     </div>
                 </li>
