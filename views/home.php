@@ -78,28 +78,32 @@ if (isset($allHomePageData)) {
         <header class="headband">
             <h2 class="title">Les animaux</h2>
             <p class="headband-content">
-                Lorem ipsum odor amet, consectetuer adipiscing elit. Lacus in at proin interdum eget quisque congue arcu ut; malesuada penatibus condimentum vehicula erat enim ac donec cras.
+                Texte de présentation du zoo, en quelques lignes, présenter le zoo,
+                essayer de faire sortir le coté écologique dans la pésentation aussi
             </p>
         </header>
         <!-- animal -->
-        <?php foreach ($animals as $animal):?>
-            <article class="animal" >
+        <?php foreach ($animals as $animal): ?>
+
+            <article class="animal">
                 <h3 class="animal-title">
                     <?php
                     echo $animal->getName();
-                    ?></h3>
+                    ?>
                 </h3>
-                <img class="animal-picture"<?php $animal->getId() ?>" onclick="animalOnClick(<?php echo $animal->getid();?>,this)"
-                     src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt="">
-<!--                <div class="animal-content" id="--><?php //echo $animal->getId() ?><!--">-->
-<!--                    <p>  --><?php
-//                        echo $animal->getLiving();
-//                        ?>
-<!--                    </p>-->
-<!--                </div>-->
+                <img class="animal-picture"
+                     onclick="displayAnimalInfos(<?php echo $animal->getid(); ?>,this)"
+                     src="data:image/jpeg;base64,<?php echo base64_encode($animal->getImage()->getData()); ?>" alt=""/>
+                <div class="animal-content" id="<?php echo $animal->getId() ?>">
+                    <p>
+                        <?php
+                        echo $animal->getLiving();
+                        ?>
+                    </p>
+                </div>
             </article>
-        <?php  endforeach; ?>
 
+        <?php endforeach; ?>
     </section>
     <!-- Services -->
     <section class="services">
