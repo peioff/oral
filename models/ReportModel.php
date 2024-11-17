@@ -11,6 +11,28 @@ class ReportModel {
     private string $remark;
     private int $animalId;
 
+    /**
+     * @param int $reportId
+     * @param DateTime $date
+     * @param string $health
+     * @param string $food
+     * @param int $foodQuantity
+     * @param DateTime $feedingDate
+     * @param string $remark
+     * @param int $animalId
+     */
+    public function __construct(int $reportId, DateTime $date, string $health, string $food, int $foodQuantity, DateTime $feedingDate, string $remark, int $animalId)
+    {
+        $this->reportId = $reportId;
+        $this->date = $date;
+        $this->health = $health;
+        $this->food = $food;
+        $this->foodQuantity = $foodQuantity;
+        $this->feedingDate = $feedingDate;
+        $this->remark = $remark;
+        $this->animalId = $animalId;
+    }
+
     public function getId(): int
     {
         return $this->reportId;
