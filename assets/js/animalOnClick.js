@@ -22,6 +22,7 @@ function displayAnimalInfo(animalId) {
     $.get('https://oral-56a335cd47f2.herokuapp.com/animalOnclick/id/' + animalId, function (data) {
         //Dom insertion
         $(nestedDetailsContainer).html(data);
+        $(window).click(function () {$(nestedPopup).remove();});
     });
 }
 
