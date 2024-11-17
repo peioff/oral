@@ -2,7 +2,7 @@ let baseUrl;
 if (window.location.hostname === 'localhost') {
     baseUrl = window.location.origin + '/ecf/';
 } else {
-    baseurl = "https://ecf-arcadia-00d8251bc78c.herokuapp.com/";
+    baseurl = "https://oral-56a335cd47f2.herokuapp.com/";
 }
 function formApproval() {
     let feedingDate = document.getElementById('feedingDate').value;
