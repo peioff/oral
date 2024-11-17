@@ -57,6 +57,15 @@ class View {
         include_once(VIEWS.'_gabaritDashBoard.php');
     }
 
+    public function renderSinglePage(?array $data = array()): void
+    {
+        #set $data the name of the array given as parameter in the controller
+        extract($data);
+        $template = $this->template;
+        include(VIEWS.$template . '.php');
+    }
+
+
     /**
      * This function is used to redirect user to a specified route
      *
