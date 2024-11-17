@@ -45,9 +45,9 @@ function addReport() {
                 console.log(e)
                 toast('Une erreur s\'est produite, retour à la page Nourrissage dans 2 secondes','error');
                 // Simulate an HTTP redirect:
-                window.setTimeout(() => {
-                    window.location.replace("dashboardVet");
-                }, 2000);
+                // window.setTimeout(() => {
+                //     window.location.replace("dashboardVet");
+                // }, 2000);
             });
             e.preventDefault();
         } );
