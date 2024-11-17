@@ -224,7 +224,6 @@
     row-gap: 3rem;
     width: 20rem;
     background-color: var(--grey-800);
-    border: var(--secondary) solid 1px;
     border-radius: 1rem;
   }
   .header-link{
