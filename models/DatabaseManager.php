@@ -474,6 +474,46 @@ class DatabaseManager
         }
         return $reports;
     }
+    public function getReportById(int $reportId): array{
+        $bdd = $this->bdd;
+        $query = "SELECT * FROM reports WHERE report_id = :report_id";
+        $req = $bdd->prepare($query);
+        $req->bindValue(':report_id',$reportId);
+        $req->execute();
+
+        $reports [] = new ReportModel(
+            0,
+            new DateTime(),
+            'undefined',
+            'undefined',
+            0,
+            new DateTime(),
+            'undefined',
+            0
+        );
+
+        while ($row = $req->fetch(PDO::FETCH_ASSOC)){
+            $report = new ReportModel(
+                0,
+                new DateTime(),
+                'undefined',
+                'undefined',
+                0,
+                new DateTime(),
+                'undefined',
+                0
+            );
+            $report->setId($row['report_id']);
+            $report->setDate(new DateTime($row['date']));
+            $report->setHealth($row['health']);
+            $report->setFood($row['food']);
+            $report->setFoodQuantity($row['food_quantity']);
+            $report->setAnimalId($row['animal_id']);
+            $reports[] = $report;
+        }
+        return $reports;
+    }
+
     public function addReportToDatabase(ReportModel $report){
         $bdd = $this->bdd;
         $query = "INSERT INTO reports(date,health,food,food_quantity,feeding_date,remark,animal_id) VALUES (:date,:health,:food,:food_quantity,:feeding_date,:remark,:animal_id)";
