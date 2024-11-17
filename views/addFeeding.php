@@ -49,7 +49,7 @@
                 </li>
                 <li>
                     <div class="form-buttonContainer">
-                        <button class="button button--success" type="submit" onclick="formApproval()">Ajouter</button>
+                        <button class="button button--success" type="submit" onclick="addFeeding()">Ajouter</button>
                         <a class="button button--danger" href="<?php echo HOST; ?>dashboardFeedings" >Annuler</a>
                     </div>
                 </li>

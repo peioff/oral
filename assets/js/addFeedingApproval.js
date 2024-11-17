@@ -4,7 +4,7 @@ if (window.location.hostname === 'localhost') {
 } else {
     baseurl = "https://oral-56a335cd47f2.herokuapp.com/";
 }
-function formApproval() {
+function addFeeding() {
     let feedingDate = document.getElementById('feedingDate').value;
     let feedingFood = document.getElementById('feedingFood').value;
     let feedingQuantity = document.getElementById('feedingQuantity').value;
