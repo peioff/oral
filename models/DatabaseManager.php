@@ -447,14 +447,23 @@ class DatabaseManager
         $req->execute();
     }
 
-    //Report
+//Report
     public function getReports():array{
         $bdd = $this->bdd;
         $query = "SELECT * FROM reports";
         $req = $bdd->prepare($query);
         $req->execute();
         while ($row = $req->fetch(PDO::FETCH_ASSOC)){
-            $report = new ReportModel();
+            $report = new ReportModel(
+                0,
+                new DateTime(),
+                'undefined',
+                'undefined',
+                0,
+                new DateTime(),
+                'undefined',
+                0
+            );
             $report->setId($row['report_id']);
 
             try {
@@ -513,7 +522,6 @@ class DatabaseManager
         }
         return $reports;
     }
-
     public function addReportToDatabase(ReportModel $report){
         $bdd = $this->bdd;
         $query = "INSERT INTO reports(date,health,food,food_quantity,feeding_date,remark,animal_id) VALUES (:date,:health,:food,:food_quantity,:feeding_date,:remark,:animal_id)";
