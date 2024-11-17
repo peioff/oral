@@ -42,7 +42,7 @@ function formApproval() {
     $('#addUserForm')
         .submit(function (e) {
             $.ajax({
-                url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/addUserToDatabase",
+                url: "https://oral-56a335cd47f2.herokuapp.com/addUserToDatabase",
                 type: 'POST',
                 dataType: 'json',
                 data: new FormData(this),
