@@ -20,7 +20,7 @@ function formApproval() {
     }
     else {
         $.ajax({
-            url: "https://ecf-arcadia-00d8251bc78c.herokuapp.com/contactApproval",
+            url: "https://oral-56a335cd47f2.herokuapp.com/contactApproval",
                 method: "post",
                 dataType: "json"
                 ,
